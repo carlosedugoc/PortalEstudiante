@@ -23,14 +23,14 @@
 
           <section id="mainContent"  *ngIf="!serv">
               <div class="module">
-                  <div class="headModule" *ngIf="!rol || rol == '' || rol == 'undefined'" >
+                  <div class="headModule" >
                       <h1>Seleccione una Universidad y configure los servicios</h1>
                   </div>
                   <div class="bodyModule">
-                      <div class="row boxCombo" *ngIf="!rol || rol == '' || rol == 'undefined'" >
+                      <div class="row boxCombo" >
                           <div class="col-sm-6 col-md-4">
                               <div class="form-group">
-                                  <label for="exampleInputEmail1">Universidad</label>
+                                  <label for="exampleInputEmail1">{{ 'Administracion.LabelUniversidad' | translate }}</label>
                                   <div class="boxSelect">
                                       <select name="" id="input" class="form-control" required="required" (change)="cargar_datos($event.target.value)">
                                           <option value="0" hidden>Seleccione...</option>
@@ -57,7 +57,6 @@
                                   <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
                                   <span class="sr-only">Loading...</span>
                               </div>
-
 
                               <div class="tab-content" *ngIf="!loading && mostrar_tabla && !serv">
                                   <div role="tabpanel" class="tab-pane fade in active" id="tab1">

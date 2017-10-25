@@ -1,7 +1,7 @@
 
 <div class="container">
     
-<div class="form-group" *ngIf="!logued">
+<!-- <div class="form-group" *ngIf="!logued">
     <label for=""></label>
     <select class="form-control" name="" id="" (change)="login($event.target.value)">
       <option value="0">Seleccione Usuario</option>
@@ -9,7 +9,25 @@
       <option value="AA" >Administrador Areandina</option>
       <option value="Poli">Administrador Politécnico</option>
     </select>
-  </div>
+  </div> -->
+
+
+      <div class="row" *ngIf="!logued">
+          <div class="col-md-offset-3 col-md-6 login-margin">
+              <div class="form-login">
+              <h4 class="centrar">Inicio de sesión</h4>
+              <select class="form-control" name="" id="" (change)="login($event.target.value)">
+                  <option value="0">Seleccione Usuario</option>
+                  <option value="">Administrador Ilumno</option>
+                  <option value="AA" >Administrador Areandina</option>
+                  <option value="Poli">Administrador Politécnico</option>
+                </select>
+              </div>
+          
+          </div>
+      </div>
+
+
 </div>
 <div *ngIf="logued">
     <app-header></app-header>
