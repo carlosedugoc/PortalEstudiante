@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div id="no-more-tables" class="">
+            <div class="table-responsive">
+                <table class="table-bordered table-striped table-condensed">
+                    <thead class="">
+                        <tr class="headBold">
+                          <th rowspan="2">{{ 'Administracion.LabelServicios' }}</th>
+                          <th *ngIf="servicios.length > 0 && servicios[0].datos.length > 0" [attr.colspan]="total_modalidades">{{ 'Administracion.LabelModalidades' }}</th>
+                          <th *ngIf="servicios.length > 0 && servicios[0].datos.length > 0" [attr.colspan]="total_niveles">{{ 'Administracion.LabelNiveles' }}</th>
+                          <th *ngIf="servicios.length > 0 && servicios[0].datos.length > 0" [attr.colspan]="total_estados">{{ 'Administracion.LabelEstados' }}</th>
+                          <th rowspan="2" class="boxInput">URL</th>
+                          <th rowspan="2" class="boxSwitch">{{ 'Administracion.LabelHabilidar' }}</th>
+                        </tr>
+                        <tr *ngIf="servicios.length > 0 && servicios[0].datos.length > 0">
+                          <th  class="boxCheckbox" *ngFor="let tipo of tipos">{{tipo.description | capitalizar:false}}</th>
+                        </tr>
+                    </thead>
+                  
+                    <tbody>
+                        <tr *ngFor="let servicio of servicios; let idxServicio = index">
+                            <td data-title="Servicio" class="boxFirstInput">
+                                <div class="wrapService">
+                                    <div class="txt">
+                                        {{servicio.nombre}}
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  [disabled] = "!servicio.habilitar">
+                                            <i class="fa fa-check-square-o" aria-hidden="true"></i> <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a (click)="ModificarTodos(true,idxServicio)" role="button">Seleccionar todos</a></li>
+                                            <li><a (click)="ModificarTodos(false,idxServicio)" role="button">Deseleccionar todos</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                            <td *ngFor="let item of servicio.datos" class="boxCheckbox">
+                                <label class="control control--checkbox">
+                                    <input type="checkbox" [(ngModel)]="item.dato" [disabled] = "!servicio.habilitar" (change)="updateItem(item.id,item.dato)" />
+                                    <div class="control__indicator"></div>
+                                </label>
+                            </td>
+                            <td data-title="URL" class="boxInput">
+                                <input type="text" [(ngModel)]="servicio.url"  [disabled] = "!servicio.habilitar" name="url" class="form-control" (blur)="updateServicio(servicio.id,'Url',servicio.url)">
+                            </td>
+                            <td data-title="Habilitar / Deshabilitar" class="boxSwitch">
+                                <div class="card">
+                                    <label>
+                                        <input type="checkbox" [(ngModel)]="servicio.habilitar" (change)="updateServicio(servicio.id,'Estado',servicio.habilitar)" /><span class="switch"></span><span class="toggle">    </span>
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

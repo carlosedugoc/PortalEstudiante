@@ -1,0 +1,125 @@
+<div class="container-fluid">
+  <div class="row">
+
+      <section id="content">
+          
+          <section class="miga">
+              <ol class="breadcrumb">
+                  <li>
+                      <a href="#">Administración</a>
+                  </li>
+                  <li class="active">Configuración de servicios</li>
+
+                      <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#modal-id">Open Modal</button>
+              </ol>
+          </section>
+
+          <section id="mainContent"  *ngIf="serv">
+              <div class="infoWarning">
+                  <i class="fa fa-warning" aria-hidden="true"></i>
+                  <p>Para poder configurar servicios antes <br>es necesario <strong>configurar la universidad</strong></p>
+              </div>
+          </section>
+
+          <section id="mainContent"  *ngIf="!serv">
+              <div class="module">
+                  <div class="headModule" *ngIf="!rol || rol == '' || rol == 'undefined'" >
+                      <h1>Seleccione una Universidad y configure los servicios</h1>
+                  </div>
+                  <div class="bodyModule">
+                      <div class="row boxCombo" *ngIf="!rol || rol == '' || rol == 'undefined'" >
+                          <div class="col-sm-6 col-md-4">
+                              <div class="form-group">
+                                  <label for="exampleInputEmail1">Universidad</label>
+                                  <div class="boxSelect">
+                                      <select name="" id="input" class="form-control" required="required" (change)="cargar_datos($event.target.value)">
+                                          <option value="0" hidden>Seleccione...</option>
+                                          <option value="1">Areandina</option>
+                                          <option value="2">Politécnico</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                
+                      <div class="row boxTabs" *ngIf="!serv">
+                          <div class="col-xs-12">
+                              <ul class="nav nav-pills" role="tablist">
+                                  <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">{{ 'Administracion.LabelConsultaAcademica'  }}</a></li>
+                                  <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">{{ 'Administracion.LabelSolicitudFinanciera' }}</a></li>
+                                  <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">{{ 'Administracion.LabelSolicitudAcademica' }}</a></li>
+                                  <li role="presentation"><a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">{{ 'Administracion.LabelPortales'  }}</a></li>
+                              </ul>
+
+
+                              <div *ngIf="loading">
+                                  <br>
+                                  <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+                                  <span class="sr-only">Loading...</span>
+                              </div>
+
+
+                              <div class="tab-content" *ngIf="!loading && mostrar_tabla && !serv">
+                                  <div role="tabpanel" class="tab-pane fade in active" id="tab1">
+                                      <app-lista-servicios [total_modalidades]= "total_modalidades"  [total_niveles] = "total_niveles"
+                                            [total_estados] = "total_estados" [tipos] = "tipos" [servicios] = "servicios | filtroServicios:1">
+                                      </app-lista-servicios>
+                                  </div>
+                                  <div role="tabpanel" class="tab-pane fade" id="tab2">
+                                      <app-lista-servicios [total_modalidades]= "total_modalidades"  [total_niveles] = "total_niveles"
+                                            [total_estados] = "total_estados" [tipos] = "tipos" [servicios] = "servicios | filtroServicios:2">
+                                      </app-lista-servicios>
+                                  </div>
+                                  <div role="tabpanel" class="tab-pane fade" id="tab3">
+                                      <app-lista-servicios [total_modalidades]= "total_modalidades"  [total_niveles] = "total_niveles"
+                                            [total_estados] = "total_estados" [tipos] = "tipos" [servicios] = "servicios | filtroServicios:3">
+                                      </app-lista-servicios>
+                                  </div>
+                                  <div role="tabpanel" class="tab-pane fade" id="tab4">
+                                      <app-lista-servicios [total_modalidades]= "total_modalidades"  [total_niveles] = "total_niveles"
+                                            [total_estados] = "total_estados" [tipos] = "tipos" [servicios] = "servicios | filtroServicios:4">
+                                      </app-lista-servicios>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+          </section>
+      </section>
+
+
+
+      <section id="boxModal">
+          <div class="modal fade" id="modal-id">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Debes revisar la configuración de servicios</h4>
+                      </div>
+                      <div class="modal-body" style="height: 100px;overflow: scroll;">
+                          
+                              <ul>
+                                  <li *ngFor="let item of faltantesMensaje | filtroFaltantes:1"><i class="fa fa-minus" aria-hidden="true"></i>En modalidad Académica: se agregó <strong>{{item.nombre_item}}</strong> </li>
+                                  <li *ngFor="let item of faltantesMensaje | filtroFaltantes:2"><i class="fa fa-minus" aria-hidden="true"></i>En nivel Académico: se agregó <strong>{{item.nombre_item}}</strong> </li>
+                                  <li *ngFor="let item of faltantesMensaje | filtroFaltantes:3"><i class="fa fa-minus" aria-hidden="true"></i>En Tipo de Usuario: se agregó <strong>{{item.nombre_item}}</strong> </li>
+                                  <li *ngFor="let item of eliminados | filtroFaltantes:1"><i class="fa fa-minus" aria-hidden="true"></i>En modalidad Académica: se eliminó <strong>{{item.nombre_item}}</strong> </li>
+                                  <li *ngFor="let item of eliminados | filtroFaltantes:2"><i class="fa fa-minus" aria-hidden="true"></i>En nivel Académico: se eliminó <strong>{{item.nombre_item}}</strong> </li>
+                                  <li *ngFor="let item of eliminados | filtroFaltantes:3"><i class="fa fa-minus" aria-hidden="true"></i>En Tipo de Usuario: se eliminó <strong>{{item.nombre_item}}</strong> </li>
+                              </ul>
+
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">CERRAR</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+  </div>
+
+</div>

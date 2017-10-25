@@ -1,0 +1,90 @@
+::-moz-selection { 
+	color: #fff;
+  	background: $primary_color;
+  }
+::selection { 
+	color: #fff;  
+	background: $primary_color;
+}
+
+*:focus {
+	outline: none;
+	text-decoration: none;
+}
+
+input, select {
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  option {
+    cursor: pointer;
+  }
+}
+input::-webkit-input-placeholder{
+    color:$color-claro;
+}
+input:-moz-placeholder{ 
+   color: $color-claro;
+   opacity:1;
+}
+input::-moz-placeholder{ 
+   color:$color-claro;
+   opacity:1;
+}
+input:-ms-input-placeholder{ 
+   color:$color-claro;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
+.table-responsive::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+.table-responsive::-webkit-scrollbar
+{
+  height: 6px;
+  background-color: $inactive_color;
+}
+
+.table-responsive::-webkit-scrollbar-thumb
+{
+  background-color: $primary_color_light;
+}
+a:focus {
+	text-decoration: none;
+	color: inherit;
+  outline: none;
+}
+img {
+  max-width: 100%
+;}
+
+.boxSelect {
+  position: relative;
+  &:after {
+    content: "\f107";
+    font-family: FontAwesome;
+    font-style: normal; 
+    font-weight: normal;
+    text-decoration: inherit;
+    color: #ccc;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    padding-left: 3px;
+  }
+
+}
+.modal-backdrop.in {
+  opacity: .3;
+}

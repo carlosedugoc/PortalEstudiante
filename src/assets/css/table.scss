@@ -1,0 +1,159 @@
+ @media only screen and (max-width: 680px) {
+    
+    /* Force table to not be like tables anymore */
+	#no-more-tables table, 
+	#no-more-tables thead, 
+	#no-more-tables tbody, 
+	#no-more-tables th, 
+	#no-more-tables td, 
+	#no-more-tables tr { 
+		display: block; 
+	}
+ 	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	#no-more-tables thead th{
+        text-align: center;
+    }
+    #no-more-tables thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+        text-align: center;
+	}
+ 
+	#no-more-tables tr { border: 1px solid #ccc; }
+ 
+	#no-more-tables td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+		white-space: normal;
+		text-align:right;
+	}
+ 
+	#no-more-tables td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		text-align:left;
+		font-weight: bold;
+	}
+ 
+	/*
+	Label the data
+	*/
+	#no-more-tables td:before { content: attr(data-title); }
+}
+
+// my custom table
+
+// reset
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
+	border-color: $borde_color;
+}
+.table-bordered>thead>tr>th, .table-bordered>thead>tr>td {
+	border-bottom-width: 1px;
+}
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #f3f3f3;
+}
+#no-more-tables { 
+	table {
+	width: 100%;
+		thead {
+			tr {
+				th {
+					text-align: center;
+					font-weight: 400;
+					font-size: 13px;
+				}
+			}
+			.headBold {
+				th {
+					font-weight: 700;
+				}
+				
+			}
+			
+		}
+		tbody {
+
+			tr {
+				td {
+					text-align: center;
+						input {
+							height: 30px;
+							font-weight: 400;
+							font-size: 13px;
+							color: $primary_color;
+							padding: 2px 5px;
+							border-radius: 0;
+							border-color: $borde_color;
+							box-shadow: none;
+							min-width: 200px;
+							&:disabled {
+								color: $inactive_color;
+							}
+					}
+				}
+				
+				.wrapService {
+					display: -webkit-flex;
+					display: -moz-flex;
+					display: -ms-flex;
+					display: -o-flex;
+					display: flex;
+					-webkit-align-items: center;
+					align-items: center;
+					-webkit-justify-content: space-between;
+					justify-content: space-between;
+					.txt {
+						background-color: #FFF;
+						color: $color_texto_base;
+						font-size: 13px;
+						padding: 4px 6px;
+						border: 1px solid $borde_color;
+						min-width:180px;
+						text-align: left;
+
+					}
+					.btn {
+						padding: 0;
+						background-color: transparent;
+						border: none;
+						box-shadow:none;
+						margin-left: 10px;
+						color: $primary_color;
+						i {
+							font-size:16px;
+						}
+					}
+					.dropdown-menu {
+						font-size: 12px;
+						border-radius: 0;
+						margin: 0;
+						padding: 0;
+						a {
+							padding: 3px 10px;
+						}
+					}
+				}
+			}
+			tr:last-child {
+				.caret {
+					transform: rotate(180deg);
+				}
+				.dropdown-menu {
+					top: -50px;
+				}
+			}
+		}
+	}
+}

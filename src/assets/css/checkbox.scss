@@ -1,0 +1,66 @@
+.control {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 18px;
+  width: 100%;
+}
+.control input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.control__indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background: transparent;
+  margin: 0 auto;
+  right: 0;
+  border-radius: 4px; 
+  border: 1px solid $primary_color;
+}
+.control:hover input ~ .control__indicator,
+.control input:focus ~ .control__indicator {
+  background: #f2f2f2;
+}
+.control input:checked ~ .control__indicator {
+  background: $primary_color;
+}
+.control:hover input:not([disabled]):checked ~ .control__indicator,
+.control input:checked:focus ~ .control__indicator {
+  background: $primary_color;
+}
+.control input:disabled ~ .control__indicator {
+  background: transparent;
+  color: #fff;
+  border: 1px solid $inactive_color;
+  pointer-events: none;
+}
+.control__indicator:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+.control input:checked ~ .control__indicator:after {
+  display: block;
+}
+.control--checkbox .control__indicator:after {
+  left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.control input:disabled:checked ~ .control__indicator {
+  background-color: $inactive_color;
+}
+.control--checkbox input:disabled ~ .control__indicator:after {
+  border-color: #fff;
+}

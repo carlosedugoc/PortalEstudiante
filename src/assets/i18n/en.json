@@ -1,0 +1,21 @@
+{
+    "Administracion":{
+        "LabelServicios":"Services",
+        "LabelModalidades":"Academic Modality",
+        "LabelNiveles":"Academic Levels",
+        "LabelEstados":"User Types",
+        "LabelHabilidar":"Enable/Disable",
+        "LabelConsultaAcademica":"Academic Query",
+        "LabelSolicitudFinanciera":"Financial Request ",
+        "LabelSolicitudAcademica":"Academic Request",
+        "LabelPortales":"Portals",
+        "LabelUniversidad":"University"
+    },
+    "Header":{
+        "LabelPrincipal":"MAIN",
+        "LabelAdministracion":"ADMINISTRATION",
+        "LabelConfiguracionServicios":"Services Settings",
+        "LabelConfiguracionUniversidades":"Universities Settings",
+        "LabelNombre":"Name"
+    }
+}

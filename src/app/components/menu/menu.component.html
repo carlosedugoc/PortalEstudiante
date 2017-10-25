@@ -1,0 +1,72 @@
+<section id="mainNav">
+  <div class="user">
+      <img src="./assets/img/user.png" alt="" class="imgProfile">
+      <div class="name">
+          <h3>Nombre </h3>
+          <a href="#" class="iconLogOut">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+          </a>
+      </div>
+      <div class="carrer">
+          <div class="boxSelect">
+              <select name="" id="input" class="form-control" required="required">
+                  <option value="">Administrador ILUMNO</option>
+                  <option value="">Administrador universidad</option>
+              </select>
+          </div>
+          <!-- <p class="modalidad">Pregrado Virtual</p> -->
+      </div>
+  </div>
+  <nav class="menu" id="accordion">
+      <ul class="panel" id="panel">
+        <a *ngIf="usuario == ''" class="seccionPadre collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+            <li><i class="fa fa-cog" aria-hidden="true"></i><span>ADMINISTRACION</span></li>
+        </a>
+
+          <a class="seccionPadre navPrincipal active" data-parent="#accordion" data-toggle="collapse" href="">
+              <li><i class="fa fa-home" aria-hidden="true"></i><span>PRINCIPAL</span></li>
+          </a>
+          <!-- INICIO ACCORDION -->
+
+          <!-- <app-accordion *ngFor="let item of menu; let idx=index" [menu]="item" [index]="idx"  ></app-accordion> -->
+          <div id='divItem' *ngFor="let padre of menu; let padreIdx = index" >
+            <a id="wrap" class="seccionPadre nav{{padre.Nombre}}" data-parent="#accordion" data-toggle="collapse" href="#collapse{{padreIdx + 1}}">
+                <li><i class="fa fa-{{padre.logo}}" aria-hidden="true"></i><span>{{padre.Nombre}}</span></li>
+            </a>
+            <ul id="wrap" class="collapse" id="collapse{{padreIdx + 1}}">
+                <nav id="subAccordion2">
+                    <ul *ngFor="let hijo of padre.datos; let idxHijo = index" class="panel">
+                        <a *ngIf="hijo.datos" class="accordionHijo" data-toggle="collapse" href="#collapse{{padreIdx + 1}}{{idxHijo}}">
+                            <li><span>{{hijo.Nombre}}</span>
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </li>
+                        </a>
+                        <a *ngIf="!hijo.datos" class="accordionHijo" data-toggle="collapse" href="hijo.Url">
+                            <li><span>{{hijo.Nombre}}</span></li>
+                        </a>
+                        <ul class="collapse" id="collapse{{padreIdx + 1}}{{idxHijo}}">
+                            <a *ngFor="let nieto of hijo.datos" href="nieto.Url" class="active">
+                                <li><span>{{nieto.Nombre}}</span></li>
+                            </a>
+                        </ul>
+                    </ul>
+                </nav>
+            </ul>
+          </div>
+
+          <!-- FIN ACCORDION -->
+
+          <a *ngIf="usuario != ''" class="seccionPadre navSedes" href="#" data-parent="#accordion" data-toggle="collapse">
+              <li><i class="fa fa-map-marker" aria-hidden="true"></i><span>SEDES</span></li>
+          </a>
+      </ul>
+  </nav>
+  <!-- <script>
+        $(document).ready(function(){
+            $('#divItem').unwrap();
+            debugger;
+        }); 
+    </script> -->
+</section>
+
+

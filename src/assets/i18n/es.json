@@ -1,0 +1,21 @@
+{
+    "Administracion":{
+        "LabelServicios":"Servicios",
+        "LabelModalidades":"Modalidad Académica",
+        "LabelNiveles":"Nivel Académico",
+        "LabelEstados":"Tipo de Usuario",
+        "LabelHabilidar":"Habilitar/Deshabilitar",
+        "LabelConsultaAcademica":"Consulta Académica",
+        "LabelSolicitudFinanciera":"Solicitud Financiera",
+        "LabelSolicitudAcademica":"Solicitud Académica",
+        "LabelPortales":"Portales",
+        "LabelUniversidad":"Universidad"
+    },
+    "Header":{
+        "LabelPrincipal":"PRINCIPAL",
+        "LabelAdministracion":"ADMINISTRACIÓN",
+        "LabelConfiguracionServicios":"Configuración de servicios",
+        "LabelConfiguracionUniversidades":"Configuracion de Universidades",
+        "LabelNombre":"Nombre"
+    }
+}
