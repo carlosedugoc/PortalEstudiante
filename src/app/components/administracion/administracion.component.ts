@@ -39,8 +39,12 @@ export class AdministracionComponent {
               private http: Http) { 
                 this.loading = false
                 this.mostrar_tabla = false 
-                this.cargar_datos(localStorage.getItem('usuario'))
+                this.user = localStorage.getItem('usuario')
+                if ( this.user != ''){
+                  this.cargar_datos(this.user)
+                }
   }
+  public user:string 
 
   cargar_datos(IdUniversidad:string){
     this.serv = false
@@ -299,7 +303,7 @@ export class AdministracionComponent {
   
   getUrlsServicios(){
     const promesa = new Promise((resolve,reject)=>{
-      this.http.get("assets/config.json").subscribe((success) =>  {
+      this.http.get("../assets/config.json").subscribe((success) =>  {
         this.url_servicios_universidad = JSON.parse(success['_body']).universidades
         this.url_Servicios_backend = JSON.parse(success['_body']).servicios
         localStorage.setItem('servicios',JSON.stringify(this.url_Servicios_backend))
