@@ -9,9 +9,12 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   public logued:boolean
-  constructor(private router:Router,translate: TranslateService){
+  constructor(private router:Router,private translate: TranslateService){
     let lan = window.navigator.language.substr(0,2)
-    translate.setDefaultLang(lan);
+    if (sessionStorage.getItem('lan')){
+      lan = sessionStorage.getItem('lan')
+    }
+    this.translate.setDefaultLang(lan);
   }
 
   login(usuario:string){
@@ -24,6 +27,12 @@ export class AppComponent {
       this.router.navigate(['estudiante'])
     }
     
+  }
+
+  switchLanguage(language: string) {
+    console.log(language)
+    this.translate.use(language);
+    sessionStorage.setItem('lan',language)
   }
 
 }

@@ -30,10 +30,8 @@
 
 </div>
 <div *ngIf="logued">
-    <app-header></app-header>
+    <app-header (language)="switchLanguage($event)"></app-header>
     <app-menu></app-menu>
-    <!-- <app-administracion></app-administracion> -->
-    <!-- <app-estudiante></app-estudiante> -->
     <router-outlet></router-outlet>
 </div>
 

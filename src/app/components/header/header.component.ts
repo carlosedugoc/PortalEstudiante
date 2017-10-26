@@ -1,28 +1,28 @@
-import { Component,OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
+  @Output() language:EventEmitter<string> = new EventEmitter<string>();
   
   ngOnInit() {
+    console.log(this.usuario)
     document.getElementById('estilos')['href']=`../assets/css/estilos${this.usuario}.css`
     document.getElementById('logo')['src']=`../assets/img/logo_header${this.usuario}.png`
     //document.getElementById('logoFooter')['src']=`../assets/img/logo_footer${this.usuario}.png`
   }
 
   public usuario: string = ''
-  constructor(private translate: TranslateService) { 
-    let lan = window.navigator.language.substr(0,2)
-    translate.setDefaultLang(lan);
+
+  constructor() { 
     this.usuario = localStorage.getItem('usuario')
   }
 
   switchLanguage(language: string) {
-    this.translate.use(language);
-    // this.idioma = language
+    this.language.emit(language)
     // let codUniversidad:number = this.getCodUniversidad()
     // var lenguaje:any = {
     //   nombreUsuario:this.usuario,
