@@ -23,6 +23,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { AdministracionComponent } from './components/administracion/administracion.component';
 import { ListaServiciosComponent } from './components/lista-servicios/lista-servicios.component';
 import { EstudianteComponent } from './components/estudiante/estudiante.component';
+import { CargaArchivosComponent } from './components/carga-archivos/carga-archivos.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -41,7 +42,8 @@ export function createTranslateLoader(http: HttpClient) {
     EstudianteComponent,
     ListaServiciosComponent,
     FiltroServiciosPipe,
-    FiltroFaltantesPipe
+    FiltroFaltantesPipe,
+    CargaArchivosComponent
   ],
   imports: [
     BrowserModule,
