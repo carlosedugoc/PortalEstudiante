@@ -5,14 +5,14 @@
                 <table class="table-bordered table-striped table-condensed">
                     <thead class="">
                         <tr class="headBold">
-                          <th rowspan="2">{{ 'Administracion.LabelServicios' }}</th>
-                          <th *ngIf="servicios.length > 0 && servicios[0].datos.length > 0" [attr.colspan]="total_modalidades">{{ 'Administracion.LabelModalidades' }}</th>
-                          <th *ngIf="servicios.length > 0 && servicios[0].datos.length > 0" [attr.colspan]="total_niveles">{{ 'Administracion.LabelNiveles' }}</th>
-                          <th *ngIf="servicios.length > 0 && servicios[0].datos.length > 0" [attr.colspan]="total_estados">{{ 'Administracion.LabelEstados' }}</th>
+                          <th rowspan="2">{{ 'Administracion.LabelServicios' | translate }}</th>
+                          <th *ngIf="servicios.length > 0 && servicios[0].data.length > 0" [attr.colspan]="total_modalidades">{{ 'Administracion.LabelModalidades' | translate }}</th>
+                          <th *ngIf="servicios.length > 0 && servicios[0].data.length > 0" [attr.colspan]="total_niveles">{{ 'Administracion.LabelNiveles' | translate}}</th>
+                          <th *ngIf="servicios.length > 0 && servicios[0].data.length > 0" [attr.colspan]="total_estados">{{ 'Administracion.LabelEstados' | translate}}</th>
                           <th rowspan="2" class="boxInput">URL</th>
-                          <th rowspan="2" class="boxSwitch">{{ 'Administracion.LabelHabilidar' }}</th>
+                          <th rowspan="2" class="boxSwitch">{{ 'Administracion.LabelHabilitar' | translate}}</th>
                         </tr>
-                        <tr *ngIf="servicios.length > 0 && servicios[0].datos.length > 0">
+                        <tr *ngIf="servicios.length > 0 && servicios[0].data.length > 0">
                           <th  class="boxCheckbox" *ngFor="let tipo of tipos">{{tipo.description | capitalizar:false}}</th>
                         </tr>
                     </thead>
@@ -22,10 +22,10 @@
                             <td data-title="Servicio" class="boxFirstInput">
                                 <div class="wrapService">
                                     <div class="txt">
-                                        {{servicio.nombre}}
+                                        {{servicio.name}}
                                     </div>
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  [disabled] = "!servicio.habilitar">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  [disabled] = "!servicio.status">
                                             <i class="fa fa-check-square-o" aria-hidden="true"></i> <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
@@ -35,19 +35,19 @@
                                     </div>
                                 </div>
                             </td>
-                            <td *ngFor="let item of servicio.datos" class="boxCheckbox">
+                            <td *ngFor="let item of servicio.data" class="boxCheckbox">
                                 <label class="control control--checkbox">
-                                    <input type="checkbox" [(ngModel)]="item.dato" [disabled] = "!servicio.habilitar" (change)="updateItem(item.id,item.dato)" />
+                                    <input type="checkbox" [(ngModel)]="item.status" [disabled] = "!servicio.status" (change)="updateItem(item.id,item.status)" />
                                     <div class="control__indicator"></div>
                                 </label>
                             </td>
                             <td data-title="URL" class="boxInput">
-                                <input type="text" [(ngModel)]="servicio.url"  [disabled] = "!servicio.habilitar" name="url" class="form-control" (blur)="updateServicio(servicio.id,'Url',servicio.url)">
+                                <input type="text" [(ngModel)]="servicio.url"  [disabled] = "!servicio.status" name="url" class="form-control" (blur)="updateServicio(servicio.id,'Url',servicio.url)">
                             </td>
                             <td data-title="Habilitar / Deshabilitar" class="boxSwitch">
                                 <div class="card">
                                     <label>
-                                        <input type="checkbox" [(ngModel)]="servicio.habilitar" (change)="updateServicio(servicio.id,'Estado',servicio.habilitar)" /><span class="switch"></span><span class="toggle">    </span>
+                                        <input type="checkbox" [(ngModel)]="servicio.status" (change)="updateServicio(servicio.id,'Status',servicio.status)" /><span class="switch"></span><span class="toggle">    </span>
                                     </label>
                                 </div>
                             </td>

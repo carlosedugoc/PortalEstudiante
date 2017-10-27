@@ -9,13 +9,12 @@ export class AdministracionService {
   constructor(private http:Http) { }
 
   getServicios(IdUniversidad:String, url:string ){
-    return this.http.get(url + IdUniversidad).map(servicios=>{ 
-      console.log('s',servicios)
+    let urlServicio:string = `${url}/api/University/${IdUniversidad}/ServiceItems`
+    return this.http.get(urlServicio).map(servicios=>{ 
       console.log('json',servicios.json())
       return servicios.json()
     })
   }
-
 
   getUniversidades(url:string ){
     return this.http.get(url).map(servicios=> servicios.json())
@@ -50,13 +49,14 @@ export class AdministracionService {
 
 actualizaItem( item:any, url:string  ){
       console.log('item',JSON.stringify( item ))
+      let urlServicio:string = `${url}/api/ItemSerUni`
       let body = JSON.stringify( item );
 
       let headers = new Headers({
         'Content-Type':'application/json'
       });
   
-      return this.http.put(  url , body, { headers }  )
+      return this.http.put(  urlServicio , body, { headers }  )
             .map( res=>{
               return res;
             },error=>{
@@ -78,30 +78,33 @@ actualizarServicio(datos:any, url:string ){
 }
   
 saveItems( items:any[], url:string ){
-  
+  let urlServicio:string = `${url}/api/ItemSerUni`
   let body = JSON.stringify( items );
   let headers = new Headers({
     'Content-Type':'application/json'
   });
-  return this.http.post(url, body, { headers }  )
+  console.log('save',urlServicio, body)
+  return this.http.post(urlServicio, body, { headers }  )
         .map( res=>{
           console.log(res);
           return res;
         })
-
 }
 
-getIdioma(usuario:string, codUniversidad:number,url:string){
-  if (usuario == '' || usuario == undefined){usuario='Admin'}
-  return this.http.get(url.replace('{usuario}',usuario) + codUniversidad).map(servicios=> servicios.json())
+getLanguage(language:string,user:string, university:string,url:string){
+  console.log('ingreso al servicio de idioma')
+  if (user == '' || user == undefined){user='Admin'}
+  let urlServicio = `${url}/api/User/${user}/${language}/University/${university}`
+  return this.http.get(urlServicio).map(servicios=> servicios.json())
 }
 
-updateIdioma(idioma:any,url:string){
-  let body = JSON.stringify( idioma );
+putLanguage(language:any,url:string){
+  let body = JSON.stringify( language );
   let headers = new Headers({
     'Content-Type':'application/json'
   });
-  return this.http.put(  url , body, { headers }  )
+  let urlServicio = `${url}/api/User/Language`
+  return this.http.put(  urlServicio , body, { headers }  )
         .map( res=>{
           return res.json();
         },error=>{

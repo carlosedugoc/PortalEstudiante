@@ -13,14 +13,14 @@ export class ListaServiciosComponent {
   @Input('servicios') servicios:Servicio[]
   @Input('tipos') tipos:any[]
 
-  constructor(private adminService:AdministracionService) { }
+  constructor(private adminService:AdministracionService) { console.log('lista',this.servicios) }
   
     updateItem(id:number,estado:boolean){
       var servicios:any
       servicios = localStorage.getItem('servicios')
-      console.log(JSON.parse(servicios).UrlUpdateServicios)
+      console.log(JSON.parse(servicios))
   
-      this.adminService.actualizaItem({id:id,estado:estado},JSON.parse(servicios).UrlUpdateServicios).subscribe(data =>{
+      this.adminService.actualizaItem({id:id,status:estado},JSON.parse(servicios).UrlApiRest).subscribe(data =>{
         console.log('Item actualizado con éxito')
       })
     }
@@ -28,8 +28,8 @@ export class ListaServiciosComponent {
     updateServicio(idServicio:number, campo:string, valor:any ){
       console.log(idServicio,campo,valor)
       var servicios:any = localStorage.getItem('servicios')
-      var url:string = JSON.parse(servicios).UrlUpdateServicio + campo
-      this.adminService.actualizarServicio({id:idServicio,valor:valor},url).subscribe(data=>{
+      var url:string = `${ JSON.parse(servicios).UrlApiRest}/api/UniversityService/${campo}`
+      this.adminService.actualizarServicio({id:idServicio,status:valor},url).subscribe(data=>{
         console.log('Servicio actualizado con éxito')
       })
     }
@@ -37,8 +37,8 @@ export class ListaServiciosComponent {
     ModificarTodos(estado:boolean, idx:number){
       console.log(estado,idx)
   
-      for(let dato of this.servicios[idx].datos){
-        dato.dato = estado
+      for(let dato of this.servicios[idx].data){
+        dato.status = estado
         this.updateItem(dato.id,estado)
       }
     }

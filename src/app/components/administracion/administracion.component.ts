@@ -1,12 +1,15 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+//SERVICES
 import { AdministracionService } from "../../services/administracion.service";
+//MODELS
 import { Servicio } from "../../models/servicio";
 import { Status } from "../../models/status";
 import { Level } from "../../models/level";
 import { Modality } from "../../models/modality";
 import { Item } from "../../models/item";
 import { UrlServicios } from "../../models/url-servicios";
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { User } from "../../models/user";
 
 @Component({
   selector: 'app-administracion',
@@ -27,32 +30,74 @@ export class AdministracionComponent {
   public url_servicios_universidad:UrlServicios[]
   public url_servicio:UrlServicios
   public loading:boolean
-  public mostrar_tabla:boolean
+  public show_table:boolean
   public rol:string
   public url_Servicios_backend:any
   public tipos:any[]
   public faltantes:any[] 
   public faltantesMensaje:any[]
   public eliminados:any[]
+  public users:User[] = []
+  public user:User
+  public idUser:string
+  getUsuarios(){
+    this.users = [
+      {
+        userId:"",
+        name:"Administrador Ilumno",
+        rol:"1",
+        university:"0"
+      },
+      {
+        userId:"AA",
+        name:"Administrador Areandina",
+        rol:"1",
+        university:"1"
+      },
+      {
+        userId:"Poli",
+        name:"Administrador Politécnico",
+        rol:"1",
+        university:"2"
+      },
+      {
+        userId:"123456",
+        name:"Carlos Eduardo González Cortes",
+        rol:"2",
+        university:"1"
+      },
+      {
+        userId:"654123",
+        name:"Diana Marcela Bojaca",
+        rol:"2",
+        university:"2"
+      }
+    ]
+  }
+  
 
   constructor(private adminService:AdministracionService,
               private http: Http) { 
                 this.loading = false
-                this.mostrar_tabla = false 
-                this.user = localStorage.getItem('usuario')
-                if ( this.user != ''){
-                  this.cargar_datos(this.user)
+                this.show_table = false 
+                this.getUsuarios()
+                console.log('usuarios',this.users)
+                this.idUser = localStorage.getItem('usuario')
+                this.user=this.users.find(item => item.userId == this.idUser)
+                console.log('usuario',this.user)
+                if ( this.user.rol == '1'){
+                  this.load_data(this.user.university)
                 }
   }
-  public user:string 
+  
 
-  cargar_datos(IdUniversidad:string){
+  load_data(IdUniversidad:string){
     this.serv = false
     this.url_servicio = undefined
     this.eliminados = []
     this.faltantesMensaje = []
     if (IdUniversidad == "0"){
-      this.mostrar_tabla = false 
+      this.show_table = false 
       return
     }
     this.loading = true
@@ -79,14 +124,14 @@ export class AdministracionComponent {
             if(err.status == 401){
               console.log('Credencial Inválida')
               localStorage.removeItem('token')
-              this.cargar_datos(IdUniversidad)
+              this.load_data(IdUniversidad)
             }else{
               console.error('Se ha producido un error de conexión')
             }
           })
         }).catch((error)=>{
           this.loading= false
-          this.mostrar_tabla = false 
+          this.show_table = false 
           console.error(error)
         })
       })
@@ -96,10 +141,9 @@ export class AdministracionComponent {
   getServicios(IdUniversidad:String){
     const promesa = new Promise((resolve,reject)=>{
       this.servicios = []
-      this.adminService.getServicios(IdUniversidad,this.url_Servicios_backend.UrlGetServicios).subscribe(data=>{
-        console.log('sr',data)
+      this.adminService.getServicios(IdUniversidad,this.url_Servicios_backend.UrlApiRest).subscribe(data=>{
         this.servicios = data
-        
+        console.log('SERVICIOS', this.servicios)
         if (this.servicios.length == 0){
           this.serv = true
         }else{
@@ -150,10 +194,11 @@ export class AdministracionComponent {
     console.log('serv', this.servicios)
 
     for (let servicio of this.servicios){
-      for(let item of servicio.datos){
+      for(let item of servicio.data){
+        console.log(item)
         encontrado = false
         for (let tipo of this.tipos){
-          if (item.nombre_item.toUpperCase() == tipo.description.toUpperCase()){
+          if (item.itemName.toUpperCase() == tipo.description.toUpperCase()){
             encontrado=true
             break
           }
@@ -169,8 +214,8 @@ export class AdministracionComponent {
       let itemsOrdenados:Item[] = []
       for (let tipo of this.tipos){
         encontrado = false
-        for (let item of servicio.datos){
-          if (item.nombre_item.toUpperCase() == tipo.description.toUpperCase()){
+        for (let item of servicio.data){
+          if (item.itemName.toUpperCase() == tipo.description.toUpperCase()){
             itemsOrdenados.push(item)
             encontrado=true
             break
@@ -178,10 +223,10 @@ export class AdministracionComponent {
         }
         if (!encontrado){
           this.faltantes.push({
-            id_tipo:tipo.id_tipo,
-            nombre_item:tipo.description,
-            codigo_item:tipo.id_item,
-            codigo_universidad:IdUniversidad
+            serviceTypeId:tipo.id_tipo,
+            itemName:tipo.description,
+            itemCode:tipo.id_item,
+            universityCode:IdUniversidad
           })
         }
       }
@@ -190,7 +235,7 @@ export class AdministracionComponent {
         console.log('faltantes',this.faltantes)
         return
       }else{
-        servicio.datos = itemsOrdenados
+        servicio.data = itemsOrdenados
       }
     }
 
@@ -199,7 +244,7 @@ export class AdministracionComponent {
     }
 
     this.loading= false
-    this.mostrar_tabla = true 
+    this.show_table = true 
       console.log('eliminados',this.eliminados)
       console.log(this.servicios)
   }
@@ -277,15 +322,19 @@ export class AdministracionComponent {
   getToken(){
     const promesa = new Promise((resolve,reject)=>{
       if (!localStorage.getItem('token')){
+        console.log('ok2')
         this.adminService.getToken().subscribe(response=>{
+          console.log('ok3')
           this.token = response
           if(this.token.length <= 0){
             alert("El token no se ha generado correctamente");
           }else{
+            console.log('ok4')
               localStorage.setItem('token', this.token);
               resolve(this.token)
           }
         },error=>{
+          console.log('ok5')
           let errorMessage = <any>error;
           if(errorMessage != null){
             this.errorMessage = error.error_description
@@ -304,6 +353,7 @@ export class AdministracionComponent {
   getUrlsServicios(){
     const promesa = new Promise((resolve,reject)=>{
       this.http.get("../assets/config.json").subscribe((success) =>  {
+        console.log(JSON.parse(success['_body']).servicios)
         this.url_servicios_universidad = JSON.parse(success['_body']).universidades
         this.url_Servicios_backend = JSON.parse(success['_body']).servicios
         localStorage.setItem('servicios',JSON.stringify(this.url_Servicios_backend))
@@ -328,31 +378,31 @@ export class AdministracionComponent {
   //   return promesa
   // }
 
-  ngOnChanges(){
-    let univ:string = this.rol
-    this.rol = localStorage.getItem('rol')
-    if (univ != this.rol){
-      var codUniversidad :string
-      switch (this.rol) {
-        case 'AA':
-          codUniversidad = '1';
-          break;
-        case 'Poli':
-          codUniversidad = '2'
-          break;
-        default:
-          codUniversidad = '0'
-      }
-      this.cargar_datos(codUniversidad)
-    }
-  }
+  // ngOnChanges(){
+  //   let univ:string = this.rol
+  //   this.rol = localStorage.getItem('usuario')
+  //   if (univ != this.rol){
+  //     var codUniversidad :string
+  //     switch (this.rol) {
+  //       case 'AA':
+  //         codUniversidad = '1';
+  //         break;
+  //       case 'Poli':
+  //         codUniversidad = '2'
+  //         break;
+  //       default:
+  //         codUniversidad = '0'
+  //     }
+  //     this.load_data(codUniversidad)
+  //   }
+  // }
 
 
   saveItems(faltantes:any[], IdUniversidad){
     this.faltantesMensaje = faltantes
     // document.getElementById('openModalButton').click()
     console.log('SaveItems - faltantes',faltantes,'url',this.url_Servicios_backend)
-    this.adminService.saveItems(faltantes,this.url_Servicios_backend.UrlUpdateServicios).subscribe(data=>{
+    this.adminService.saveItems(faltantes,this.url_Servicios_backend.UrlApiRest).subscribe(data=>{
       this.getServicios(IdUniversidad).then(()=>{
         this.procesarInformacion(IdUniversidad)
       })

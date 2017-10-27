@@ -20,14 +20,13 @@
                   <p>Para poder configurar servicios antes <br>es necesario <strong>configurar la universidad</strong></p>
               </div>
           </section>
-
           <section id="mainContent"  *ngIf="!serv">
               <div class="module">
-                  <div class="headModule" >
+                  <div class="headModule" *ngIf="user.rol == 0" >
                       <h1>Seleccione una Universidad y configure los servicios</h1>
                   </div>
                   <div class="bodyModule">
-                      <div class="row boxCombo" >
+                      <div class="row boxCombo" *ngIf="user.rol == 0" >
                           <div class="col-sm-6 col-md-4">
                               <div class="form-group">
                                   <label for="exampleInputEmail1">{{ 'Administracion.LabelUniversidad' | translate }}</label>
@@ -58,7 +57,7 @@
                                   <span class="sr-only">Loading...</span>
                               </div>
 
-                              <div class="tab-content" *ngIf="!loading && mostrar_tabla && !serv">
+                              <div class="tab-content" *ngIf="!loading && show_table && !serv">
                                   <div role="tabpanel" class="tab-pane fade in active" id="tab1">
                                       <app-lista-servicios [total_modalidades]= "total_modalidades"  [total_niveles] = "total_niveles"
                                             [total_estados] = "total_estados" [tipos] = "tipos" [servicios] = "servicios | filtroServicios:1">

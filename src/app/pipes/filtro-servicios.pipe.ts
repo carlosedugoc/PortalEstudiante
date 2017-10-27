@@ -8,10 +8,9 @@ export class FiltroServiciosPipe implements PipeTransform {
 
   transform(value: Servicio[], tipoConsulta: number): any {
     if (!value){ return }
-    
     let filtro:Servicio[] = []
     for(let servicio of value){
-      if(servicio.idCategoria == tipoConsulta){
+      if(servicio.categoryId == tipoConsulta){
         filtro.push(servicio)
       }
     }

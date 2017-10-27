@@ -2,11 +2,11 @@ import { Item } from "./item";
 export class Servicio {
     constructor(
         public id:number,
-        public nombre:string,
-        public idCategoria:number,
-        public nombreCategoria:string,
-        public datos:Item[],
+        public name:string,
+        public categoryId:number,
+        public categoryName:string,
+        public data:Item[],
         public url:string,
-        public habilitar:boolean
+        public status:boolean
     ){}
 }
