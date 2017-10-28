@@ -18,13 +18,25 @@
   </div>
   <nav class="menu" id="accordion">
       <ul class="panel" id="panel">
-        <a *ngIf="usuario == ''" class="seccionPadre collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
-            <li><i class="fa fa-cog" aria-hidden="true"></i><span>ADMINISTRACION</span></li>
+        <a class="seccionPadre navPrincipal active" data-parent="#accordion" data-toggle="collapse" href="">
+                <li><i class="fa fa-home" aria-hidden="true"></i><span>PRINCIPAL</span></li>
         </a>
 
-          <a class="seccionPadre navPrincipal active" data-parent="#accordion" data-toggle="collapse" href="">
-              <li><i class="fa fa-home" aria-hidden="true"></i><span>PRINCIPAL</span></li>
-          </a>
+        <a *ngIf="usuario.rol == '1'" class="seccionPadre navPagos active" data-parent="#accordion" data-toggle="collapse" href="#collapse0">
+                <li><i class="fa fa-cog" aria-hidden="true"></i><span>ADMINISTRACIÓN</span></li>
+            </a>
+            <ul class="collapse" id="collapse0">
+                <a data-toggle="modal" href="#modal-id" class="active">
+                    <li><span>Configuración de servicios</span></li>
+                </a>
+                <a href=""*ngIf="usuario.university == '0'">
+                    <li><span>Configuración de Universidades</span></li>
+                </a>
+                <a href="">
+                    <li><span>Gestionar Reglamentos</span></li>
+                </a>
+            </ul>
+
           <!-- INICIO ACCORDION -->
 
           <div id='divItem' *ngFor="let padre of menu; let padreIdx = index" >
@@ -53,10 +65,9 @@
           </div>
 
           <!-- FIN ACCORDION -->
-
-          <a *ngIf="usuario != ''" class="seccionPadre navSedes" href="#" data-parent="#accordion" data-toggle="collapse">
-              <li><i class="fa fa-map-marker" aria-hidden="true"></i><span>SEDES</span></li>
-          </a>
+          <a *ngIf="usuario.rol == '2'" class="seccionPadre navSedes" data-parent="#accordion" data-toggle="collapse" href="#">
+                <li><i class="fa fa-map-marker" aria-hidden="true"></i><span>SEDES</span></li>
+            </a>
       </ul>
   </nav>
 </section>

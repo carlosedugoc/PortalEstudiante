@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { User } from "../../models/user";
 
 
 @Component({
@@ -8,19 +9,17 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Output() language:EventEmitter<string> = new EventEmitter<string>();
   @Input('strLanguage') strLanguage:string
+  public user:User
   
   ngOnInit() {
-    console.log(this.usuario)
-    document.getElementById('estilos')['href']=`../assets/css/estilos${this.usuario}.css`
-    document.getElementById('logo')['src']=`../assets/img/logo_header${this.usuario}.png`
-    console.log('str', this.strLanguage)
-    // document.getElementById('logoFooter')['src']=`../assets/img/logo_footer${this.usuario}.png`
+    this.user = JSON.parse(localStorage.getItem('user'))
+    document.getElementById('estilos')['href']=`../assets/css/estilos${this.user.university}.css`
+    document.getElementById('logo')['src']=`../assets/img/logo_header${this.user.university}.png`
+    // document.getElementById('logoFooter')['src']=`../assets/img/logo_footer${this.user.university}.png`
   }
 
-  public usuario: string = ''
-
   constructor() { 
-    this.usuario = localStorage.getItem('usuario')
+    this.user = JSON.parse(localStorage.getItem('user'))
   }
 
   switchLanguage(language: string) {

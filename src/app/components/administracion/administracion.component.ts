@@ -378,26 +378,6 @@ export class AdministracionComponent {
   //   return promesa
   // }
 
-  // ngOnChanges(){
-  //   let univ:string = this.rol
-  //   this.rol = localStorage.getItem('usuario')
-  //   if (univ != this.rol){
-  //     var codUniversidad :string
-  //     switch (this.rol) {
-  //       case 'AA':
-  //         codUniversidad = '1';
-  //         break;
-  //       case 'Poli':
-  //         codUniversidad = '2'
-  //         break;
-  //       default:
-  //         codUniversidad = '0'
-  //     }
-  //     this.load_data(codUniversidad)
-  //   }
-  // }
-
-
   saveItems(faltantes:any[], IdUniversidad){
     this.faltantesMensaje = faltantes
     // document.getElementById('openModalButton').click()

@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
+import { User } from "../../models/user";
 declare var jQuery:any;
 declare var $:any;
 
@@ -6,7 +7,9 @@ declare var $:any;
   selector: 'app-menu',
   templateUrl: './menu.component.html'
 })
-export class MenuComponent implements OnInit, AfterViewInit {
+export class MenuComponent implements AfterViewInit {
+
+  public menu:any[]
 
   //quita los divs del acordion para que se colapse
   ngAfterViewInit() {
@@ -14,31 +17,16 @@ export class MenuComponent implements OnInit, AfterViewInit {
     pTags.unwrap();
   }
 
-  public usuario: string = ""
-  public menus:any[]
+  public usuario:User
 
   constructor() {
-    this.usuario = localStorage.getItem('usuario')
-    if (this.usuario != ''){
+    this.usuario = JSON.parse(localStorage.getItem('user'))
+    if (this.usuario.rol == "2"){
       this.getMenu()
-      this.menus = [this.menu]
     }
   }
 
-  ngOnInit() {
-    // let items:any
-    // items = document.getElementById('divItem')
-    // console.log(items)
 
-    //   if ( pTags.parent().is( "div" ) ) {
-    //     pTags.unwrap();
-    //   } else {
-    //     pTags.wrap( "<div></div>" );
-    //   }
-    // $("#wrap").unwrap() ;
-  }
-
-  public menu:any[]
   getMenu(){
     this.menu = [
       {

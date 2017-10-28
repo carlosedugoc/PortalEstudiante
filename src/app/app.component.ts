@@ -62,7 +62,7 @@ export class AppComponent {
     this.logued = true
     localStorage.setItem('usuario',user)
     this.user=this.users.find(item => item.userId == user)
-    console.log('usuar',this.user)
+    localStorage.setItem('user',JSON.stringify(this.user))
     this.setLanguage(this.language,this.user.userId,this.user.university)
 
     if (this.user.rol != "2" ){
