@@ -24,6 +24,7 @@ import { AdministracionComponent } from './components/administracion/administrac
 import { ListaServiciosComponent } from './components/lista-servicios/lista-servicios.component';
 import { EstudianteComponent } from './components/estudiante/estudiante.component';
 import { CargaArchivosComponent } from './components/carga-archivos/carga-archivos.component';
+import { UniversityManagementComponent } from './components/university-management/university-management.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -43,7 +44,8 @@ export function createTranslateLoader(http: HttpClient) {
     ListaServiciosComponent,
     FiltroServiciosPipe,
     FiltroFaltantesPipe,
-    CargaArchivosComponent
+    CargaArchivosComponent,
+    UniversityManagementComponent
   ],
   imports: [
     BrowserModule,

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-carga-archivos',
-  templateUrl: './carga-archivos.component.html',
-  styleUrls: ['./carga-archivos.component.css']
+  templateUrl: './carga-archivos.component.html'
 })
 export class CargaArchivosComponent implements OnInit {
 
