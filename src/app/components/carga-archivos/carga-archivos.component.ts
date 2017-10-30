@@ -1,7 +1,6 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { UniversityService } from '../../services/university.service';
-import { UrlServicios } from "../../models/url-servicios";
 import { University } from "../../models/university";
 import { GeneralUtils } from "../../shared/GeneralUtils";
 import { User } from "../../models/user";

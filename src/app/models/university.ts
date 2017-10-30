@@ -5,6 +5,6 @@ export class University {
         public code: string,
         public regulationUrl: string,
         public regulationName: string,
-        public status: string
+        public status: boolean
     ) { }
 }

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Servicio } from "../models/servicio";
 import { Http, Headers, Response, Request, RequestMethod, URLSearchParams, RequestOptions } from "@angular/http";
-import 'rxjs/Rx';
 import { GeneralUtils } from '../shared/GeneralUtils'
+import { University } from "../models/university";
+import 'rxjs/Rx';
+
 
 @Injectable()
 export class UniversityService {
@@ -19,8 +21,58 @@ export class UniversityService {
     this.utility.getConfiguration("servicios|UrlApiRest").subscribe(res => this.generalUrl = res);
   }
 
+  //// Método que obtiene toda la información de todas las universidades.
+  getInfoAllUniversities()
+  {
+    let url = `${this.generalUrl}/api/University`
+    return this.http.get(url).map(res => {
+      return res.json();
+    })
+  }
+
+  //// Método que crea una nueva universidad.
+  createUniversity(university : University)
+  {
+    debugger;
+    let url = `${this.generalUrl}/api/University`
+    console.log('university', JSON.stringify(university))
+    let body = JSON.stringify(university);
+
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post(url, body, { headers })
+      .map(res => {
+        return res;
+      }, error => {
+        console.log('error', error)
+      })
+  }
+
+  //// Método para actualizar una universidad específica.
+  updateUniversity(university : University)
+  {
+    debugger;
+    let url = `${this.generalUrl}/api/University`
+    console.log('university', JSON.stringify(university))
+    let body = JSON.stringify(university);
+
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.put(url, body, { headers })
+      .map(res => {
+        return res;
+      }, error => {
+        console.log('error', error)
+      })
+  }
+
   //// Método que obtiene la información de una universidad seleccionada.
   getInfoUniversity(universityCode: string) {
+    this.generalUrl = "http://10.75.8.109/PEServices"
     let url = `${this.generalUrl}/api/University/${universityCode}`
     return this.http.get(url).map(res => {
       return res.json();
