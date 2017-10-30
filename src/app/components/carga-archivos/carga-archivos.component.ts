@@ -120,10 +120,6 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
   cargarDatos(Iduniversidad: string) {
     debugger;
     this.loading = true
-    this.utilidades.getService('').then(res => {
-      debugger;
-      console.log(res);
-    });
     // 1. Se consulta la información de la universidad seleccionada.
     var respuesta = this.universityService.getInfoUniversity(Iduniversidad).subscribe(data => {
       debugger;
