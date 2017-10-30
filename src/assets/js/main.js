@@ -91,26 +91,32 @@ function activeForParentAcordion(){
  	});
 }
 
+//// Esto es para cargar archivos.
 function inputFileClear(){
 	// Set the clear onclick function
     $('.image-preview-clear').click(function(){
         $('#modal-clear').modal('show');
-    });
+	});
+	
     // Evento del boton de confirmación para eliminar
     $('.modal-footer .btnFirstAccion').click(function(){
         clearFile();
     });
     //Evento que se ejecuta cada que suben un archivo
-    $(".image-preview-input input:file").change(function (){
-        var file = this.files[0];
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $(".image-preview-clear").show();
-            $(".image-preview-input").hide();
-            $(".image-preview-input-2").addClass("inlineBlock");
-            $(".image-preview-filename").val(file.name);
-        }   
-        reader.readAsDataURL(file);
+    $(".image-preview-input input:file").change(function (){		
+		var file = this.files[0];
+		if (file != undefined)
+		{
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$(".image-preview-clear").show();
+				$(".image-preview-input").hide();
+				$('.image-preview-clear').show();
+				$(".image-preview-input-2").addClass("inlineBlock");
+				$(".image-preview-filename").val(file.name);
+			}   
+			reader.readAsDataURL(file);
+		}
     });
 }
 

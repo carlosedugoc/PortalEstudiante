@@ -21,11 +21,13 @@
       "styles": [
         "styles.css",
         "assets/font-awesome/css/font-awesome.min.css",
-        "assets/css/bootstrap.min.css"
+        "assets/css/bootstrap.min.css",
+        "assets/css/bootstrap-select.min.css"
       ],
       "scripts": [
         "assets/js/jquery.min.js",
         "assets/js/bootstrap.min.js",
+        "assets/js/bootstrap-select.min.js",
         "assets/js/main.js",
         "assets/js/masonry.js"
       ],

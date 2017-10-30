@@ -16,6 +16,23 @@
         "LabelAdministracion":"ADMINISTRACIÓN",
         "LabelConfiguracionServicios":"Configuración de servicios",
         "LabelConfiguracionUniversidades":"Configuracion de Universidades",
-        "LabelNombre":"Nombre"
+        "LabelNombre":"Nombre",
+        "LabelReglamentos": "Gestionar Reglamentos"
+    },
+    "GestionReglamentos": {
+        "LabelEncabezado": "Consulte o cargue la información del reglamento de la Universidad",
+        "LabelUniversidad": "Universidad",
+        "LabelNombre": "Nombre",
+        "LabelArchivo": "Archivo",
+        "PlaceHolderSeleccione":"Seleccione un archivo para subir",
+        "LabelCancelar":"Cancelar",
+        "LabelGuardar":"Guardar",
+        "ModalTitulo":"¿Está seguro de que desea eliminar este archivo?",
+        "ModalCancelar":"NO, CANCELAR",
+        "ModalEliminiar":"SÍ, ELIMINAR",
+        "ValidarFormatoArchivo" : "Los reglamentos deben ser cargados en formato PDF. Por favor verifique el formato.",
+        "ValidarTamanoArchivo":"El archivo excede el límite de 4MB establecido para los reglamentos. Por favor verifique el tamaño del archivo.",
+        "MensajeGuardadoCorrecto" : "La información del reglamento fue actualizada correctamente."
+        
     }
 }
