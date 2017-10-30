@@ -22,11 +22,11 @@
           </section>
           <section id="mainContent"  *ngIf="!serv">
               <div class="module">
-                  <div class="headModule" *ngIf="user.rol == 0" >
+                  <div class="headModule" *ngIf="user.rol == '1' && user.university == '0'" >
                       <h1>Seleccione una Universidad y configure los servicios</h1>
                   </div>
                   <div class="bodyModule">
-                      <div class="row boxCombo" *ngIf="user.rol == 0" >
+                      <div class="row boxCombo" *ngIf="user.rol == '1' && user.university == '0'" >
                           <div class="col-sm-6 col-md-4">
                               <div class="form-group">
                                   <label for="exampleInputEmail1">{{ 'Administracion.LabelUniversidad' | translate }}</label>

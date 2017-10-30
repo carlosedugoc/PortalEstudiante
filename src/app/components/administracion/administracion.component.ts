@@ -40,51 +40,52 @@ export class AdministracionComponent {
   public users:User[] = []
   public user:User
   public idUser:string
-  getUsuarios(){
-    this.users = [
-      {
-        userId:"",
-        name:"Administrador Ilumno",
-        rol:"1",
-        university:"0"
-      },
-      {
-        userId:"AA",
-        name:"Administrador Areandina",
-        rol:"1",
-        university:"1"
-      },
-      {
-        userId:"Poli",
-        name:"Administrador Politécnico",
-        rol:"1",
-        university:"2"
-      },
-      {
-        userId:"123456",
-        name:"Carlos Eduardo González Cortes",
-        rol:"2",
-        university:"1"
-      },
-      {
-        userId:"654123",
-        name:"Diana Marcela Bojaca",
-        rol:"2",
-        university:"2"
-      }
-    ]
-  }
+  // getUsuarios(){
+  //   this.users = [
+  //     {
+  //       userId:"",
+  //       name:"Administrador Ilumno",
+  //       rol:"1",
+  //       university:"0"
+  //     },
+  //     {
+  //       userId:"AA",
+  //       name:"Administrador Areandina",
+  //       rol:"1",
+  //       university:"1"
+  //     },
+  //     {
+  //       userId:"Poli",
+  //       name:"Administrador Politécnico",
+  //       rol:"1",
+  //       university:"2"
+  //     },
+  //     {
+  //       userId:"123456",
+  //       name:"Carlos Eduardo González Cortes",
+  //       rol:"2",
+  //       university:"1"
+  //     },
+  //     {
+  //       userId:"654123",
+  //       name:"Diana Marcela Bojaca",
+  //       rol:"2",
+  //       university:"2"
+  //     }
+  //   ]
+  // }
   
 
   constructor(private adminService:AdministracionService,
               private http: Http) { 
                 this.loading = false
                 this.show_table = false 
-                this.getUsuarios()
-                console.log('usuarios',this.users)
-                this.idUser = localStorage.getItem('usuario')
-                this.user=this.users.find(item => item.userId == this.idUser)
-                console.log('usuario',this.user)
+                this.user = JSON.parse(sessionStorage.getItem('user'))
+                // this.getUsuarios()
+                // console.log('usuarios',this.users)
+                // this.idUser = localStorage.getItem('usuario')
+                // this.user=this.users.find(item => item.userId == this.idUser)
+                // console.log('usuario',this.user)
                 if ( this.user.rol == '1'){
                   this.load_data(this.user.university)
                 }

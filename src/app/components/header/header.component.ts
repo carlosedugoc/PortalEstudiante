@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Router } from "@angular/router";
 import { User } from "../../models/user";
 
 
@@ -12,18 +13,21 @@ export class HeaderComponent implements OnInit {
   public user:User
   
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('user'))
-    document.getElementById('estilos')['href']=`../assets/css/estilos${this.user.university}.css`
     document.getElementById('logo')['src']=`../assets/img/logo_header${this.user.university}.png`
     // document.getElementById('logoFooter')['src']=`../assets/img/logo_footer${this.user.university}.png`
   }
 
-  constructor() { 
-    this.user = JSON.parse(localStorage.getItem('user'))
+  constructor(private router:Router) { 
+    this.user = JSON.parse(sessionStorage.getItem('user'))
   }
 
   switchLanguage(language: string) {
     this.language.emit(language)
+  }
+
+  signOut(){
+    sessionStorage.clear()
+    this.router.navigate(['/'])
   }
   
   

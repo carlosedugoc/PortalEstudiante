@@ -11,16 +11,25 @@ import { User } from "./models/user";
   providers: [AdministracionService]
 })
 export class AppComponent {
-  public logued:boolean
+  public logued: boolean
   public language:string
   public user:User
   public users:User[]
 
   constructor(private router:Router,private translate: TranslateService,private adminService:AdministracionService){
+    this.logued = sessionStorage.getItem('logued') != null && sessionStorage.getItem('logued') == 'true'
+    console.log(this.logued)
     let lan = window.navigator.language.substr(0,2)
     this.language = lan
     this.translate.setDefaultLang(lan);
-    this.getUsuarios()
+
+    if (!this.logued){
+      this.getUsuarios()
+    }else{
+      this.user = JSON.parse(sessionStorage.getItem('user'))
+      document.getElementById('estilos')['href']=`../assets/css/estilos${this.user.university}.css`
+    }
+
   }
 
   getUsuarios(){
@@ -60,9 +69,11 @@ export class AppComponent {
 
   login(user:string){
     this.logued = true
+    sessionStorage.setItem('logued','true')
     this.user=this.users.find(item => item.userId == user)
-    localStorage.setItem('user',JSON.stringify(this.user))
+    sessionStorage.setItem('user',JSON.stringify(this.user))
     this.setLanguage(this.language,this.user.userId,this.user.university)
+    document.getElementById('estilos')['href']=`../assets/css/estilos${this.user.university}.css`
 
     if (this.user.rol != "2" ){
       this.router.navigate(['administration'])

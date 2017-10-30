@@ -20,7 +20,7 @@ export class MenuComponent implements AfterViewInit {
   public usuario:User
 
   constructor() {
-    this.usuario = JSON.parse(localStorage.getItem('user'))
+    this.usuario = JSON.parse(sessionStorage.getItem('user'))
     if (this.usuario.rol == "2"){
       this.getMenu()
     }
