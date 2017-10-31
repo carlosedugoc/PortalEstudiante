@@ -59,15 +59,15 @@
                     </table>
                   </div>
                   <div class="boxAfterTable">
-                    <button class="" id="makeNewRow">
-                      <i class="fa fa-plus-circle" aria-hidden="true"></i>Crear universidad</button>
+                    <a class="" id="makeNewRow">
+                      <i class="fa fa-plus-circle" aria-hidden="true"></i>Crear universidad</a>
                   </div>
                 </div>
               </div>
               <div class="col-xs-12">
                 <div class="boxButtonsCenter">
-                  <button type="button" class="btn btn-default btnNoAccion">CANCELAR</button>
-                  <button type="button" class="btn btn-default btnFirstAccion">GUARDAR</button>
+                  <button type="button" class="btn btn-default btnNoAccion" (click)="cancelar()">CANCELAR</button>
+                  <button type="button" class="btn btn-default btnFirstAccion" (click)="guardarInformacion()">GUARDAR</button>
                 </div>
               </div>
             </div>
