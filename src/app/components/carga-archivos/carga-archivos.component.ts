@@ -199,28 +199,14 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
   guardarDatos() {
     debugger;
     this.validar = true;
-    let postData = null// Put your form data variable. This is only example.
-    //this.universityService.postWithFile("http://10.75.8.109/Services/api/University/1/Regulation/UploadFiles/ElMejorNombre", postData, this.fileToUpload)
     this.universityService.updateRegulationUniversity(
       this.nuevoReglamento.code,
       this.nuevoReglamento.regulationName,
       this.fileToUpload).then(res => {
+        alert("Se guardó la información correctamente")
         this.universidadReglamento = this.nuevoReglamento;
         this.cargarDatos(this.universidadReglamento.code)
       })
-
-
-    // let urlGuardarDato = this.url_Servicios_backend.UrlUpdateReglamento //'http://10.75.8.109/PEServices/api/Universidad/Reglamento'
-
-    // this.nuevoReglamento.UrlReglamento = 'https://www.tutorialspoint.com/angularjs/angularjs_tutorial.pdf'
-
-    // // this.cargarArchivoService.updateReglamento(this.reglamento, urlGuardarDato).subscribe(data => {
-    // //   console.log('Se guardó correctamente');
-    // //   console.log(data);
-    // //   this.reglamento = this.nuevoReglamento;
-    // //   this.cargarDatos(this.reglamento.CodigoBanner)
-    // // })
-    // // Se realiza validación de tamaño de archivo.
   }
 }
 

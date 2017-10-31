@@ -22,8 +22,7 @@ export class UniversityService {
   }
 
   //// Método que obtiene toda la información de todas las universidades.
-  getInfoAllUniversities()
-  {
+  getInfoAllUniversities() {
     let url = `${this.generalUrl}/api/University`
     return this.http.get(url).map(res => {
       return res.json();
@@ -31,8 +30,7 @@ export class UniversityService {
   }
 
   //// Método que crea una nueva universidad.
-  createUniversity(university : University)
-  {
+  createUniversity(university: University) {
     debugger;
     let url = `${this.generalUrl}/api/University`
     console.log('university', JSON.stringify(university))
@@ -51,8 +49,7 @@ export class UniversityService {
   }
 
   //// Método para actualizar una universidad específica.
-  updateUniversity(university : University)
-  {
+  updateUniversity(university: University) {
     debugger;
     let url = `${this.generalUrl}/api/University`
     console.log('university', JSON.stringify(university))
@@ -84,10 +81,13 @@ export class UniversityService {
     debugger;
     let url = `${this.generalUrl}/api/University/${universityCode}/Regulation/UploadFiles/${regulationName}`
     let formData: FormData = new FormData();
-    formData.append('file', files[0], files[0].name);
+    if (files != undefined) {
+      formData.append('file', files[0], files[0].name);
+    }
+
     var returnReponse = new Promise((resolve, reject) => {
       debugger;
-      this.http.post(url, formData).subscribe(
+      this.http.post(url, files != undefined ? formData : null).subscribe(
         res => {
           debugger;
           console.log(res);
@@ -106,7 +106,7 @@ export class UniversityService {
   }
 
   //// Método que me permite descargar el reglamento de una universidad específica.
-  downloadRegulationUniversity(universityCode: string)  {
+  downloadRegulationUniversity(universityCode: string) {
     return `${this.generalUrl}/api/University/${universityCode}/Regulation/Download`
   }
 }
