@@ -1,4 +1,4 @@
-<div class="module" style="padding-left: 20%">
+<!-- <div class="module" style="padding-left: 20%">
   <p>
     university-management works!
   </p>
@@ -6,4 +6,74 @@
   <p style="float: right">{{ universities | json }}</p>
   <button type="button" id="btnCancelProcess1" style="float: right" class="text-uppercase btn btn-default btnNoAccion" (click)="crearUniversidad()">Crear</button>
   <button type="button" id="btnCancelProcess2" style="float: right" class="text-uppercase btn btn-default btnNoAccion" (click)="actualizarUniversidad()">Actualizar</button>
+</div> -->
+<div class="container-fluid">
+  <div class="row">
+    <section id="content">
+      <section class="miga text-uppercase">
+        <ol class="breadcrumb">
+          <li>
+            <a href="#">ADMINISTRACIÓN</a>
+          </li>
+          <li class="active">Configuración de universidades</li>
+        </ol>
+      </section>
+      <section id="mainContent">
+        <div class="module">
+          <div class="headModule">
+            <h1>Cree universidades con base en la información del sistema académico Banner</h1>
+          </div>
+          <div class="bodyModule">
+            <div class="row">
+              <div class="col-xs-12">
+                <div id="no-more-tables" class="">
+                  <div class="table-responsive">
+                    <table class="table-bordered table-striped table-condensed" id="newUniversitiesTable">
+                      <thead class="">
+                        <tr class="headBold">
+                          <th class="boxInputName">Universidad</th>
+                          <th class="boxInputFile">Código</th>
+                          <th class="boxSwitch">Habilitar /
+                            <br>Deshabilitar</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let university of universities">
+                          <td data-title="Nombre" class="boxInputName">
+                            <input type="text" class="form-control inputCanChange" [(ngModel)]="university.name" value="{{university.name}}" [disabled] = "!university.status" placeholder="ingrese nombre de la universidad...">
+                          </td>
+                          <td data-title="Archivo" class="boxInputName">
+                            <input type="text" class="form-control inputCanChange" [(ngModel)]="university.code" value="{{university.code}}" [disabled] = "!university.status" placeholder="ingrese el código Banner...">
+                          </td>
+                          <td data-title="Habilitar / Deshabilitar" class="boxSwitch">
+                            <div class="card">
+                              <label>
+                                <input type="checkbox" [(ngModel)]="university.status" [checked]="university.status" class="switchCanChange" />
+                                <span class="switch"></span>
+                                <span class="toggle"> </span>
+                              </label>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="boxAfterTable">
+                    <button class="" id="makeNewRow">
+                      <i class="fa fa-plus-circle" aria-hidden="true"></i>Crear universidad</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12">
+                <div class="boxButtonsCenter">
+                  <button type="button" class="btn btn-default btnNoAccion">CANCELAR</button>
+                  <button type="button" class="btn btn-default btnFirstAccion">GUARDAR</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </div>
 </div>

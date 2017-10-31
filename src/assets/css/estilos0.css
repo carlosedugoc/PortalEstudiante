@@ -397,6 +397,19 @@ input[type='checkbox'] {
   #no-more-tables table tbody tr:last-child .dropdown-menu {
     top: -50px; }
 
+.boxAfterTable {
+  background-color: #f3f3f3;
+  padding: 7px; }
+  .boxAfterTable i {
+    padding-right: 5px; }
+  .boxAfterTable a {
+    color: #012351;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700; }
+    .boxAfterTable a:hover {
+      color: rgba(1, 35, 81, 0.7); }
+
 .image-preview a {
   color: #012351; }
 .image-preview .btn {

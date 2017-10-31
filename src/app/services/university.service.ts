@@ -18,7 +18,8 @@ export class UniversityService {
   ) {
     debugger;
     this.utility = new GeneralUtils(http)
-    this.utility.getConfiguration("servicios|UrlApiRest").subscribe(res => this.generalUrl = res);
+    this.generalUrl = "http://10.75.8.109/PEServices"
+    //this.utility.getConfiguration("servicios|UrlApiRest").subscribe(res => this.generalUrl = res);
   }
 
   //// Método que obtiene toda la información de todas las universidades.
@@ -69,7 +70,6 @@ export class UniversityService {
 
   //// Método que obtiene la información de una universidad seleccionada.
   getInfoUniversity(universityCode: string) {
-    this.generalUrl = "http://10.75.8.109/PEServices"
     let url = `${this.generalUrl}/api/University/${universityCode}`
     return this.http.get(url).map(res => {
       return res.json();

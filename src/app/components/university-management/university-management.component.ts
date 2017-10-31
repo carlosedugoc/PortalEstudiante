@@ -16,6 +16,7 @@ export class UniversityManagementComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.cargarInformacionUniversidades()
   }
 
   cargarInformacionUniversidades() {

@@ -88,7 +88,8 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
 
   seleccionarArchivo(file: any) {
     debugger;
-    let todoBien: boolean = false
+    let todoBien: boolean = true
+    let msg = ""
     // Se valida la extensión del archivo y el peso del archivo.
     if (file != undefined) {
       let name: string = file[0].name
@@ -96,7 +97,15 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
       let _size = file[0].size / 1024 / 1024;
 
       // Validación de extensión de archivo y tamaño.
-      todoBien = extension.toLowerCase() == this.reglasValidaciones.tipoArchivo_CargaReglamento && _size <= this.reglasValidaciones.tamanoArchivo_CargaReglamento
+      if ((extension.toLowerCase() != this.reglasValidaciones.tipoArchivo_CargaReglamento)) {
+        msg = "Los reglamentos deben ser cargados en formato PDF. Por favor verifique el formato."
+        todoBien = false
+      }
+      if ((todoBien && _size > this.reglasValidaciones.tamanoArchivo_CargaReglamento)) {
+        msg = "El archivo excede el límite de 4MB establecido para los reglamentos. Por favor verifique el tamaño del archivo."
+        todoBien = false
+      }
+      //todoBien = extension.toLowerCase() == this.reglasValidaciones.tipoArchivo_CargaReglamento && _size <= this.reglasValidaciones.tamanoArchivo_CargaReglamento
     }
 
     if (todoBien) {
@@ -106,7 +115,7 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
       this.nombreArchivoSinSubir = file[0].name
     }
     else {
-      alert('Suba un archivo de tipo pdf y con un peso de hasta 4 MB')
+      alert(msg)
       this.eliminarArchivo();
     }
     let botoones: any = document.getElementsByClassName('boxButtonsCenter')[0]
@@ -139,12 +148,20 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
   //// Método que llena los datos del reglamento
   llenarDatosReglamento(data: University, idUniversidad: string) {
     debugger;
+    let botoones: any = document.getElementsByClassName('image-preview-clear')[0]
+    if (botoones != undefined) botoones.style.display = 'inline-block'
     this.validar = false
     this.universidadReglamento = data;
     this.universidadReglamento.code = idUniversidad
     this.nombreArchivo = this.nombreArchivoSinSubir = this.universidadReglamento.regulationName
+    let archivo: any = document.getElementsByClassName("image-preview-filename")[0]
+    if (archivo != undefined) archivo.value = this.nombreArchivo
+    let na: any = document.getElementsByClassName("inputCanChange")[0]
+    if (na != undefined) na.value = this.nombreArchivo
     this.tieneArchivo = this.tieneArchivoReal = !(this.universidadReglamento.regulationName == null || this.universidadReglamento.regulationName === "")
     this.urlDescarga = this.tieneArchivo ? this.universityService.downloadRegulationUniversity(idUniversidad) : ""
+    let botonCarga: any = document.getElementsByClassName("image-preview-input")[0]
+    if (botonCarga != undefined && !this.tieneArchivo) botonCarga.style.display = 'inline-block'
   }
 
   eliminarArchivo() {
