@@ -74,6 +74,7 @@ export class AdministracionComponent {
         }).then(()=>{
           if (!this.url_servicio){
             this.loading = false 
+            console.log('ok11')
             return Promise.reject({'mensaje':'La Universidad no se encuentra parametrizada'})
           }
           this.getTitulos(IdUniversidad).then(()=>{
@@ -93,6 +94,7 @@ export class AdministracionComponent {
           })
         }).catch((error)=>{
           this.loading= false
+          console.log('ok12')
           this.show_table = false 
           console.error(error)
         })
@@ -213,6 +215,7 @@ export class AdministracionComponent {
           document.getElementById('openModalButton').click()
         }
         this.loading= false
+        console.log('ok13')
         this.show_table = true 
         
 
@@ -230,7 +233,7 @@ export class AdministracionComponent {
       this.getModalidades().then(()=>{
         this.getNiveles().then(()=>{
           this.getEstados().then(()=>{
-            this.loading= false
+            // this.loading= false
             resolve()
           }).catch((error)=>{
             reject(error)
@@ -328,7 +331,7 @@ export class AdministracionComponent {
   
   getUrlsServicios(){
     const promesa = new Promise((resolve,reject)=>{
-      this.http.get("../assets/config.json").subscribe((success) =>  {
+      this.http.get("assets/config.json").subscribe((success) =>  {
         console.log(JSON.parse(success['_body']).servicios)
         this.url_servicios_universidad = JSON.parse(success['_body']).universidades
         this.url_Servicios_backend = JSON.parse(success['_body']).servicios

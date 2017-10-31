@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { TranslateService } from '@ngx-translate/core';
 import { AdministracionService } from "./services/administracion.service";
 import { User } from "./models/user";
+import { Menu } from "./models/menu/menu";
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent {
   public language:string
   public user:User
   public users:User[]
+  public menu:Menu[]
 
   constructor(private router:Router,private translate: TranslateService,private adminService:AdministracionService){
     this.logued = sessionStorage.getItem('logued') != null && sessionStorage.getItem('logued') == 'true'
@@ -28,6 +30,9 @@ export class AppComponent {
     }else{
       this.user = JSON.parse(sessionStorage.getItem('user'))
       document.getElementById('estilos')['href']=`../assets/css/estilos${this.user.university}.css`
+      if (this.user.rol == "2"){
+        this.getMenu()
+      }
     }
 
   }
@@ -104,6 +109,216 @@ export class AppComponent {
       this.language = lan
     })
   }
+
+
+
+  getMenu(){
+      this.menu = [
+        {
+          id:1,
+          name:"Consulta",
+          logo:"commenting",
+          data:
+          [
+            {
+            id:2,
+            name:"Académica",
+            data: 
+              [
+                {
+                  id:3,
+                  name:"SubConsulta 1",
+                  url:"url"
+                },
+                {
+                  id:4,
+                  name:"SubConsulta 2",
+                  url:"url"
+                },
+                {
+                  id:5,
+                  name:"SubConsulta 3",
+                  url:"url"
+                },
+                {
+                  id:6,
+                  name:"SubConsulta 4",
+                  url:"url"
+                },
+                {
+                  id:7,
+                  name:"SubConsulta 5",
+                  url:"url"
+                }
+              ]
+            },
+            {
+              id:8,
+              name:"Financiera",
+              url:"url"
+            },
+            {
+            id:9,
+            name:"Otra",
+            data: 
+              [
+                {
+                  id:10,
+                  name:"SubConsulta 1",
+                  url:"url"
+                },
+                {
+                  id:11,
+                  name:"SubConsulta 2",
+                  url:"url"
+                },
+                {
+                  id:12,
+                  name:"SubConsulta 3",
+                  url:"url"
+                }
+              ]
+            },
+          ]
+        },
+        {
+          id:1,
+          name:"Solicitud",
+          logo:"send",
+          data:
+          [
+            {
+            id:2,
+            name:"Académica",
+            data: 
+              [
+                {
+                  id:3,
+                  name:"SubConsulta 1",
+                  url:"url"
+                },
+                {
+                  id:4,
+                  name:"SubConsulta 2",
+                  url:"url"
+                },
+                {
+                  id:5,
+                  name:"SubConsulta 3",
+                  url:"url"
+                },
+                {
+                  id:6,
+                  name:"SubConsulta 4",
+                  url:"url"
+                },
+                {
+                  id:7,
+                  name:"SubConsulta 5",
+                  url:"url"
+                }
+              ]
+            },
+            {
+              id:8,
+              name:"Financiera",
+              url:"url"
+            },
+            {
+            id:9,
+            name:"Otra",
+            data: 
+              [
+                {
+                  id:10,
+                  name:"SubConsulta 1",
+                  url:"url"
+                },
+                {
+                  id:11,
+                  name:"SubConsulta 2",
+                  url:"url"
+                },
+                {
+                  id:12,
+                  name:"SubConsulta 3",
+                  url:"url"
+                }
+              ]
+            },
+          ]
+        },
+        {
+          id:1,
+          name:"Portales",
+          logo:"laptop",
+          data:
+          [
+            {
+            id:2,
+            name:"Académica",
+            data: 
+              [
+                {
+                  id:3,
+                  name:"SubConsulta 1",
+                  url:"url"
+                },
+                {
+                  id:4,
+                  name:"SubConsulta 2",
+                  url:"url"
+                },
+                {
+                  id:5,
+                  name:"SubConsulta 3",
+                  url:"url"
+                },
+                {
+                  id:6,
+                  name:"SubConsulta 4",
+                  url:"url"
+                },
+                {
+                  id:7,
+                  name:"SubConsulta 5",
+                  url:"url"
+                }
+              ]
+            },
+            {
+              id:8,
+              name:"Financiera",
+              url:"url"
+            },
+            {
+            id:9,
+            name:"Otra",
+            data: 
+              [
+                {
+                  id:10,
+                  name:"SubConsulta 1",
+                  url:"url"
+                },
+                {
+                  id:11,
+                  name:"SubConsulta 2",
+                  url:"url"
+                },
+                {
+                  id:12,
+                  name:"SubConsulta 3",
+                  url:"url"
+                }
+              ]
+            },
+          ]
+        }
+      ]
+    }
+
+
 
 }
 
