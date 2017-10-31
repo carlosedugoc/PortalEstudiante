@@ -1,3 +1,9 @@
-<p>
-  university-management works!
-</p>
+<div class="module" style="padding-left: 20%">
+  <p>
+    university-management works!
+  </p>
+  <button type="button" id="btnCancelProcess" style="float: right" class="text-uppercase btn btn-default btnNoAccion" (click)="cargarInformacionUniversidades()">Consultar</button>
+  <p style="float: right">{{ universities | json }}</p>
+  <button type="button" id="btnCancelProcess1" style="float: right" class="text-uppercase btn btn-default btnNoAccion" (click)="crearUniversidad()">Crear</button>
+  <button type="button" id="btnCancelProcess2" style="float: right" class="text-uppercase btn btn-default btnNoAccion" (click)="actualizarUniversidad()">Actualizar</button>
+</div>
