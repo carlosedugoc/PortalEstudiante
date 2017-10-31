@@ -1,0 +1,9 @@
+.invalid {
+    border-color: #dc3545 !important;
+    color: #dc3545 !important;
+}
+
+.invalid::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #dc3545 !important;
+}

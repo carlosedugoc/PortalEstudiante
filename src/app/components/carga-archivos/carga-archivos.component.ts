@@ -9,6 +9,7 @@ declare var inputFileClear: any
 @Component({
   selector: 'app-carga-archivos',
   templateUrl: './carga-archivos.component.html',
+  styleUrls: ['./carga-archivos.component.css'],
   providers: [UniversityService]
 })
 export class CargaArchivosComponent implements OnChanges, OnInit {
@@ -108,6 +109,8 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
       alert('Suba un archivo de tipo pdf y con un peso de hasta 4 MB')
       this.eliminarArchivo();
     }
+    let botoones: any = document.getElementsByClassName('boxButtonsCenter')[0]
+    if (botoones != undefined) botoones.style.display = 'block'
   }
 
   //// Método que carga las universidades.
@@ -136,6 +139,7 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
   //// Método que llena los datos del reglamento
   llenarDatosReglamento(data: University, idUniversidad: string) {
     debugger;
+    this.validar = false
     this.universidadReglamento = data;
     this.universidadReglamento.code = idUniversidad
     this.nombreArchivo = this.nombreArchivoSinSubir = this.universidadReglamento.regulationName
@@ -188,6 +192,8 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
 
     this.nuevoReglamento.regulationName = nombreArchivo
     this.guardarArchivo = nombreArchivo != this.universidadReglamento.regulationName || this.cargarArchivo
+    let botoones: any = document.getElementsByClassName('boxButtonsCenter')[0]
+    if (botoones != undefined) botoones.style.display = 'block'
   }
   //// Realiza el guardado de información.
   guardarDatos() {
