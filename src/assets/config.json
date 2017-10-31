@@ -21,6 +21,10 @@
         "UrlGetUniversidades":"http://10.75.8.109/PEServices/Api/Universidades/",
         "UrlGetIdioma":"http://10.75.8.109/PEServices/api/Usuario/{usuario}/Universidad/",
         "UrlUpdateIdioma":"http://10.75.8.109/PEServices/api/Usuario/Idioma/"
+    },
+    "validaciones": {
+        "tipoArchivo_CargaReglamento": "pdf",
+        "tamanoArchivo_CargaReglamento": "4"
     }
 }
 

@@ -16,6 +16,22 @@
         "LabelAdministracion":"ADMINISTRATION",
         "LabelConfiguracionServicios":"Services Settings",
         "LabelConfiguracionUniversidades":"Universities Settings",
-        "LabelNombre":"Name"
+        "LabelNombre":"Name",
+        "LabelReglamentos": "Manage Regulations"
+    },
+    "GestionReglamentos": {
+        "LabelEncabezado": "Check or upload the University regulations",
+        "LabelUniversidad": "University",
+        "LabelNombre": "File Name",
+        "LabelArchivo": "File",
+        "PlaceHolderSeleccione":"Select a file to upload",
+        "LabelCancelar":"Cancel",
+        "LabelGuardar":"Save",
+        "ModalTitulo":"Are you sure you want to delete this file?",
+        "ModalCancelar":"NO, CANCEL",
+        "ModalEliminiar":"SÍ, DELETE",
+        "ValidarFormatoArchivo" : "Regulations should be uploaded in PDF format. Please check the format.",
+        "ValidarTamanoArchivo":"The file exceeds the 4MB limit set for the regulations. Please check the file size.",
+        "MensajeGuardadoCorrecto" : "The information in the regulation was updated correctly."
     }
 }

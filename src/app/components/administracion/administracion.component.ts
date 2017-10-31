@@ -37,43 +37,8 @@ export class AdministracionComponent {
   public faltantes:any[] 
   public faltantesMensaje:any[]
   public eliminados:any[]
-  public users:User[] = []
   public user:User
   public idUser:string
-  // getUsuarios(){
-  //   this.users = [
-  //     {
-  //       userId:"",
-  //       name:"Administrador Ilumno",
-  //       rol:"1",
-  //       university:"0"
-  //     },
-  //     {
-  //       userId:"AA",
-  //       name:"Administrador Areandina",
-  //       rol:"1",
-  //       university:"1"
-  //     },
-  //     {
-  //       userId:"Poli",
-  //       name:"Administrador Politécnico",
-  //       rol:"1",
-  //       university:"2"
-  //     },
-  //     {
-  //       userId:"123456",
-  //       name:"Carlos Eduardo González Cortes",
-  //       rol:"2",
-  //       university:"1"
-  //     },
-  //     {
-  //       userId:"654123",
-  //       name:"Diana Marcela Bojaca",
-  //       rol:"2",
-  //       university:"2"
-  //     }
-  //   ]
-  // }
   
 
   constructor(private adminService:AdministracionService,
@@ -81,11 +46,6 @@ export class AdministracionComponent {
                 this.loading = false
                 this.show_table = false 
                 this.user = JSON.parse(sessionStorage.getItem('user'))
-                // this.getUsuarios()
-                // console.log('usuarios',this.users)
-                // this.idUser = localStorage.getItem('usuario')
-                // this.user=this.users.find(item => item.userId == this.idUser)
-                // console.log('usuario',this.user)
                 if ( this.user.rol == '1'){
                   this.load_data(this.user.university)
                 }
@@ -118,8 +78,9 @@ export class AdministracionComponent {
           }
           this.getTitulos(IdUniversidad).then(()=>{
             this.getServicios(IdUniversidad).then(()=>{
-              this.procesarInformacion(IdUniversidad)
-              return Promise.resolve()
+              this.procesarInformacion(IdUniversidad).then(()=>{
+                return Promise.resolve()
+              })
             })
           }).catch((err)=>{
             if(err.status == 401){
@@ -159,7 +120,11 @@ export class AdministracionComponent {
   }
 
   procesarInformacion(IdUniversidad:String){
-    console.log('paila')
+  
+    const promise = new Promise((resolve,reject)=>{
+
+
+
     this.tipos = []
     for(let mod of this.modality ){
       this.tipos.push({
@@ -211,6 +176,7 @@ export class AdministracionComponent {
       break
     }
 
+    let serviceIndex = 0
     for (let servicio of this.servicios){
       let itemsOrdenados:Item[] = []
       for (let tipo of this.tipos){
@@ -238,16 +204,25 @@ export class AdministracionComponent {
       }else{
         servicio.data = itemsOrdenados
       }
-    }
+      serviceIndex ++
 
-    if(this.eliminados.length > 0 || (this.faltantesMensaje && this.faltantesMensaje.length>0) ){
-      document.getElementById('openModalButton').click()
-    }
+      if (this.servicios.length == serviceIndex){
+        resolve()
+        debugger;
+        if(this.eliminados.length > 0 || (this.faltantesMensaje && this.faltantesMensaje.length>0) ){
+          document.getElementById('openModalButton').click()
+        }
+        this.loading= false
+        this.show_table = true 
+        
 
-    this.loading= false
-    this.show_table = true 
-      console.log('eliminados',this.eliminados)
-      console.log(this.servicios)
+      }
+    }
+  })
+  return promise
+
+
+
   }
 
   getTitulos(IdUniversidad:string){

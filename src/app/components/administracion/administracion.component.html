@@ -31,7 +31,7 @@
                               <div class="form-group">
                                   <label for="exampleInputEmail1">{{ 'Administracion.LabelUniversidad' | translate }}</label>
                                   <div class="boxSelect">
-                                      <select name="" id="input" class="form-control" required="required" (change)="cargar_datos($event.target.value)">
+                                      <select name="" id="input" class="form-control" required="required" (change)="load_data($event.target.value)">
                                           <option value="0" hidden>Seleccione...</option>
                                           <option value="1">Areandina</option>
                                           <option value="2">Politécnico</option>
@@ -43,7 +43,7 @@
                       
                       <div class="row boxTabs" *ngIf="!serv">
                           <div class="col-xs-12">
-                              <ul class="nav nav-pills" role="tablist">
+                              <ul class="nav nav-pills" role="tablist" *ngIf="!loading && show_table && !serv">
                                   <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">{{ 'Administracion.LabelConsultaAcademica' | translate }}</a></li>
                                   <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">{{ 'Administracion.LabelSolicitudFinanciera' | translate }}</a></li>
                                   <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">{{ 'Administracion.LabelSolicitudAcademica' | translate }}</a></li>

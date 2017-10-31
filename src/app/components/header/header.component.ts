@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   
   ngOnInit() {
     document.getElementById('logo')['src']=`../assets/img/logo_header${this.user.university}.png`
-    // document.getElementById('logoFooter')['src']=`../assets/img/logo_footer${this.user.university}.png`
+    document.getElementById('logoFooter')['src']=`../assets/img/logo_footer${this.user.university}.png`
   }
 
   constructor(private router:Router) { 
