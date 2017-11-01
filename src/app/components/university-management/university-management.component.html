@@ -23,6 +23,13 @@
           <div class="headModule">
             <h1>Cree universidades con base en la información del sistema académico Banner</h1>
           </div>
+          <!-- {{universities | json}} -->
+          <!-- spinner -->
+          <div *ngIf="loading">
+            <br>
+            <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+            <span class="sr-only">Loading...</span>
+          </div>
           <div class="bodyModule">
             <div class="row">
               <div class="col-xs-12">
@@ -40,10 +47,12 @@
                       <tbody>
                         <tr *ngFor="let university of universities">
                           <td data-title="Nombre" class="boxInputName">
-                            <input type="text" class="form-control inputCanChange" [(ngModel)]="university.name" value="{{university.name}}" [disabled] = "!university.status" placeholder="ingrese nombre de la universidad...">
+                            <input type="text" class="form-control inputCanChange" [(ngModel)]="university.name" value="{{university.name}}" [disabled]="!university.status"
+                              placeholder="ingrese nombre de la universidad...">
                           </td>
                           <td data-title="Archivo" class="boxInputName">
-                            <input type="text" class="form-control inputCanChange" [(ngModel)]="university.code" value="{{university.code}}" [disabled] = "!university.status" placeholder="ingrese el código Banner...">
+                            <input type="text" class="form-control inputCanChange" [(ngModel)]="university.code" value="{{university.code}}" [disabled]="!university.status"
+                              placeholder="ingrese el código Banner...">
                           </td>
                           <td data-title="Habilitar / Deshabilitar" class="boxSwitch">
                             <div class="card">
@@ -59,7 +68,7 @@
                     </table>
                   </div>
                   <div class="boxAfterTable">
-                    <a class="" id="makeNewRow">
+                    <a class="" style="cursor:pointer" id="" (click)="agregarRow()">
                       <i class="fa fa-plus-circle" aria-hidden="true"></i>Crear universidad</a>
                   </div>
                 </div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UniversityService } from '../../services/university.service';
 import { University } from "../../models/university";
-import { List } from "linqts";
-import { Enumerable } from "linqts"; 
+import { List } from "linqts";
+import { Enumerable } from "linqts";
 
 
 @Component({
@@ -16,6 +16,7 @@ export class UniversityManagementComponent implements OnInit {
   public uniOriginal: University[]
   public uniToCreate: University[]
   public uniToUpdate: University[]
+  public loading : boolean
 
   constructor(private universityService: UniversityService
   ) {
@@ -53,10 +54,18 @@ export class UniversityManagementComponent implements OnInit {
     if (diferentes.Any()) {
       this.actualizarUniversidad(diferentes.ToArray())
     }
+
+    alert("Se actualizó la información");
+
+    //this.cargarInformacionUniversidades()
   }
 
   cargarInformacionUniversidades() {
+    debugger;
+    this.loading = true
     this.universityService.getInfoAllUniversities().subscribe(res => {
+      debugger;
+      this.loading = false
       this.universities = res
       // Se realiza una copia de manera que la información original la tenga almacenada en memoria.
       let unis: string = JSON.stringify(res)
@@ -67,7 +76,9 @@ export class UniversityManagementComponent implements OnInit {
   // Método que crea una nueva universidad.
   crearUniversidad(newUniversity: any) {
     //let newUniversity: any = { "name": "La universidad x", "code": "zzzzzzzz", "status": "true" }
-    this.universityService.createUniversity(newUniversity).subscribe(res => console.log(res));
+    this.universityService.createUniversity(newUniversity).subscribe(res => {
+
+    });
   }
 
   // Método que actualiza la información de las universidades.
@@ -77,6 +88,12 @@ export class UniversityManagementComponent implements OnInit {
 
   //// Método que devuelve los valores a su estado inicial.
   cancelar() {
+    debugger;
+    this.cargarInformacionUniversidades()
+  }
 
+  // Método para agregar una nueva universidad.
+  agregarRow() {
+    this.universities.push(new University(null, "", "", null, null, true))
   }
 }

@@ -32,6 +32,7 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
   public validar: boolean // Me indica validación por el lado del cliente antes de guardar.
   public utilidades: GeneralUtils // Clase de utilidades
   public urlDescarga: string
+  public fileNamePath: string
 
 
   constructor(private universityService: UniversityService,
@@ -112,7 +113,7 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
       this.fileToUpload = file;
       this.tieneArchivo = true;
       this.guardarArchivo = true;
-      this.nombreArchivoSinSubir = file[0].name
+      this.fileNamePath = this.nombreArchivoSinSubir = file[0].name
     }
     else {
       alert(msg)
@@ -153,21 +154,25 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
     this.validar = false
     this.universidadReglamento = data;
     this.universidadReglamento.code = idUniversidad
+    this.nuevoReglamento = this.universidadReglamento
     this.nombreArchivo = this.nombreArchivoSinSubir = this.universidadReglamento.regulationName
-    let archivo: any = document.getElementsByClassName("image-preview-filename")[0]
-    if (archivo != undefined) archivo.value = this.nombreArchivo
+
     let na: any = document.getElementsByClassName("inputCanChange")[0]
     if (na != undefined) na.value = this.nombreArchivo
     this.tieneArchivo = this.tieneArchivoReal = !(this.universidadReglamento.regulationName == null || this.universidadReglamento.regulationName === "")
     this.urlDescarga = this.tieneArchivo ? this.universityService.downloadRegulationUniversity(idUniversidad) : ""
     let botonCarga: any = document.getElementsByClassName("image-preview-input")[0]
     if (botonCarga != undefined && !this.tieneArchivo) botonCarga.style.display = 'inline-block'
+    this.fileNamePath = this.tieneArchivo ? this.universidadReglamento.regulationUrl : ""
+    let archivo: any = document.getElementsByClassName("image-preview-filename")[0]
+    if (archivo != undefined) archivo.value = this.fileNamePath.split('\\').pop().split('/').pop();
   }
 
   eliminarArchivo() {
     debugger;
     this.tieneArchivo = false;
     let eliminarArchivoDisco: boolean = this.tieneArchivo;
+    this.fileNamePath = ""
     this.tieneArchivoReal = false
     this.guardarArchivo = true;
 
@@ -206,7 +211,6 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
   modificarNombre(nombreArchivo: string) {
     debugger;
     if (this.nuevoReglamento == undefined) this.nuevoReglamento = this.universidadReglamento != undefined ? this.universidadReglamento : <University>{ code: "", id: "", name: "", regulationName: "", regulationUrl: "" }
-
     this.nuevoReglamento.regulationName = nombreArchivo
     this.guardarArchivo = nombreArchivo != this.universidadReglamento.regulationName || this.cargarArchivo
     let botoones: any = document.getElementsByClassName('boxButtonsCenter')[0]
@@ -216,14 +220,16 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
   guardarDatos() {
     debugger;
     this.validar = true;
-    this.universityService.updateRegulationUniversity(
-      this.nuevoReglamento.code,
-      this.nuevoReglamento.regulationName,
-      this.fileToUpload).then(res => {
-        alert("Se guardó la información correctamente")
-        this.universidadReglamento = this.nuevoReglamento;
-        this.cargarDatos(this.universidadReglamento.code)
-      })
+    if (this.validar && this.tieneArchivo) {
+      this.universityService.updateRegulationUniversity(
+        this.nuevoReglamento.code,
+        this.nuevoReglamento.regulationName,
+        this.fileToUpload).then(res => {
+          alert("La información del reglamento fue actualizada correctamente.")
+          this.universidadReglamento = this.nuevoReglamento;
+          this.cargarDatos(this.universidadReglamento.code)
+        })
+    }
   }
 }
 
