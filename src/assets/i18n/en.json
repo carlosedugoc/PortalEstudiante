@@ -9,9 +9,11 @@
         "LabelSolicitudFinanciera":"Financial Request ",
         "LabelSolicitudAcademica":"Academic Request",
         "LabelPortales":"Portals",
-        "LabelUniversidad":"University"
+        "LabelUniversidad":"University",
+        "LabelConfiguracionServicios": "Service Settings",
+        "LabelAdministracion": "Administration"
     },
-    "Header":{
+    "Menu":{
         "LabelPrincipal":"MAIN",
         "LabelAdministracion":"ADMINISTRATION",
         "LabelConfiguracionServicios":"Services Settings",

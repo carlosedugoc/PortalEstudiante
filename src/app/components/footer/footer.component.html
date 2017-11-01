@@ -1,13 +1,28 @@
 <div class="row boxFooter">
   <footer class="col-xs-12">
       <div class="row">
-          <div class="col-sm-6 BoxLogoFooter">
+          <div class="col-sm-3 BoxLogoFooter">
               <div class="logo-footer">
                   <a href="" target="_blank" title="Ilumno"><img src="./assets/img/logo_footer.png" id="logoFooter" alt="Ilumno"></a>
               </div>
           </div>
-          <div class="col-sm-6 boxContacto">
-              <div class="boxRedes" *ngIf="menu" >
+
+          <div class="col-sm-9 boxContacto">
+
+            <div class="sedesContacto" *ngIf="user.university != '0'">
+                <ul class="list-inline" *ngIf="user.university == '1'">
+                    <li>Línea Gratuita Nacional <span><i class="fa fa-phone" aria-hidden="true"></i>01800 180099</span> </li>
+                    <li>Sede Bogotá <span><i class="fa fa-phone" aria-hidden="true"></i>(57+1) 7449191</span> </li>
+                    <li>Sede Pereira <span><i class="fa fa-phone" aria-hidden="true"></i>(57+6) 3401516</span> </li>
+                    <li>Sede Valledupar<span><i class="fa fa-phone" aria-hidden="true"></i>(57+5) 5897879</span> </li>
+                </ul>
+                <ul class="list-inline" *ngIf="user.university == '2'">
+                    <li>Línea de servicio Bogotá <span><i class="fa fa-phone" aria-hidden="true"></i>(571) 744 07 40 opción 1</span> </li>
+                    <li>Línea de servicio Medellín <span><i class="fa fa-phone" aria-hidden="true"></i>(574) 604 02 00</span> </li>
+                </ul>
+            </div>
+
+              <div class="boxRedes" *ngIf="redes" >
                   <p>Síguenos</p>
                   <ul class="redes list-inline">
                       <a href="#" target="_blank">

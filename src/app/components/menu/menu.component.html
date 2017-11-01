@@ -2,7 +2,7 @@
   <div class="user">
       <img src="./assets/img/user.png" alt="" class="imgProfile">
       <div class="name">
-          <h3>{{'Header.LabelNombre' | translate }} </h3>
+          <h3>{{'Menu.LabelNombre' | translate }} </h3>
           <a href="#" class="iconLogOut">
               <i class="fa fa-sign-out" aria-hidden="true"></i>
           </a>
@@ -19,32 +19,34 @@
   </div>
   <nav class="menu" id="accordion">
       <ul class="panel" id="panel">
-        <a class="seccionPadre navPrincipal active" data-parent="#accordion" data-toggle="collapse" href="">
-                <li><i class="fa fa-home" aria-hidden="true"></i><span>PRINCIPAL</span></li>
+        <a class="seccionPadre navPrincipal active" data-parent="#accordion" data-toggle="collapse" href=""  >
+                <li><i class="fa fa-home" aria-hidden="true"></i><span>{{'Menu.LabelPrincipal' | translate}}</span></li>
         </a>
+        <!-- <ul class="collapse" id="collapse0">
+        </ul> -->
 
         <a *ngIf="user.rol == '1'" class="seccionPadre navPagos active" data-parent="#accordion" data-toggle="collapse" href="#collapse0">
-                <li><i class="fa fa-cog" aria-hidden="true"></i><span>ADMINISTRACIÓN</span></li>
+                <li><i class="fa fa-cog" aria-hidden="true"></i><span>{{'Menu.LabelAdministracion' | translate}}</span></li>
             </a>
             <ul class="collapse" id="collapse0">
                 <a  [routerLink]="['administration']"  data-toggle="modal" href="#modal-id" routerLinkActive="active">
-                    <li><span>Configuración de servicios</span></li>
+                    <li><span>{{'Menu.LabelConfiguracionServicios' | translate}}</span></li>
                 </a>
                 <a [routerLink]="['univ-management']" routerLinkActive="active" href=""*ngIf="user.university == '0'">
-                    <li><span>Configuración de Universidades</span></li>
+                    <li><span>{{'Menu.LabelConfiguracionUniversidades' | translate}}</span></li>
                 </a>
                 <a [routerLink]="['file-loading']" routerLinkActive="active">
-                    <li><span>Gestionar Reglamentos</span></li>
+                    <li><span>{{'Menu.LabelReglamentos' | translate}}</span></li>
                 </a>
             </ul>
-
+            
           <!-- INICIO ACCORDION -->
 
           <div id='divItem' *ngFor="let padre of menu; let padreIdx = index" >
-            <a id="wrap" class="seccionPadre nav{{padre.name}}" data-parent="#accordion" data-toggle="collapse" href="#collapse{{padreIdx + 1}}">
+            <a *ngIf="user.rol == '2'" id="wrap" class="seccionPadre nav{{padre.name}}" data-parent="#accordion" data-toggle="collapse" href="#collapse{{padreIdx + 1}}">
                 <li><i class="fa fa-{{padre.logo}}" aria-hidden="true"></i><span>{{padre.name}}</span></li>
             </a>
-            <ul id="wrap" class="collapse" id="collapse{{padreIdx + 1}}">
+            <ul  *ngIf="user.rol == '2'" id="wrap" class="collapse" id="collapse{{padreIdx + 1}}">
                 <nav id="subAccordion2">
                     <ul *ngFor="let hijo of padre.data; let idxHijo = index" class="panel">
                         <a *ngIf="hijo.data" class="accordionHijo" data-toggle="collapse" href="#collapse{{padreIdx + 1}}{{idxHijo}}">

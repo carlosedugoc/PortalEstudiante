@@ -899,7 +899,10 @@ header, footer {
       font-size: 18px;
       line-height: 1.4; }
   #mainContent .boxButtonsCenter {
+<<<<<<< HEAD
+=======
     display: none;
+>>>>>>> 6df9982a11de33d0fc4e14b20e4a7717623bf909
     text-align: center;
     padding: 20px; }
   #mainContent .module {

@@ -32,16 +32,13 @@ export class AppComponent {
     let lan = window.navigator.language.substr(0,2)
     this.language = lan
     this.translate.setDefaultLang(lan);
-
     if (!this.logued){
       this.getUsuarios()
     }else{
       this.user = JSON.parse(sessionStorage.getItem('user'))
+      this.getMenus()
+      console.log(this.user)
       document.getElementById('estilos')['href']=`../assets/css/estilos${this.user.university}.css`
-      if (this.user.rol == "2"){
-        // this.getMenu()
-        this.getMenus()
-      }
     }
 
   }
@@ -88,11 +85,10 @@ export class AppComponent {
     sessionStorage.setItem('user',JSON.stringify(this.user))
     this.setLanguage(this.language,this.user.userId,this.user.university)
     document.getElementById('estilos')['href']=`../assets/css/estilos${this.user.university}.css`
-
+    this.getMenus()
     if (this.user.rol != "2" ){
       this.router.navigate(['administration'])
     }else{
-      this.getMenus()
       this.router.navigate(['student'])
     }
 
