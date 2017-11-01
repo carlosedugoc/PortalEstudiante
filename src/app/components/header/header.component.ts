@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from "@angular/router";
 import { User } from "../../models/user";
+import { Menu } from "../../models/menu/menu";
 
 declare var mainNavToogle: any
 declare var checkItems: any
@@ -19,11 +20,14 @@ declare var newInputs: any
 export class HeaderComponent implements OnInit {
   @Output() language:EventEmitter<string> = new EventEmitter<string>();
   @Input('strLanguage') strLanguage:string
+  @Input('notificacion') notificacion: Menu[]
+
   public user:User
   
   ngOnInit() {
     document.getElementById('logo')['src']=`../assets/img/logo_header${this.user.university}.png`
     document.getElementById('logoFooter')['src']=`../assets/img/logo_footer${this.user.university}.png`
+    console.log('menu',this.notificacion)
     if(!sessionStorage.getItem('loaded')){
       setTimeout(function () {
         mainNavToogle(); //Función de js para colapsar el menu lateral. Main.js
