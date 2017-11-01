@@ -46,18 +46,18 @@
                       </thead>
                       <tbody>
                         <tr *ngFor="let university of universities">
-                          <td data-title="Nombre" class="boxInputName">
-                            <input type="text" class="form-control inputCanChange" [(ngModel)]="university.name" value="{{university.name}}" [disabled]="!university.status"
-                              placeholder="ingrese nombre de la universidad...">
+                          <td data-title="Nombre" class="form-group has-feedback boxInputName" [ngClass]="{ 'has-error' : !nombreUniversidad.valid && university.status && submitAttempt }">
+                            <input name="nombreUniversidad" required type="text" #nombreUniversidad="ngModel" class="form-control inputCanChange" [(ngModel)]="university.name"
+                              [disabled]="!university.status" (change)="cambioAlgo()" placeholder="ingrese nombre de la universidad...">
                           </td>
-                          <td data-title="Archivo" class="boxInputName">
-                            <input type="text" class="form-control inputCanChange" [(ngModel)]="university.code" value="{{university.code}}" [disabled]="!university.status"
-                              placeholder="ingrese el código Banner...">
+                          <td data-title="Archivo" class="form-group has-feedback boxInputName" [ngClass]="{ 'has-error' : !codigoUniversidad.valid && university.status && submitAttempt }">
+                            <input name="codigoUniversidad" required type="text" #codigoUniversidad="ngModel" class="form-control inputCanChange" [(ngModel)]="university.code"
+                              [disabled]="!university.status" (change)="cambioAlgo()" placeholder="ingrese el código Banner...">
                           </td>
                           <td data-title="Habilitar / Deshabilitar" class="boxSwitch">
                             <div class="card">
                               <label>
-                                <input type="checkbox" [(ngModel)]="university.status" [checked]="university.status" class="switchCanChange" />
+                                <input type="checkbox" [(ngModel)]="university.status" class="switchCanChange" (change)="cambioAlgo()" />
                                 <span class="switch"></span>
                                 <span class="toggle"> </span>
                               </label>
@@ -76,7 +76,7 @@
               <div class="col-xs-12">
                 <div class="boxButtonsCenter">
                   <button type="button" class="btn btn-default btnNoAccion" (click)="cancelar()">CANCELAR</button>
-                  <button type="button" class="btn btn-default btnFirstAccion" (click)="guardarInformacion()">GUARDAR</button>
+                  <button type="submit" class="btn btn-default btnFirstAccion" (click)="guardarInformacion()">GUARDAR</button>
                 </div>
               </div>
             </div>

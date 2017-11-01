@@ -52,7 +52,7 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
     this.validarUsuarioLogueado();
     setTimeout(function () {
       inputFileClear(); //// Función de js para validación de botones y alertas. Main.js
-    }, 2000);
+    }, 1000);
   }
 
   validarUsuarioLogueado() {
