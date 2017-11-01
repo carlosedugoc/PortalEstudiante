@@ -210,7 +210,6 @@ export class AdministracionComponent {
 
       if (this.servicios.length == serviceIndex){
         resolve()
-        debugger;
         if(this.eliminados.length > 0 || (this.faltantesMensaje && this.faltantesMensaje.length>0) ){
           document.getElementById('openModalButton').click()
         }

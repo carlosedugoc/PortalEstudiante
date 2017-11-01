@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UniversityService } from '../../services/university.service';
 import { University } from "../../models/university";
-import { List } from 'linqts';
+import { List } from "linqts";
+import { Enumerable } from "linqts"; 
+
 
 @Component({
   selector: 'app-university-management',

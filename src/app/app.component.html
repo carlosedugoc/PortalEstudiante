@@ -19,7 +19,7 @@
 
 <div *ngIf="logued">
     <app-header [strLanguage]="language" (language)="switchLanguage($event)"></app-header>
-    <app-menu [menu]="menu"></app-menu>
+    <app-menu [menu]="menus | filtroMenu:1"></app-menu>
     <router-outlet></router-outlet>
     <app-footer></app-footer>
 </div>

@@ -4,6 +4,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { AdministracionService } from "./services/administracion.service";
 import { User } from "./models/user";
 import { Menu } from "./models/menu/menu";
+import { TipoMenu } from "./models/menu/tipomenu";
+import { ItemSubMenu } from "./models/menu/itemsubmenu";
+import { SubMenu } from "./models/menu/submenu";
 
 @Component({
   selector: 'app-root',
@@ -17,6 +20,11 @@ export class AppComponent {
   public user:User
   public users:User[]
   public menu:Menu[]
+  public dashboard:Menu[]
+  public notificaciones:Menu[]
+  public redesSociales:Menu[]
+  public perfiles:Menu[]
+  public menus:TipoMenu[]
 
   constructor(private router:Router,private translate: TranslateService,private adminService:AdministracionService){
     this.logued = sessionStorage.getItem('logued') != null && sessionStorage.getItem('logued') == 'true'
@@ -31,7 +39,8 @@ export class AppComponent {
       this.user = JSON.parse(sessionStorage.getItem('user'))
       document.getElementById('estilos')['href']=`../assets/css/estilos${this.user.university}.css`
       if (this.user.rol == "2"){
-        this.getMenu()
+        // this.getMenu()
+        this.getMenus()
       }
     }
 
@@ -83,8 +92,10 @@ export class AppComponent {
     if (this.user.rol != "2" ){
       this.router.navigate(['administration'])
     }else{
+      this.getMenus()
       this.router.navigate(['student'])
     }
+
   }
 
   setLanguage(language:string,user:string,university:string){
@@ -111,212 +122,284 @@ export class AppComponent {
   }
 
 
+//DATOS QUEMADOS
+  
+  getMenus(){
+    this.getMenu()
+    this.getOtrosMenus()
+
+    this.menus = [
+      {
+        id:1,
+        name:"menu",
+        options:this.menu
+      },
+      {
+        id:2,
+        name:"Dashboard",
+        options:this.dashboard
+      },
+      {
+        id:3,
+        name:"Notificaciones",
+        options:this.notificaciones
+      },
+      {
+        id:4,
+        name:"Redes Sociales",
+        options:this.redesSociales
+      },
+      {
+        id:5,
+        name:"Perfil",
+        options:this.perfiles
+      }
+    ]
+
+    console.log('menus',this.menus)
+  }
 
   getMenu(){
-      this.menu = [
-        {
-          id:1,
-          name:"Consulta",
-          logo:"commenting",
-          data:
-          [
-            {
-            id:2,
-            name:"Académica",
-            data: 
-              [
-                {
-                  id:3,
-                  name:"SubConsulta 1",
-                  url:"url"
-                },
-                {
-                  id:4,
-                  name:"SubConsulta 2",
-                  url:"url"
-                },
-                {
-                  id:5,
-                  name:"SubConsulta 3",
-                  url:"url"
-                },
-                {
-                  id:6,
-                  name:"SubConsulta 4",
-                  url:"url"
-                },
-                {
-                  id:7,
-                  name:"SubConsulta 5",
-                  url:"url"
-                }
-              ]
-            },
-            {
-              id:8,
-              name:"Financiera",
-              url:"url"
-            },
-            {
-            id:9,
-            name:"Otra",
-            data: 
-              [
-                {
-                  id:10,
-                  name:"SubConsulta 1",
-                  url:"url"
-                },
-                {
-                  id:11,
-                  name:"SubConsulta 2",
-                  url:"url"
-                },
-                {
-                  id:12,
-                  name:"SubConsulta 3",
-                  url:"url"
-                }
-              ]
-            },
-          ]
-        },
-        {
-          id:1,
-          name:"Solicitud",
-          logo:"send",
-          data:
-          [
-            {
-            id:2,
-            name:"Académica",
-            data: 
-              [
-                {
-                  id:3,
-                  name:"SubConsulta 1",
-                  url:"url"
-                },
-                {
-                  id:4,
-                  name:"SubConsulta 2",
-                  url:"url"
-                },
-                {
-                  id:5,
-                  name:"SubConsulta 3",
-                  url:"url"
-                },
-                {
-                  id:6,
-                  name:"SubConsulta 4",
-                  url:"url"
-                },
-                {
-                  id:7,
-                  name:"SubConsulta 5",
-                  url:"url"
-                }
-              ]
-            },
-            {
-              id:8,
-              name:"Financiera",
-              url:"url"
-            },
-            {
-            id:9,
-            name:"Otra",
-            data: 
-              [
-                {
-                  id:10,
-                  name:"SubConsulta 1",
-                  url:"url"
-                },
-                {
-                  id:11,
-                  name:"SubConsulta 2",
-                  url:"url"
-                },
-                {
-                  id:12,
-                  name:"SubConsulta 3",
-                  url:"url"
-                }
-              ]
-            },
-          ]
-        },
-        {
-          id:1,
-          name:"Portales",
-          logo:"laptop",
-          data:
-          [
-            {
-            id:2,
-            name:"Académica",
-            data: 
-              [
-                {
-                  id:3,
-                  name:"SubConsulta 1",
-                  url:"url"
-                },
-                {
-                  id:4,
-                  name:"SubConsulta 2",
-                  url:"url"
-                },
-                {
-                  id:5,
-                  name:"SubConsulta 3",
-                  url:"url"
-                },
-                {
-                  id:6,
-                  name:"SubConsulta 4",
-                  url:"url"
-                },
-                {
-                  id:7,
-                  name:"SubConsulta 5",
-                  url:"url"
-                }
-              ]
-            },
-            {
-              id:8,
-              name:"Financiera",
-              url:"url"
-            },
-            {
-            id:9,
-            name:"Otra",
-            data: 
-              [
-                {
-                  id:10,
-                  name:"SubConsulta 1",
-                  url:"url"
-                },
-                {
-                  id:11,
-                  name:"SubConsulta 2",
-                  url:"url"
-                },
-                {
-                  id:12,
-                  name:"SubConsulta 3",
-                  url:"url"
-                }
-              ]
-            },
-          ]
-        }
-      ]
-    }
+    this.menu = [
+      {
+        id:1,
+        name:"Consulta",
+        logo:"commenting",
+        data:
+        [
+          {
+          id:2,
+          name:"Académica",
+          data: 
+            [
+              {
+                id:3,
+                name:"SubConsulta 1",
+                url:"url"
+              },
+              {
+                id:4,
+                name:"SubConsulta 2",
+                url:"url"
+              },
+              {
+                id:5,
+                name:"SubConsulta 3",
+                url:"url"
+              },
+              {
+                id:6,
+                name:"SubConsulta 4",
+                url:"url"
+              },
+              {
+                id:7,
+                name:"SubConsulta 5",
+                url:"url"
+              }
+            ]
+          },
+          {
+            id:8,
+            name:"Financiera",
+            url:"url"
+          },
+          {
+          id:9,
+          name:"Otra",
+          data: 
+            [
+              {
+                id:10,
+                name:"SubConsulta 1",
+                url:"url"
+              },
+              {
+                id:11,
+                name:"SubConsulta 2",
+                url:"url"
+              },
+              {
+                id:12,
+                name:"SubConsulta 3",
+                url:"url"
+              }
+            ]
+          },
+        ]
+      },
+      {
+        id:1,
+        name:"Solicitud",
+        logo:"send",
+        data:
+        [
+          {
+          id:2,
+          name:"Académica",
+          data: 
+            [
+              {
+                id:3,
+                name:"SubConsulta 1",
+                url:"url"
+              },
+              {
+                id:4,
+                name:"SubConsulta 2",
+                url:"url"
+              },
+              {
+                id:5,
+                name:"SubConsulta 3",
+                url:"url"
+              },
+              {
+                id:6,
+                name:"SubConsulta 4",
+                url:"url"
+              },
+              {
+                id:7,
+                name:"SubConsulta 5",
+                url:"url"
+              }
+            ]
+          },
+          {
+            id:8,
+            name:"Financiera",
+            url:"url"
+          },
+          {
+          id:9,
+          name:"Otra",
+          data: 
+            [
+              {
+                id:10,
+                name:"SubConsulta 1",
+                url:"url"
+              },
+              {
+                id:11,
+                name:"SubConsulta 2",
+                url:"url"
+              },
+              {
+                id:12,
+                name:"SubConsulta 3",
+                url:"url"
+              }
+            ]
+          },
+        ]
+      },
+      {
+        id:1,
+        name:"Portales",
+        logo:"laptop",
+        data:
+        [
+          {
+          id:2,
+          name:"Académica",
+          data: 
+            [
+              {
+                id:3,
+                name:"SubConsulta 1",
+                url:"url"
+              },
+              {
+                id:4,
+                name:"SubConsulta 2",
+                url:"url"
+              },
+              {
+                id:5,
+                name:"SubConsulta 3",
+                url:"url"
+              },
+              {
+                id:6,
+                name:"SubConsulta 4",
+                url:"url"
+              },
+              {
+                id:7,
+                name:"SubConsulta 5",
+                url:"url"
+              }
+            ]
+          },
+          {
+            id:8,
+            name:"Financiera",
+            url:"url"
+          },
+          {
+          id:9,
+          name:"Otra",
+          data: 
+            [
+              {
+                id:10,
+                name:"SubConsulta 1",
+                url:"url"
+              },
+              {
+                id:11,
+                name:"SubConsulta 2",
+                url:"url"
+              },
+              {
+                id:12,
+                name:"SubConsulta 3",
+                url:"url"
+              }
+            ]
+          },
+        ]
+      }
+    ]
+  }
+
+  getOtrosMenus(){
+    this.dashboard = [
+      {
+        id:1,
+        name:"Consulta",
+        description:"",
+        url:""
+      }
+    ]
+
+    this.notificaciones = [
+      {
+        id:1,
+        name:"Notificaciones",
+        url:""
+      }
+    ]
+
+    this.redesSociales = [
+      {
+        id:1,
+        name:"Redes Sociales",
+        url:""
+      }
+    ]
+
+    this.perfiles = [
+      {
+        id:1,
+        name:"Perfiles",
+        url:""
+      }
+    ]
+  }
+
 
 
 
