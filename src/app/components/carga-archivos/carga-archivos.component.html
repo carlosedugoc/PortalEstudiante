@@ -90,7 +90,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12" *ngIf="guardarArchivo">
+              <div class="col-xs-12 {{guardarArchivo ? '' : 'hidden'}}">
                 <div class="boxButtonsCenter">
                   <button type="button" id="btnCancelProcess" class="text-uppercase btn btn-default btnNoAccion" (click)="cancelarCarga()">{{ 'GestionReglamentos.LabelCancelar' | translate }}</button>
                   <button type="button" class="text-uppercase btn-default btnFirstAccion" (click)="guardarDatos()">{{ 'GestionReglamentos.LabelGuardar' | translate }}</button>
