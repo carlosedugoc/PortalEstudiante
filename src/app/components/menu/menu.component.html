@@ -41,10 +41,10 @@
           <!-- INICIO ACCORDION -->
 
           <div id='divItem' *ngFor="let padre of menu; let padreIdx = index" >
-            <a id="wrap" class="seccionPadre nav{{padre.name}}" data-parent="#accordion" data-toggle="collapse" href="#collapse{{padreIdx + 1}}">
+            <a *ngIf="user.rol == '2'" id="wrap" class="seccionPadre nav{{padre.name}}" data-parent="#accordion" data-toggle="collapse" href="#collapse{{padreIdx + 1}}">
                 <li><i class="fa fa-{{padre.logo}}" aria-hidden="true"></i><span>{{padre.name}}</span></li>
             </a>
-            <ul id="wrap" class="collapse" id="collapse{{padreIdx + 1}}">
+            <ul  *ngIf="user.rol == '2'" id="wrap" class="collapse" id="collapse{{padreIdx + 1}}">
                 <nav id="subAccordion2">
                     <ul *ngFor="let hijo of padre.data; let idxHijo = index" class="panel">
                         <a *ngIf="hijo.data" class="accordionHijo" data-toggle="collapse" href="#collapse{{padreIdx + 1}}{{idxHijo}}">

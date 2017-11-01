@@ -88,11 +88,10 @@ export class AppComponent {
     sessionStorage.setItem('user',JSON.stringify(this.user))
     this.setLanguage(this.language,this.user.userId,this.user.university)
     document.getElementById('estilos')['href']=`../assets/css/estilos${this.user.university}.css`
-
+    this.getMenus()
     if (this.user.rol != "2" ){
       this.router.navigate(['administration'])
     }else{
-      this.getMenus()
       this.router.navigate(['student'])
     }
 
