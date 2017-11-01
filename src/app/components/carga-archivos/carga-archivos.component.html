@@ -52,7 +52,7 @@
                       <tbody>
                         <tr>
                           <td data-title="Nombre" class="boxInputName">
-                            <input type="text" class="form-control inputCanChange required {{ validar && nuevoReglamento.regulationName == '' ? 'invalid' : '' }}"
+                            <input type="text" class="form-control inputCanChange required {{ validar && nuevoReglamento != undefined && nuevoReglamento.regulationName == '' ? 'invalid' : '' }}"
                               value="{{ universidadReglamento != undefined ? universidadReglamento.regulationName : '' }}"
                               (change)="modificarNombre($event.target.value)" maxlength="50">
                           </td>
@@ -60,7 +60,7 @@
                             <div class="input-group image-preview ">
                               <!-- image-preview-filename -->
                               <input type="text" class="form-control image-preview-filename {{ validar && !tieneArchivo ? 'invalid' : '' }}" disabled=""
-                                value="{{ nombreArchivo }}" placeholder="{{ 'GestionReglamentos.PlaceHolderSeleccione' | translate  }}">
+                                value="{{ fileNamePath | getFileNameOfPath}} " placeholder="{{ 'GestionReglamentos.PlaceHolderSeleccione' | translate  }}">
                               <span class="input-group-btn">
                                 <!-- image-preview-clear -->
                                 <button type="button" class="btn btn-default image-preview-clear {{ tieneArchivo ? '' : 'hidden' }}">
@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="btn btn-default  image-preview-input-2 {{ tieneArchivoReal && tieneArchivo ? '' : 'hidden' }}">
                                   <a href="{{ urlDescarga != undefined ? urlDescarga : '#' }}" target="_blank">
-                                  <!-- <a href="!#" target="_blank" (click)="descargarReglamento()"> -->
+                                    <!-- <a href="!#" target="_blank" (click)="descargarReglamento()"> -->
                                     <i id="changeIconInputFile" class="fa fa-download" aria-hidden="true"></i>
                                   </a>
                                 </div>
@@ -107,11 +107,11 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">{{ 'GestionReglamentos.ModalTitulo' | translate }}</h4>
+            <h4 class="modal-title text-center">{{ 'GestionReglamentos.ModalTitulo' | translate }}</h4>
           </div>
           <div class="modal-body">
             <div class="text-center">
-              <p>{{nombreArchivoSinSubir}}</p>
+              <p>{{fileNamePath | getFileNameOfPath}}</p>
             </div>
           </div>
           <div class="modal-footer">

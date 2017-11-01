@@ -26,6 +26,7 @@ import { EstudianteComponent } from './components/estudiante/estudiante.componen
 import { CargaArchivosComponent } from './components/carga-archivos/carga-archivos.component';
 import { UniversityManagementComponent } from './components/university-management/university-management.component';
 import { FiltroMenuPipe } from './pipes/filtro-menu.pipe';
+import { GetFileNameOfPathPipe } from './pipes/get-file-name-of-path.pipe';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -47,7 +48,8 @@ export function createTranslateLoader(http: HttpClient) {
     FiltroFaltantesPipe,
     CargaArchivosComponent,
     UniversityManagementComponent,
-    FiltroMenuPipe
+    FiltroMenuPipe,
+    GetFileNameOfPathPipe
   ],
   imports: [
     BrowserModule,
