@@ -16,7 +16,6 @@ export class UniversityService {
 
   constructor(private http: Http
   ) {
-    debugger;
     this.utility = new GeneralUtils(http)
     this.generalUrl = "http://10.75.8.109/PEServices"
     //this.utility.getConfiguration("servicios|UrlApiRest").subscribe(res => this.generalUrl = res);
@@ -31,7 +30,7 @@ export class UniversityService {
   }
 
   //// Método que crea una nueva universidad.
-  createUniversity(university: University) {
+  createUniversity(university: University[]) {
     debugger;
     let url = `${this.generalUrl}/api/University`
     console.log('university', JSON.stringify(university))
@@ -50,7 +49,7 @@ export class UniversityService {
   }
 
   //// Método para actualizar una universidad específica.
-  updateUniversity(university: University) {
+  updateUniversity(university: University[]) {
     debugger;
     let url = `${this.generalUrl}/api/University`
     console.log('university', JSON.stringify(university))

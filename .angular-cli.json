@@ -29,7 +29,7 @@
         "assets/js/bootstrap.min.js",
         "assets/js/main.js",
         "assets/js/masonry.js",
-        "bootstrap-select.min.js"
+        "assets/js/bootstrap-select.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

@@ -144,7 +144,6 @@ function fadeWhenChange() {
 }
 
 function newInputs() {
-	debugger;
 	$('#makeNewRow').click(function () {
 		var table = $('#newUniversitiesTable tbody');
 		var row = $(table).find('tr:last-child').clone();
