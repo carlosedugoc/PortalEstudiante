@@ -13,6 +13,7 @@ declare var $:any;
 export class MenuComponent implements AfterViewInit {
   
   @Input('menu') menu:Menu[]
+  @Input('perfil') perfil:Menu[]
   public user:User
 
   constructor(){
