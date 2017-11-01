@@ -12,10 +12,10 @@ import { Enumerable } from "linqts";
 })
 export class UniversityManagementComponent implements OnInit {
 
-  public universities: List<University> = new List<University>()
-  public uniOriginal: List<University> = new List<University>()
-  public uniToCreate: List<University> = new List<University>()
-  public uniToUpdate: List<University> = new List<University>()
+  public universities: University[]
+  public uniOriginal: University[]
+  public uniToCreate: University[]
+  public uniToUpdate: University[]
 
   constructor(private universityService: UniversityService
   ) {
@@ -28,13 +28,31 @@ export class UniversityManagementComponent implements OnInit {
   //// Método que me permite verificar que información se crea y que información se actualiza.
   guardarInformacion() {
     debugger;
-    let arr = new List<number>([1, 2, 3, 4, 5])
-      .Where(x => x > 3)
-      .Select(y => y * 2)
-      .ToArray(); // > [8, 10]
+    let universidades = new List<University>(this.universities)
+    let originales = new List<University>(this.uniOriginal);
+    let diferentes = new List<University>()
+    let nuevos = new List<University>()
 
-    let diferents = new List<University>()
-    diferents = this.uniOriginal.Except(this.universities).ToList()
+    // Se validan los nuevos por el id.
+    nuevos = universidades.Where(u => !originales.Any(o => o.id == u.id)).ToList();
+    // Se validan los modificados consultando por id y validando las diferencias por code, name o status.
+    diferentes = universidades.Where(u => originales.Any(x => u.id == x.id &&
+      (x.code != u.code ||
+        x.name != u.name ||
+        x.status != u.status)))
+      .ToList();
+
+    // Se guardan los nuevos.
+    if (nuevos.Any()) {
+      // Se envía el objeto tal como lo necesita el servicio.
+      let toSave = nuevos.Select(n => JSON.parse("".concat(JSON.stringify({ name: n.name, code: n.code, status: n.status }))))
+      this.crearUniversidad(toSave.ToArray())
+    }
+
+    // Se actualizan los modificados.
+    if (diferentes.Any()) {
+      this.actualizarUniversidad(diferentes.ToArray())
+    }
   }
 
   cargarInformacionUniversidades() {
@@ -42,23 +60,18 @@ export class UniversityManagementComponent implements OnInit {
       this.universities = res
       // Se realiza una copia de manera que la información original la tenga almacenada en memoria.
       let unis: string = JSON.stringify(res)
-      this.uniOriginal = Object.create(JSON.parse(unis));
+      this.uniOriginal = JSON.parse(unis)
     })
   }
 
-  crearUniversidad() {
-    debugger;
-    let newUniversity: any = { "name": "La universidad Z", "code": "zzzzzzzz", "status": "true" }
+  // Método que crea una nueva universidad.
+  crearUniversidad(newUniversity: any) {
+    //let newUniversity: any = { "name": "La universidad x", "code": "zzzzzzzz", "status": "true" }
     this.universityService.createUniversity(newUniversity).subscribe(res => console.log(res));
   }
 
-
-  actualizarUniversidad() {
-    debugger;
-    let universityToUpdate: University
-    universityToUpdate = this.universities[3]
-    universityToUpdate.name = "Nuevo nombre"
-    universityToUpdate.status = !universityToUpdate.status
+  // Método que actualiza la información de las universidades.
+  actualizarUniversidad(universityToUpdate: University[]) {
     this.universityService.updateUniversity(universityToUpdate).subscribe(res => console.log(res));
   }
 
