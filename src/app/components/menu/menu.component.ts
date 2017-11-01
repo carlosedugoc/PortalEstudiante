@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input } from '@angular/core';
+import { Component, AfterViewInit, Input, OnInit } from '@angular/core';
 import { Menu } from "../../models/menu/menu";
 import { User } from "../../models/user";
 
@@ -10,8 +10,11 @@ declare var $:any;
   templateUrl: './menu.component.html'
 })
 
-export class MenuComponent implements AfterViewInit {
+export class MenuComponent implements AfterViewInit, OnInit {
   
+  ngOnInit() {
+  }
+
   @Input('menu') menu:Menu[]
   @Input('perfil') perfil:Menu[]
   public user:User

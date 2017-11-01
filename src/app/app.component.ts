@@ -32,16 +32,13 @@ export class AppComponent {
     let lan = window.navigator.language.substr(0,2)
     this.language = lan
     this.translate.setDefaultLang(lan);
-
     if (!this.logued){
       this.getUsuarios()
     }else{
       this.user = JSON.parse(sessionStorage.getItem('user'))
+      this.getMenus()
+      console.log(this.user)
       document.getElementById('estilos')['href']=`../assets/css/estilos${this.user.university}.css`
-      if (this.user.rol == "2"){
-        // this.getMenu()
-        this.getMenus()
-      }
     }
 
   }

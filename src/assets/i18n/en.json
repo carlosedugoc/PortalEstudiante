@@ -13,7 +13,7 @@
         "LabelConfiguracionServicios": "Service Settings",
         "LabelAdministracion": "Administration"
     },
-    "Header":{
+    "Menu":{
         "LabelPrincipal":"MAIN",
         "LabelAdministracion":"ADMINISTRATION",
         "LabelConfiguracionServicios":"Services Settings",

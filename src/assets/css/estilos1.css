@@ -1001,7 +1001,6 @@ footer {
       font-size: 18px;
       line-height: 1.4; }
   #mainContent .boxButtonsCenter {
-    display: none;
     text-align: center;
     padding: 20px; }
   #mainContent .module {
