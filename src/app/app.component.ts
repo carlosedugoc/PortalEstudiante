@@ -377,15 +377,15 @@ export class AppComponent {
 
     this.notificaciones = [
       {
-        id:1,
-        name:"Notificaciones",
+        id:51,
+        name:"Notificaciones y alertas",
         url:""
       }
     ]
 
     this.redesSociales = [
       {
-        id:1,
+        id:56,
         name:"Redes Sociales",
         url:""
       }
@@ -393,8 +393,23 @@ export class AppComponent {
 
     this.perfiles = [
       {
-        id:1,
-        name:"Perfiles",
+        id:17,
+        name:"Programas",
+        url:""
+      },
+      {
+        id:19,
+        name:"Datos personales",
+        url:""
+      },
+      {
+        id:20,
+        name:"Perfil",
+        url:""
+      },
+      {
+        id:31,
+        name:"Actualización de datos",
         url:""
       }
     ]

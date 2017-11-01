@@ -10,9 +10,10 @@
       <div class="carrer">
           <div class="boxSelect">
               <select name="" id="input" class="form-control" required="required">
-                  <option value="">Administrador ILUMNO</option>
-                  <option value="">Administrador universidad</option>
+                  <option *ngFor="let item of perfil" [value]="item.url">{{item.name}}</option>
               </select>
+
+
           </div>
       </div>
   </div>
