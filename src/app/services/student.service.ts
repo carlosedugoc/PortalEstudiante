@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
-import { User } from "../models/user";
 import { Http, Headers, URLSearchParams } from "@angular/http";
-import {  } from "../models/me";
+import { User } from "../models/user";
+import { TipoMenu } from "../models/menu/tipomenu";
 
 @Injectable()
 export class StudentService {
 
-  constructor() { }
+  constructor(private http:Http) { }
 
   getStudent(){
     
   }
 
-  getMenu(){
-    // let urlServicio:string = `${url}/api/University/${IdUniversidad}/ServiceItems`
-    // return this.http.get(urlServicio).map(servicios=>{ 
-    //   console.log('json',servicios.json())
-    //   return servicios.json()
-    // })
+  getMenu(url:string, user:User){
+    let urlServicio:string = `${url}/api/Option/${user.level}/${user.modality}/${user.userType}`
+    return this.http.get(urlServicio).map(menu=>{ 
+      console.log('json',menu.json())
+      return menu.json()
+    })
   }
 
 }
