@@ -204,6 +204,9 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
 
     let download: any = document.getElementsByClassName('image-preview-input-2')[0]
     if (download != undefined) download.className = download.className.replace('inlineBlock', '')
+
+    let botoones: any = document.getElementsByClassName('boxButtonsCenter')[0]
+    if (botoones != undefined) botoones.style.display = 'block'
   }
 
   //// Cancela la carga y deja los valores por defecto de la universidad.
