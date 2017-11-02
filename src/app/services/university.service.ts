@@ -18,7 +18,7 @@ export class UniversityService {
   ) {
     this.utility = new GeneralUtils(http)
     this.generalUrl = "http://10.75.8.109/PEServices"
-    //this.utility.getConfiguration("servicios|UrlApiRest").subscribe(res => this.generalUrl = res);
+    // this.utility.getConfiguration("servicios|UrlApiRest").subscribe(res => this.generalUrl = res);
   }
 
   //// Método que obtiene toda la información de todas las universidades.

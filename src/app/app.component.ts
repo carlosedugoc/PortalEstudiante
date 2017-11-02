@@ -50,45 +50,45 @@ export class AppComponent {
         name:"Administrador Ilumno",
         rol:"1",
         university:"0",
-        modality:"1",
-        level:"1",
-        userType:"1"
+        modality:"PR",
+        level:"UG",
+        userType:"AS"
       },
       {
         userId:"AA",
         name:"Administrador Areandina",
         rol:"1",
         university:"1",
-        modality:"1",
-        level:"1",
-        userType:"1"
+        modality:"PR",
+        level:"UG",
+        userType:"AS"
       },
       {
         userId:"Poli",
         name:"Administrador Politécnico",
         rol:"1",
         university:"2",
-        modality:"1",
-        level:"1",
-        userType:"1"
+        modality:"PR",
+        level:"UG",
+        userType:"AS"
       },
       {
         userId:"123456",
         name:"Carlos Eduardo González Cortes",
         rol:"2",
         university:"1",
-        modality:"1",
-        level:"1",
-        userType:"1"
+        modality:"PR",
+        level:"UG",
+        userType:"AS"
       },
       {
         userId:"654123",
         name:"Diana Marcela Bojaca",
         rol:"2",
         university:"2",
-        modality:"1",
-        level:"1",
-        userType:"1"
+        modality:"PR",
+        level:"UG",
+        userType:"AS"
       }
     ]
   }
@@ -110,7 +110,7 @@ export class AppComponent {
   }
 
   getMenu(){
-    this.studentService.getMenu('http://10.75.8.109/PEServices',this.user).subscribe(menu=>{
+    this.studentService.getMenu(this.user).subscribe(menu=>{
       this.menus = menu
       console.log('menu servicio', this.menus)
     })

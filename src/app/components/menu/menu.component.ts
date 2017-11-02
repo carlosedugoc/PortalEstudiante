@@ -12,7 +12,7 @@ declare var $:any;
 })
 
 export class MenuComponent implements AfterViewInit, OnInit {
-  
+
   ngOnInit() {
   }
 
@@ -26,8 +26,11 @@ export class MenuComponent implements AfterViewInit, OnInit {
 
   //quita los divs del acordion para que se colapse
   ngAfterViewInit() {
-    var pTags = $("*[id='wrap']");
-    pTags.unwrap();
+    setTimeout(function () {
+      var pTags = $("*[id='wrap']");
+      console.log('ptags',pTags)
+      pTags.unwrap();
+    }, 2000);
   }
 
 }
