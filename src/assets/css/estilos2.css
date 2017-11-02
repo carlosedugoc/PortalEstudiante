@@ -1,20 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
-@font-face {
-  font-family: 'Brown';
-  src: url(../fonts/BrownStd-Light.woff) format("woff");
-  font-style: normal;
-  font-weight: 300; }
-@font-face {
-  font-family: 'Brown';
-  src: url(../fonts/BrownStd-Regular.woff) format("woff");
-  font-style: normal;
-  font-weight: 400; }
-@font-face {
-  font-family: 'Brown';
-  src: url(../fonts/BrownStd-Bold.woff) format("woff");
-  font-style: normal;
-  font-weight: 700; }
 ::-moz-selection {
   color: #fff;
   background: #0060ae; }
@@ -1039,7 +1024,35 @@ footer > .row {
       max-width: 250px;
       max-height: 40px; }
   footer > .row .boxContacto {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: flex-end;
+    -ms-justify-content: flex-end;
+    justify-content: flex-end;
     padding-right: 120px; }
+    footer > .row .boxContacto .sedesContacto {
+      display: inline-block;
+      color: #fff;
+      margin-right: 30px; }
+      footer > .row .boxContacto .sedesContacto ul {
+        margin-bottom: 0; }
+        footer > .row .boxContacto .sedesContacto ul li {
+          text-align: left;
+          font-weight: 700;
+          font-size: 11px;
+          padding-left: 25px;
+          font-family: "Roboto", sans-serif; }
+          footer > .row .boxContacto .sedesContacto ul li span {
+            display: block;
+            font-weight: 400; }
+          footer > .row .boxContacto .sedesContacto ul li i {
+            padding-right: 5px;
+            color: #fff; }
     footer > .row .boxContacto .boxRedes {
       float: right; }
       footer > .row .boxContacto .boxRedes p {

@@ -18,6 +18,7 @@
 </div>
 
 <div *ngIf="logued">
+    
     <app-menu [menu]="menus | filtroMenu:1" [perfil]="menus | filtroMenu:5"></app-menu>
     <section id="content">
         <app-header [strLanguage]="language" (language)="switchLanguage($event)" [notificacion]="menus | filtroMenu:3" [correo]="menus | filtroMenu:7"></app-header>

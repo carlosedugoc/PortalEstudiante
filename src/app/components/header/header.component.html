@@ -24,8 +24,8 @@
                                 </select>
                             </div>
                         </li>
-                        <li *ngIf="notificacion" ><a href="#"><i class="fa fa-bell-o" aria-hidden="true"></i></a></li>
-                        <li *ngIf="correo" ><a href="#" alt="Correo Electrónico"><i  title="Correo Electrónico" class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
+                        <li *ngIf="notificacion && notificacion.length > 0" ><a href="#"><i class="fa fa-bell-o" aria-hidden="true"></i></a></li>
+                        <li *ngIf="correo && correo.length > 0" ><a href="#" alt="Correo Electrónico"><i  title="Correo Electrónico" class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
                         <li><a href="" (click)="signOut()"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>

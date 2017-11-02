@@ -86,8 +86,8 @@ export class AppComponent {
         name:"Diana Marcela Bojaca",
         rol:"2",
         university:"2",
-        modality:"PR",
-        level:"UG",
+        modality:"DI",
+        level:"GR",
         userType:"AS"
       }
     ]

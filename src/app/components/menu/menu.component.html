@@ -54,11 +54,13 @@
                                 <i class="fa fa-chevron-down" aria-hidden="true"></i>
                             </li>
                         </a>
-                        <a *ngIf="!hijo.data" class="accordionHijo" data-toggle="collapse" href="hijo.url">
+                        <!-- <a *ngIf="!hijo.data" class="accordionHijo" data-toggle="collapse" href="hijo.url"> -->
+                                <a *ngIf="!hijo.data" class="accordionHijo" data-toggle="collapse" >
                             <li><span>{{hijo.name}}</span></li>
                         </a>
                         <ul class="collapse" id="collapse{{padreIdx + 1}}{{idxHijo}}">
-                            <a *ngFor="let nieto of hijo.data" href="nieto.url" class="active">
+                            <a *ngFor="let nieto of hijo.data"  class="active">
+                                    <!-- <a *ngFor="let nieto of hijo.data" href="nieto.url" class="active"> -->
                                 <li><span>{{nieto.name}}</span></li>
                             </a>
                         </ul>
