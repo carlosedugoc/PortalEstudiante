@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
   @Output() language:EventEmitter<string> = new EventEmitter<string>();
   @Input('strLanguage') strLanguage:string
   @Input('notificacion') notificacion: Menu[]
+  @Input('correo') correo: Menu[]
 
   public user:User
   

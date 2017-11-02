@@ -2,6 +2,7 @@ import { Component, AfterViewInit, Input, OnInit } from '@angular/core';
 import { Menu } from "../../models/menu/menu";
 import { User } from "../../models/user";
 
+
 declare var jQuery:any;
 declare var $:any;
 

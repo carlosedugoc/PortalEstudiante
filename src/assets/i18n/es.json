@@ -11,7 +11,8 @@
         "LabelPortales": "Portales",
         "LabelUniversidad": "Universidad",
         "LabelConfiguracionServicios": "Configuración de Servicios",
-        "LabelAdministracion": "Administración"
+        "LabelAdministracion": "Administración",
+        "LabelSeleccioneUniversidad":"Seleccione una Universidad y configure los servicios"
     },
     "Menu": {
         "LabelPrincipal": "PRINCIPAL",

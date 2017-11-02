@@ -23,7 +23,7 @@
           <section id="mainContent"  *ngIf="!serv">
               <div class="module">
                   <div class="headModule" *ngIf="user.rol == '1' && user.university == '0'" >
-                      <h1>Seleccione una Universidad y configure los servicios</h1>
+                      <h1>{{ 'Administracion.LabelSeleccioneUniversidad' | translate }}</h1>
                   </div>
                   <div class="bodyModule">
                       <div class="row boxCombo" *ngIf="user.rol == '1' && user.university == '0'" >
