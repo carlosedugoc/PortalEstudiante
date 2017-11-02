@@ -39,7 +39,7 @@
                                   </div>
                               </div>
                           </div>
-                      </div>
+                      </div>                                                                                                                                                                                    
                       
                       <div class="row boxTabs" *ngIf="!serv">
                           <div class="col-xs-12">
@@ -100,12 +100,12 @@
                       <div class="modal-body" style="height: 100px;overflow: scroll;">
                           
                               <ul>
-                                  <li *ngFor="let item of faltantesMensaje | filtroFaltantes:1"><i class="fa fa-minus" aria-hidden="true"></i>En modalidad Académica: se agregó <strong>{{item.nombre_item}}</strong> </li>
-                                  <li *ngFor="let item of faltantesMensaje | filtroFaltantes:2"><i class="fa fa-minus" aria-hidden="true"></i>En nivel Académico: se agregó <strong>{{item.nombre_item}}</strong> </li>
-                                  <li *ngFor="let item of faltantesMensaje | filtroFaltantes:3"><i class="fa fa-minus" aria-hidden="true"></i>En Tipo de Usuario: se agregó <strong>{{item.nombre_item}}</strong> </li>
-                                  <li *ngFor="let item of eliminados | filtroFaltantes:1"><i class="fa fa-minus" aria-hidden="true"></i>En modalidad Académica: se eliminó <strong>{{item.nombre_item}}</strong> </li>
-                                  <li *ngFor="let item of eliminados | filtroFaltantes:2"><i class="fa fa-minus" aria-hidden="true"></i>En nivel Académico: se eliminó <strong>{{item.nombre_item}}</strong> </li>
-                                  <li *ngFor="let item of eliminados | filtroFaltantes:3"><i class="fa fa-minus" aria-hidden="true"></i>En Tipo de Usuario: se eliminó <strong>{{item.nombre_item}}</strong> </li>
+                                  <li *ngFor="let item of faltantesMensaje | filtroFaltantes:1"><i class="fa fa-minus" aria-hidden="true"></i>En modalidad Académica: se agregó <strong>{{item.itemName}}</strong> </li>
+                                  <li *ngFor="let item of faltantesMensaje | filtroFaltantes:2"><i class="fa fa-minus" aria-hidden="true"></i>En nivel Académico: se agregó <strong>{{item.itemName}}</strong> </li>
+                                  <li *ngFor="let item of faltantesMensaje | filtroFaltantes:3"><i class="fa fa-minus" aria-hidden="true"></i>En Tipo de Usuario: se agregó <strong>{{item.itemName}}</strong> </li>
+                                  <li *ngFor="let item of eliminados | filtroFaltantes:1"><i class="fa fa-minus" aria-hidden="true"></i>En modalidad Académica: se eliminó <strong>{{item.itemName}}</strong> </li>
+                                  <li *ngFor="let item of eliminados | filtroFaltantes:2"><i class="fa fa-minus" aria-hidden="true"></i>En nivel Académico: se eliminó <strong>{{item.itemName}}</strong> </li>
+                                  <li *ngFor="let item of eliminados | filtroFaltantes:3"><i class="fa fa-minus" aria-hidden="true"></i>En Tipo de Usuario: se eliminó <strong>{{item.itemName}}</strong> </li>
                               </ul>
 
                       </div>

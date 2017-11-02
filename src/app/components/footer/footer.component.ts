@@ -8,5 +8,6 @@ import { User } from "../../models/user";
 })
 export class FooterComponent {
   @Input('redes') redes: Menu[]
+  @Input('emisora') emisora: Menu[]
   @Input('user') user:User
 }
