@@ -4,7 +4,7 @@ import { UniversityService } from '../../services/university.service';
 import { University } from "../../models/university";
 import { GeneralUtils } from "../../shared/GeneralUtils";
 import { User } from "../../models/user";
-declare var inputFileClear: any
+declare var llamarEventosMainJS: any
 
 @Component({
   selector: 'app-carga-archivos',
@@ -51,7 +51,7 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
     this.DatosInicio();
     this.validarUsuarioLogueado();
     setTimeout(function () {
-      inputFileClear(); //// Función de js para validación de botones y alertas. Main.js
+      llamarEventosMainJS(); //// Función de js para validación de botones y alertas. Main.js
     }, 1000);
   }
 
