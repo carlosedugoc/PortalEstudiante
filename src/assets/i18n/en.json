@@ -35,5 +35,18 @@
         "ValidarFormatoArchivo" : "Regulations should be uploaded in PDF format. Please check the format.",
         "ValidarTamanoArchivo":"The file exceeds the 4MB limit set for the regulations. Please check the file size.",
         "MensajeGuardadoCorrecto" : "The information in the regulation was updated correctly."
+    },
+    "GestionUniversidades": {
+        "LabelEncabezado": "Create universities based on information from the academic system Banner",
+        "LabelUniversidad": "University",
+        "LabelCodigo": "Code",
+        "LabelHabilitar": "Enable /",
+        "LabelInhabilitar": "Disable",
+        "LabelCrearUniversidad": "Create University",
+        "PlaceHolderUniversidad": "Enter the name of the university ...",
+        "PlaceHolderCodigo": "Enter the code Banner ...",
+        "LabelGuardar": "Save",
+        "LabelCancelar": "Cancel",
+        "MensajeGuardadoCorrecto": "The information is updated correctly."
     }
 }
