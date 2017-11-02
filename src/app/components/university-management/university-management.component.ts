@@ -32,8 +32,10 @@ export class UniversityManagementComponent implements OnInit {
 
   //// Método que me permite cargar la información de las universidades.
   cargarInformacionUniversidades() {
+    debugger;
     this.loading = true
     this.universityService.getInfoAllUniversities().subscribe(res => {
+      debugger;
       this.loading = false
       this.universities = res
       // Se realiza una copia de manera que la información original la tenga almacenada en memoria.
@@ -72,9 +74,10 @@ export class UniversityManagementComponent implements OnInit {
         this.actualizarUniversidad(diferentes.ToArray())
       }
 
-      hideWhenCancel()
-
       alert("Se actualizó la información correctamente.");
+      this.universityService.getInfoAllUniversities().subscribe(res => {
+        this.cancelar()
+      })
     }
   }
 
