@@ -18,7 +18,7 @@
         <div class="col-sm-6 col-md-4">
           <div class="form-group">
             <label for="exampleInputEmail1">{{ 'GestionReglamentos.LabelUniversidad' | translate }}</label>
-            <div class="">
+            <div class="boxSelect">
               <select name="universidades" id="input" class="form-control" (change)="cargarDatos($event.target.value)">
                 <option value="" hidden="">{{'Transversales.LabelSeleccione' | translate}}</option>
                 <option *ngFor="let uni of universidades" [value]="uni.code">{{uni.name}}</option>
