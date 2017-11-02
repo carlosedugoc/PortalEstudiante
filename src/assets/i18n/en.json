@@ -49,5 +49,8 @@
         "LabelGuardar": "Save",
         "LabelCancelar": "Cancel",
         "MensajeGuardadoCorrecto": "The information is updated correctly."
+    },
+    "Transversales":{
+        "LabelSeleccione":"Select..."
     }
 }

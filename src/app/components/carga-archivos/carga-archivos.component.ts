@@ -4,6 +4,7 @@ import { UniversityService } from '../../services/university.service';
 import { University } from "../../models/university";
 import { GeneralUtils } from "../../shared/GeneralUtils";
 import { User } from "../../models/user";
+import { List } from "linqts";
 declare var llamarEventosMainJS: any
 
 @Component({
@@ -15,7 +16,7 @@ declare var llamarEventosMainJS: any
 export class CargaArchivosComponent implements OnChanges, OnInit {
 
   public loading: boolean
-  public universidad: string
+  public universidades: University[]
   public user: User
   public cargarArchivo: boolean // Me indica que estoy habilitado para cargar un archivo.
   public guardarArchivo: boolean // Me indica que ocurrió un cambio ya sea de archivo o el nombre de este.
@@ -125,7 +126,12 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
 
   //// Método que carga las universidades.
   cargarUniversidades() {
-
+    //// Se carga la información de las universidades consultadas.
+    this.universityService.getInfoAllUniversities().subscribe(res => {
+      //// Validación para mostrar solamente las universidades que estén habilitadas
+      let lstUniv = new List<University>(res)
+      this.universidades = lstUniv.Where(n=> n.status== true).Select(n=> n).ToArray()
+    });
   }
 
   //// Aquí se cargan los datos del archivo de la universidad seleccionada
@@ -159,7 +165,7 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
 
     let na: any = document.getElementsByClassName("inputCanChange")[0]
     if (na != undefined) na.value = this.nombreArchivo
-    this.tieneArchivo = this.tieneArchivoReal = !(this.universidadReglamento.regulationName == null || this.universidadReglamento.regulationName === "")
+    this.tieneArchivo = this.tieneArchivoReal = !(this.universidadReglamento.regulationUrl == null || this.universidadReglamento.regulationUrl === "")
     this.urlDescarga = this.tieneArchivo ? this.universityService.downloadRegulationUniversity(idUniversidad) : ""
     let botonCarga: any = document.getElementsByClassName("image-preview-input")[0]
     if (botonCarga != undefined && !this.tieneArchivo) botonCarga.style.display = 'inline-block'

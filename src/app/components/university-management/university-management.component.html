@@ -1,79 +1,73 @@
-<div class="container-fluid">
-  <div class="row">
-    <section id="content">
-      <section class="miga text-uppercase">
-        <ol class="breadcrumb">
-          <li>
-            <a href="#">{{'Administracion.LabelAdministracion' | translate }}</a>
-          </li>
-          <li class="active">{{ 'Menu.LabelConfiguracionUniversidades' | translate }}</li>
-        </ol>
-      </section>
-      <section id="mainContent">
-        <div class="module">
-          <div class="headModule">
-            <h1>{{ 'GestionUniversidades.LabelEncabezado' | translate }}</h1>
-          </div>
-          <!-- {{universities | json}} -->
-          <!-- spinner -->
-          <div *ngIf="loading">
-            <br>
-            <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
-            <span class="sr-only">Loading...</span>
-          </div>
-          <div class="bodyModule">
-            <div class="row">
-              <div class="col-xs-12">
-                <div id="no-more-tables" class="">
-                  <div class="table-responsive">
-                    <table class="table-bordered table-striped table-condensed" id="newUniversitiesTable">
-                      <thead class="">
-                        <tr class="headBold">
-                          <th class="boxInputName">{{ 'GestionUniversidades.LabelUniversidad' | translate }}</th>
-                          <th class="boxInputFile">{{ 'GestionUniversidades.LabelCodigo' | translate }}</th>
-                          <th class="boxSwitch">{{ 'GestionUniversidades.LabelHabilitar' | translate }}
-                            <br>{{ 'GestionUniversidades.LabelInhabilitar' | translate }}</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let university of universities">
-                          <td data-title="Nombre" class="form-group has-feedback boxInputName" [ngClass]="{ 'has-error' : !nombreUniversidad.valid && university.status && submitAttempt }">
-                            <input name="nombreUniversidad" required type="text" #nombreUniversidad="ngModel" class="form-control inputCanChange" [(ngModel)]="university.name"
-                              [disabled]="!university.status" (change)="cambioAlgo()" placeholder="{{ 'GestionUniversidades.PlaceHolderUniversidad' | translate }}">
-                          </td>
-                          <td data-title="Archivo" class="form-group has-feedback boxInputName" [ngClass]="{ 'has-error' : !codigoUniversidad.valid && university.status && submitAttempt }">
-                            <input name="codigoUniversidad" required type="text" #codigoUniversidad="ngModel" class="form-control inputCanChange" [(ngModel)]="university.code"
-                              [disabled]="!university.status" (change)="cambioAlgo()" placeholder="{{'GestionUniversidades.PlaceHolderCodigo' | translate }}">
-                          </td>
-                          <td data-title="Habilitar / Deshabilitar" class="boxSwitch">
-                            <div class="card">
-                              <label>
-                                <input type="checkbox" [(ngModel)]="university.status" class="switchCanChange" (change)="cambioAlgo()" />
-                                <span class="switch"></span>
-                                <span class="toggle"> </span>
-                              </label>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="boxAfterTable">
-                    <a class="" style="cursor:pointer" id="" (click)="agregarRow()">
-                      <i class="fa fa-plus-circle" aria-hidden="true"></i>{{ 'GestionUniversidades.LabelCrearUniversidad' | translate }}</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-12">
-                <div class="boxButtonsCenter">
-                  <button type="button" class="btn btn-default btnNoAccion text-uppercase" (click)="cancelar()">{{'GestionUniversidades.LabelCancelar' | translate}}</button>
-                  <button type="submit" class="btn btn-default btnFirstAccion text-uppercase" (click)="guardarInformacion()">{{'GestionUniversidades.LabelGuardar' | translate}}</button>
-                </div>
-              </div>
+<section class="miga text-uppercase">
+  <ol class="breadcrumb">
+    <li>
+      <a href="#">{{'Administracion.LabelAdministracion' | translate }}</a>
+    </li>
+    <li class="active">{{ 'Menu.LabelConfiguracionUniversidades' | translate }}</li>
+  </ol>
+</section>
+<section id="mainContent">
+  <div class="module">
+    <div class="headModule">
+      <h1>{{ 'GestionUniversidades.LabelEncabezado' | translate }}</h1>
+    </div>
+    <!-- {{universities | json}} -->
+    <!-- spinner -->
+    <div *ngIf="loading">
+      <br>
+      <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="bodyModule">
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="no-more-tables" class="">
+            <div class="table-responsive">
+              <table class="table-bordered table-striped table-condensed" id="newUniversitiesTable">
+                <thead class="">
+                  <tr class="headBold">
+                    <th class="boxInputName">{{ 'GestionUniversidades.LabelUniversidad' | translate }}</th>
+                    <th class="boxInputFile">{{ 'GestionUniversidades.LabelCodigo' | translate }}</th>
+                    <th class="boxSwitch">{{ 'GestionUniversidades.LabelHabilitar' | translate }}
+                      <br>{{ 'GestionUniversidades.LabelInhabilitar' | translate }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let university of universities">
+                    <td data-title="Nombre" class="form-group has-feedback boxInputName" [ngClass]="{ 'has-error' : !nombreUniversidad.valid && university.status && submitAttempt }">
+                      <input name="nombreUniversidad" required type="text" #nombreUniversidad="ngModel" class="form-control inputCanChange" [(ngModel)]="university.name"
+                        [disabled]="!university.status" (change)="cambioAlgo()" placeholder="{{ 'GestionUniversidades.PlaceHolderUniversidad' | translate }}">
+                    </td>
+                    <td data-title="Archivo" class="form-group has-feedback boxInputName" [ngClass]="{ 'has-error' : !codigoUniversidad.valid && university.status && submitAttempt }">
+                      <input name="codigoUniversidad" required type="text" #codigoUniversidad="ngModel" class="form-control inputCanChange" [(ngModel)]="university.code"
+                        [disabled]="!university.status" (change)="cambioAlgo()" placeholder="{{'GestionUniversidades.PlaceHolderCodigo' | translate }}">
+                    </td>
+                    <td data-title="Habilitar / Deshabilitar" class="boxSwitch">
+                      <div class="card">
+                        <label>
+                          <input type="checkbox" [(ngModel)]="university.status" class="switchCanChange" (change)="cambioAlgo()" />
+                          <span class="switch"></span>
+                          <span class="toggle"> </span>
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="boxAfterTable">
+              <a class="" style="cursor:pointer" id="" (click)="agregarRow()">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>{{ 'GestionUniversidades.LabelCrearUniversidad' | translate }}</a>
             </div>
           </div>
         </div>
-      </section>
-    </section>
+        <div class="col-xs-12">
+          <div class="boxButtonsCenter">
+            <button type="button" class="btn btn-default btnNoAccion text-uppercase" (click)="cancelar()">{{'GestionUniversidades.LabelCancelar' | translate}}</button>
+            <button type="submit" class="btn btn-default btnFirstAccion text-uppercase" (click)="guardarInformacion()">{{'GestionUniversidades.LabelGuardar' | translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
