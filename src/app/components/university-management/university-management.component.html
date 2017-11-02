@@ -1,27 +1,18 @@
-<!-- <div class="module" style="padding-left: 20%">
-  <p>
-    university-management works!
-  </p>
-  <button type="button" id="btnCancelProcess" style="float: right" class="text-uppercase btn btn-default btnNoAccion" (click)="cargarInformacionUniversidades()">Consultar</button>
-  <p style="float: right">{{ universities | json }}</p>
-  <button type="button" id="btnCancelProcess1" style="float: right" class="text-uppercase btn btn-default btnNoAccion" (click)="crearUniversidad()">Crear</button>
-  <button type="button" id="btnCancelProcess2" style="float: right" class="text-uppercase btn btn-default btnNoAccion" (click)="actualizarUniversidad()">Actualizar</button>
-</div> -->
 <div class="container-fluid">
   <div class="row">
     <section id="content">
       <section class="miga text-uppercase">
         <ol class="breadcrumb">
           <li>
-            <a href="#">ADMINISTRACIÓN</a>
+            <a href="#">{{'Administracion.LabelAdministracion' | translate }}</a>
           </li>
-          <li class="active">Configuración de universidades</li>
+          <li class="active">{{ 'Menu.LabelConfiguracionUniversidades' | translate }}</li>
         </ol>
       </section>
       <section id="mainContent">
         <div class="module">
           <div class="headModule">
-            <h1>Cree universidades con base en la información del sistema académico Banner</h1>
+            <h1>{{ 'GestionUniversidades.LabelEncabezado' | translate }}</h1>
           </div>
           <!-- {{universities | json}} -->
           <!-- spinner -->
@@ -38,21 +29,21 @@
                     <table class="table-bordered table-striped table-condensed" id="newUniversitiesTable">
                       <thead class="">
                         <tr class="headBold">
-                          <th class="boxInputName">Universidad</th>
-                          <th class="boxInputFile">Código</th>
-                          <th class="boxSwitch">Habilitar /
-                            <br>Deshabilitar</th>
+                          <th class="boxInputName">{{ 'GestionUniversidades.LabelUniversidad' | translate }}</th>
+                          <th class="boxInputFile">{{ 'GestionUniversidades.LabelCodigo' | translate }}</th>
+                          <th class="boxSwitch">{{ 'GestionUniversidades.LabelHabilitar' | translate }}
+                            <br>{{ 'GestionUniversidades.LabelInhabilitar' | translate }}</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr *ngFor="let university of universities">
                           <td data-title="Nombre" class="form-group has-feedback boxInputName" [ngClass]="{ 'has-error' : !nombreUniversidad.valid && university.status && submitAttempt }">
                             <input name="nombreUniversidad" required type="text" #nombreUniversidad="ngModel" class="form-control inputCanChange" [(ngModel)]="university.name"
-                              [disabled]="!university.status" (change)="cambioAlgo()" placeholder="ingrese nombre de la universidad...">
+                              [disabled]="!university.status" (change)="cambioAlgo()" placeholder="{{ 'GestionUniversidades.PlaceHolderUniversidad' | translate }}">
                           </td>
                           <td data-title="Archivo" class="form-group has-feedback boxInputName" [ngClass]="{ 'has-error' : !codigoUniversidad.valid && university.status && submitAttempt }">
                             <input name="codigoUniversidad" required type="text" #codigoUniversidad="ngModel" class="form-control inputCanChange" [(ngModel)]="university.code"
-                              [disabled]="!university.status" (change)="cambioAlgo()" placeholder="ingrese el código Banner...">
+                              [disabled]="!university.status" (change)="cambioAlgo()" placeholder="{{'GestionUniversidades.PlaceHolderCodigo' | translate }}">
                           </td>
                           <td data-title="Habilitar / Deshabilitar" class="boxSwitch">
                             <div class="card">
@@ -69,14 +60,14 @@
                   </div>
                   <div class="boxAfterTable">
                     <a class="" style="cursor:pointer" id="" (click)="agregarRow()">
-                      <i class="fa fa-plus-circle" aria-hidden="true"></i>Crear universidad</a>
+                      <i class="fa fa-plus-circle" aria-hidden="true"></i>{{ 'GestionUniversidades.LabelCrearUniversidad' | translate }}</a>
                   </div>
                 </div>
               </div>
               <div class="col-xs-12">
                 <div class="boxButtonsCenter">
-                  <button type="button" class="btn btn-default btnNoAccion" (click)="cancelar()">CANCELAR</button>
-                  <button type="submit" class="btn btn-default btnFirstAccion" (click)="guardarInformacion()">GUARDAR</button>
+                  <button type="button" class="btn btn-default btnNoAccion text-uppercase" (click)="cancelar()">{{'GestionUniversidades.LabelCancelar' | translate}}</button>
+                  <button type="submit" class="btn btn-default btnFirstAccion text-uppercase" (click)="guardarInformacion()">{{'GestionUniversidades.LabelGuardar' | translate}}</button>
                 </div>
               </div>
             </div>

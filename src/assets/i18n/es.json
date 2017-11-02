@@ -1,25 +1,25 @@
 {
-    "Administracion":{
-        "LabelServicios":"Servicios",
-        "LabelModalidades":"Modalidad Académica",
-        "LabelNiveles":"Nivel Académico",
-        "LabelEstados":"Tipo de Usuario",
-        "LabelHabilitar":"Habilitar/Deshabilitar",
-        "LabelConsultaAcademica":"Consulta Académica",
-        "LabelSolicitudFinanciera":"Solicitud Financiera",
-        "LabelSolicitudAcademica":"Solicitud Académica",
-        "LabelPortales":"Portales",
-        "LabelUniversidad":"Universidad",
+    "Administracion": {
+        "LabelServicios": "Servicios",
+        "LabelModalidades": "Modalidad Académica",
+        "LabelNiveles": "Nivel Académico",
+        "LabelEstados": "Tipo de Usuario",
+        "LabelHabilitar": "Habilitar/Deshabilitar",
+        "LabelConsultaAcademica": "Consulta Académica",
+        "LabelSolicitudFinanciera": "Solicitud Financiera",
+        "LabelSolicitudAcademica": "Solicitud Académica",
+        "LabelPortales": "Portales",
+        "LabelUniversidad": "Universidad",
         "LabelConfiguracionServicios": "Configuración de Servicios",
         "LabelAdministracion": "Administración",
         "LabelSeleccioneUniversidad":"Seleccione una Universidad y configure los servicios"
     },
-    "Menu":{
-        "LabelPrincipal":"PRINCIPAL",
-        "LabelAdministracion":"ADMINISTRACIÓN",
-        "LabelConfiguracionServicios":"Configuración de servicios",
-        "LabelConfiguracionUniversidades":"Configuracion de Universidades",
-        "LabelNombre":"Nombre",
+    "Menu": {
+        "LabelPrincipal": "PRINCIPAL",
+        "LabelAdministracion": "ADMINISTRACIÓN",
+        "LabelConfiguracionServicios": "Configuración de servicios",
+        "LabelConfiguracionUniversidades": "Configuracion de Universidades",
+        "LabelNombre": "Nombre",
         "LabelReglamentos": "Gestionar Reglamentos"
     },
     "GestionReglamentos": {
@@ -27,15 +27,27 @@
         "LabelUniversidad": "Universidad",
         "LabelNombre": "Nombre",
         "LabelArchivo": "Archivo",
-        "PlaceHolderSeleccione":"Seleccione un archivo para subir",
-        "LabelCancelar":"Cancelar",
-        "LabelGuardar":"Guardar",
-        "ModalTitulo":"¿Está seguro de que desea eliminar este archivo?",
-        "ModalCancelar":"NO, CANCELAR",
-        "ModalEliminiar":"SÍ, ELIMINAR",
-        "ValidarFormatoArchivo" : "Los reglamentos deben ser cargados en formato PDF. Por favor verifique el formato.",
-        "ValidarTamanoArchivo":"El archivo excede el límite de 4MB establecido para los reglamentos. Por favor verifique el tamaño del archivo.",
-        "MensajeGuardadoCorrecto" : "La información del reglamento fue actualizada correctamente."
-        
+        "PlaceHolderSeleccione": "Seleccione un archivo para subir",
+        "LabelCancelar": "Cancelar",
+        "LabelGuardar": "Guardar",
+        "ModalTitulo": "¿Está seguro de que desea eliminar este archivo?",
+        "ModalCancelar": "NO, CANCELAR",
+        "ModalEliminiar": "SÍ, ELIMINAR",
+        "ValidarFormatoArchivo": "Los reglamentos deben ser cargados en formato PDF. Por favor verifique el formato.",
+        "ValidarTamanoArchivo": "El archivo excede el límite de 4MB establecido para los reglamentos. Por favor verifique el tamaño del archivo.",
+        "MensajeGuardadoCorrecto": "La información del reglamento fue actualizada correctamente."
+    },
+    "GestionUniversidades": {
+        "LabelEncabezado": "Cree universidades con base en la información del sistema académico Banner",
+        "LabelUniversidad": "Universidad",
+        "LabelCodigo": "Código",
+        "LabelHabilitar": "Habilitar /",
+        "LabelInhabilitar": "Deshabilitar",
+        "LabelCrearUniversidad": "Crear Universidad",
+        "PlaceHolderUniversidad": "Ingrese nombre de la universidad...",
+        "PlaceHolderCodigo": "Ingrese el código Banner...",
+        "LabelGuardar": "Guardar",
+        "LabelCancelar": "Cancelar",
+        "MensajeGuardadoCorrecto": "Se actualizó la información correctamente."
     }
 }
