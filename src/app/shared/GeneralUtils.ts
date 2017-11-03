@@ -8,6 +8,7 @@ export class GeneralUtils {
     //// Determine que data desea, separado por pipe para cada hijo EJ. Implemente esto en su componente.
     //// getConfiguration('servicios|UrlUpdateReglamento').subscribe((result) => console.log(result));
     public getConfiguration(key) {
+        debugger;
         return this.http.get('../../assets/config.json').map(res => {
             let result = res.json();
             key.split('|').forEach(function (nodo) {

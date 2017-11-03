@@ -40,7 +40,7 @@ export class AdministracionComponent {
   public user:User
   public idUser:string
   
-
+  
   constructor(private adminService:AdministracionService,
               private http: Http) { 
                 this.loading = false
@@ -51,7 +51,7 @@ export class AdministracionComponent {
                 }
   }
   
-
+  //Carga la grilla con los datos se los servicios de la universidades
   load_data(IdUniversidad:string){
     this.serv = false
     this.url_servicio = undefined
@@ -102,6 +102,8 @@ export class AdministracionComponent {
   }
 
   public serv:boolean = false
+
+  //Se obtienen los servicios que se van a configurar
   getServicios(IdUniversidad:String){
     const promesa = new Promise((resolve,reject)=>{
       this.servicios = []
@@ -121,6 +123,7 @@ export class AdministracionComponent {
     return promesa
   }
 
+  //Se obtienen las categorias faltantes para agregarlas y mostrarlas al usuario
   procesarInformacion(IdUniversidad:String){
   
     const promise = new Promise((resolve,reject)=>{
@@ -227,7 +230,7 @@ export class AdministracionComponent {
 
 
   }
-
+  //Se obtiene las categirías de los servicios de las universidades
   getTitulos(IdUniversidad:string){
     const promesa = new Promise((resolve,reject)=>{
       this.getModalidades().then(()=>{
@@ -248,6 +251,7 @@ export class AdministracionComponent {
     return promesa
   }
 
+  //Se obtiene los niveles de los servicios de las universidades
   getNiveles(){
     const promesa = new Promise((resolve,reject)=>{
       this.levels = []
@@ -263,6 +267,7 @@ export class AdministracionComponent {
     return promesa
   }
 
+  //Se obtiene las modalidades de los servicios de las universidades
   getModalidades(){
     const promesa = new Promise((resolve,reject)=>{
       this.modality = []
@@ -278,6 +283,7 @@ export class AdministracionComponent {
     return promesa
   }
 
+  //Se obtiene los estados de los servicios de las universidades
   getEstados(){
     const promesa = new Promise((resolve,reject)=>{
       this.status = []
@@ -298,6 +304,7 @@ export class AdministracionComponent {
     return promesa
   }
 
+  //se obtiene el token para consumir los servicios de las universidades
   getToken(){
     const promesa = new Promise((resolve,reject)=>{
       if (!localStorage.getItem('token')){
@@ -329,6 +336,7 @@ export class AdministracionComponent {
     return promesa 
   }
   
+  //Se obtiene las Url de los servicios a utilizar
   getUrlsServicios(){
     const promesa = new Promise((resolve,reject)=>{
       this.http.get("assets/config.json").subscribe((success) =>  {
@@ -342,24 +350,9 @@ export class AdministracionComponent {
     return promesa
   }
 
-  // getUniversidades(){
-  //   const promesa = new Promise((resolve,reject)=>{
-  //     this.adminService.getUniversidades(this.url_Servicios_backend.UrlGetUniversidades).subscribe(estados=>{
-  //       this.status = estados.json()
-  //       this.total_estados = this.status.length
-  //       console.log('estados', estados.json())
-  //       console.log('estados3', this.status)
-  //       resolve(estados)
-  //     },error=>{
-  //       reject(error)
-  //     })
-  //   })
-  //   return promesa
-  // }
-
+  //Se guardan los registros de las categorías para la universidad dada
   saveItems(faltantes:any[], IdUniversidad){
     this.faltantesMensaje = faltantes
-    // document.getElementById('openModalButton').click()
     console.log('SaveItems - faltantes',faltantes,'url',this.url_Servicios_backend)
     this.adminService.saveItems(faltantes,this.url_Servicios_backend.UrlApiRest).subscribe(data=>{
       this.getServicios(IdUniversidad).then(()=>{
