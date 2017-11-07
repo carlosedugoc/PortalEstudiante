@@ -19,7 +19,7 @@ export class StudentService implements OnInit {
   ) {
     this.utility = new GeneralUtils(http)
     console.log('ingreso al servicio')
-    this.utility.getConfiguration("servicios|UrlApiRest").subscribe(res =>  this.generalUrl = res );
+    //this.utility.getConfiguration("servicios|UrlApiRest").subscribe(res =>  this.generalUrl = res );
   }
 
   getStudent(){

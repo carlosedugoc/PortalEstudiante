@@ -18,11 +18,20 @@ export class UniversityService {
   ) {
     this.utility = new GeneralUtils(http)
     this.generalUrl = "http://10.75.8.109/PEServices"
+    debugger;
+    //this.init()
     // this.utility.getConfiguration("servicios|UrlApiRest").subscribe(res => this.generalUrl = res);
+  }
+
+  async init() {
+    this.generalUrl = await this.utility.getConfiguration("servicios|UrlApiRest");
+    debugger;
   }
 
   //// Método que obtiene toda la información de todas las universidades.
   getInfoAllUniversities() {
+    //this.generalUrl = this.generalUrl == undefined ? await this.utility.getConfiguration("servicios|UrlApiRest") : this.generalUrl
+    debugger;
     let url = `${this.generalUrl}/api/University`
     return this.http.get(url).map(res => {
       return res.json();

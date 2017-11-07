@@ -42,12 +42,13 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
     this.utilidades = new GeneralUtils(http)
   }
 
-  ngOnInit(): void {
-    debugger;
+  ngOnInit() {
+
     this.cargarArchivo = true; //TODO: Se debe validar si tiene permisos para poder realizar el proceso.
     this.estiloVisibleCargarArchivo = "hidden";
     ////// Se consultan las reglas de validación para la pantalla
-    this.utilidades.getConfiguration('validaciones').subscribe(result => this.reglasValidaciones = result);
+    this.reglasValidaciones = this.utilidades.getConfiguration('validaciones')
+    debugger;
     this.cargarUniversidades();
     this.DatosInicio();
     this.validarUsuarioLogueado();
@@ -125,12 +126,13 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
   }
 
   //// Método que carga las universidades.
-  cargarUniversidades() {
+  async cargarUniversidades() {
     //// Se carga la información de las universidades consultadas.
+    let res: any = this.universityService.getInfoAllUniversities();
     this.universityService.getInfoAllUniversities().subscribe(res => {
       //// Validación para mostrar solamente las universidades que estén habilitadas
       let lstUniv = new List<University>(res)
-      this.universidades = lstUniv.Where(n=> n.status== true).Select(n=> n).ToArray()
+      this.universidades = lstUniv.Where(n => n.status == true).Select(n => n).ToArray()
     });
   }
 

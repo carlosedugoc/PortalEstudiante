@@ -771,6 +771,41 @@ body {
     body #content.expandContent {
       padding-left: 100px; }
 
+.boxTotal {
+  position: relative; }
+
+.messageInfo {
+  width: 500px;
+  position: absolute;
+  bottom: 120px;
+  z-index: 99;
+  left: 50%;
+  border-radius: 4px;
+  box-shadow: 3px 3px 3px #ccc;
+  padding: 10px 12px;
+  text-align: center;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  background-color: #fff; }
+  .messageInfo i {
+    margin-right: 10px;
+    font-size: 18px; }
+  .messageInfo .fa-check-circle {
+    color: #55c0a8; }
+  .messageInfo .fa-times-circle {
+    color: #ec5764; }
+  .messageInfo .fa-exclamation-circle {
+    color: #ef9523; }
+  .messageInfo .fa-info-circle {
+    color: #38a9d4; }
+  .messageInfo .fa-close {
+    color: #ccc; }
+  .messageInfo span {
+    font-weight: 700; }
+  .messageInfo .cerrarMessage {
+    position: absolute;
+    right: 10px; }
+
 header {
   background-color: #77c043; }
 
@@ -797,6 +832,12 @@ footer {
       max-height: 40px; }
   .mainHead .optionsHeader {
     color: #fff; }
+    .mainHead .optionsHeader .tooltip-inner {
+      min-width: 110px;
+      background-color: #565656;
+      padding: 5px; }
+    .mainHead .optionsHeader .tooltip-arrow {
+      border-bottom-color: #565656; }
     .mainHead .optionsHeader ul {
       margin-bottom: 0;
       text-align: right; }
@@ -805,8 +846,6 @@ footer {
         margin-left: 20px; }
         .mainHead .optionsHeader ul li a {
           color: #fff; }
-          .mainHead .optionsHeader ul li a:hover {
-            color: #ec008b; }
     .mainHead .optionsHeader .boxSelect:after {
       right: -5px; }
     .mainHead .optionsHeader .boxSelect select {

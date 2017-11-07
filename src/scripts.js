@@ -2,13 +2,17 @@
 function llamarEventosMainJS()
 {
 	mainNavToogle();
-	checkItems();
-	gridMasonryDashboard();
-	rotate180();
-	activeForParentAcordion();
-	inputFileClear();
-	appearWhenChange();
-	newInputs();
+    checkItems();
+    gridMasonryDashboard();
+    rotate180();
+    activeForParentAcordion();
+    inputFileClear();
+    appearWhenChange();
+    newInputs();
+    valideLogin();
+    showAndHidePassword();
+    changeIconsOnHeaderAndTooltips();
+    closeMessageInfo();
 }
 
 //// Método para ocultar los botones de guardado y cancelar.

@@ -619,6 +619,106 @@ input.form-control.image-preview-filename:disabled {
   background-color: #40abd7;
   color: #fff; }
 
+html {
+  height: 100%; }
+
+#loginPage {
+  height: 100%;
+  background-image: url("../img/bg_login.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+  #loginPage .container-fluid {
+    height: 100%; }
+  #loginPage .boxFooter {
+    position: fixed;
+    width: 100%;
+    bottom: 0; }
+
+.overlayLogin {
+  position: absolute;
+  height: 100%;
+  background-color: transparent;
+  width: 100%; }
+
+.boxLogin {
+  position: absolute;
+  margin: auto;
+  background-color: #FFF;
+  width: 500px;
+  padding: 30px 20px;
+  left: 50%;
+  top: 40%;
+  -webkit-transform: translate(-50%, -40%);
+  transform: translate(-50%, -40%); }
+  .boxLogin #formLogin {
+    font-family: "Roboto", sans-serif; }
+    .boxLogin #formLogin h2 {
+      margin: 0 0 10px;
+      text-align: center;
+      color: #0060ae;
+      text-transform: uppercase;
+      font-size: 21px;
+      font-weight: 700; }
+    .boxLogin #formLogin .alertValidacion {
+      color: #dd1639;
+      font-size: 14px; }
+    .boxLogin #formLogin input {
+      border-color: #0060ae;
+      border-radius: 0;
+      box-shadow: none; }
+    .boxLogin #formLogin #passwordLogin {
+      border-right: none; }
+    .boxLogin #formLogin .input-group-btn button {
+      background-color: transparent;
+      border-color: #0060ae;
+      color: #0060ae;
+      border-left: none;
+      border-radius: 0; }
+    .boxLogin #formLogin .boxIngresarLogin button {
+      width: 100%;
+      margin: 0; }
+      .boxLogin #formLogin .boxIngresarLogin button i {
+        padding-left: 10px; }
+    .boxLogin #formLogin input::-webkit-input-placeholder {
+      color: #b2b2b2; }
+    .boxLogin #formLogin input:-moz-placeholder {
+      color: #b2b2b2;
+      opacity: 1; }
+    .boxLogin #formLogin input::-moz-placeholder {
+      color: #b2b2b2;
+      opacity: 1; }
+    .boxLogin #formLogin input:-ms-input-placeholder {
+      color: #b2b2b2; }
+    .boxLogin #formLogin .bootstrap-select > .dropdown-toggle.bs-placeholder,
+    .boxLogin #formLogin .bootstrap-select > .dropdown-toggle.bs-placeholder:active,
+    .boxLogin #formLogin .bootstrap-select > .dropdown-toggle.bs-placeholder:focus,
+    .boxLogin #formLogin .bootstrap-select > .dropdown-toggle.bs-placeholder:hover {
+      color: #565656;
+      border-color: #0060ae;
+      background-color: transparent;
+      outline: none;
+      box-shadow: none;
+      border-radius: 0; }
+    .boxLogin #formLogin .bootstrap-select > .dropdown-toggle.bs-placeholder:focus {
+      outline: none !important; }
+    .boxLogin #formLogin .bs-caret {
+      color: #0060ae; }
+    .boxLogin #formLogin .warningInputs {
+      border-color: #dd1639 !important; }
+      .boxLogin #formLogin .warningInputs i {
+        color: #dd1639; }
+      .boxLogin #formLogin .warningInputs::-webkit-input-placeholder {
+        color: #dd1639; }
+      .boxLogin #formLogin .warningInputs:-moz-placeholder {
+        color: #dd1639;
+        opacity: 1; }
+      .boxLogin #formLogin .warningInputs::-moz-placeholder {
+        color: #dd1639;
+        opacity: 1; }
+      .boxLogin #formLogin .warningInputs:-ms-input-placeholder {
+        color: #dd1639; }
+
 body {
   font-family: "Open Sans", sans-serif;
   color: #565656; }
@@ -627,6 +727,7 @@ body {
   body a, body button {
     -webkit-transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
     -moz-transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    -ms-transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
     transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1); }
   body #mainNav {
     position: absolute;
@@ -636,6 +737,7 @@ body {
     background-color: #FFF;
     -webkit-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     -moz-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -ms-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
     body #mainNav.hideNav {
       max-width: 100px; }
@@ -647,9 +749,45 @@ body {
     padding-left: 250px;
     -webkit-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     -moz-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -ms-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
     body #content.expandContent {
       padding-left: 100px; }
+
+.boxTotal {
+  position: relative; }
+
+.messageInfo {
+  width: 500px;
+  position: absolute;
+  bottom: 120px;
+  z-index: 99;
+  left: 50%;
+  border-radius: 4px;
+  box-shadow: 3px 3px 3px #ccc;
+  padding: 10px 12px;
+  text-align: center;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  background-color: #fff; }
+  .messageInfo i {
+    margin-right: 10px;
+    font-size: 18px; }
+  .messageInfo .fa-check-circle {
+    color: #55c0a8; }
+  .messageInfo .fa-times-circle {
+    color: #ec5764; }
+  .messageInfo .fa-exclamation-circle {
+    color: #ef9523; }
+  .messageInfo .fa-info-circle {
+    color: #38a9d4; }
+  .messageInfo .fa-close {
+    color: #ccc; }
+  .messageInfo span {
+    font-weight: 700; }
+  .messageInfo .cerrarMessage {
+    position: absolute;
+    right: 10px; }
 
 header, footer {
   background-color: #0060ae; }
@@ -667,9 +805,19 @@ header, footer {
   align-items: center;
   min-height: 100px; }
   .mainHead .logoU {
-    text-align: center; }
+    text-align: center;
+    width: 100%; }
+    .mainHead .logoU img {
+      max-width: 170px;
+      max-height: 40px; }
   .mainHead .optionsHeader {
     color: #fff; }
+    .mainHead .optionsHeader .tooltip-inner {
+      min-width: 110px;
+      background-color: #565656;
+      padding: 5px; }
+    .mainHead .optionsHeader .tooltip-arrow {
+      border-bottom-color: #565656; }
     .mainHead .optionsHeader ul {
       margin-bottom: 0;
       text-align: right; }
@@ -678,8 +826,6 @@ header, footer {
         margin-left: 20px; }
         .mainHead .optionsHeader ul li a {
           color: #fff; }
-          .mainHead .optionsHeader ul li a:hover {
-            color: #e2a900; }
     .mainHead .optionsHeader .boxSelect:after {
       right: -5px; }
     .mainHead .optionsHeader .boxSelect select {
@@ -708,6 +854,7 @@ header, footer {
   color: #fff;
   -webkit-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
   -moz-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  -ms-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
   transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
   #mainNav .user img.imgProfile {
     max-width: 60px;
@@ -761,6 +908,7 @@ header, footer {
     #mainNav .menu ul .accordionHijo i {
       -webkit-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
       -moz-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+      -ms-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
       transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
       float: right; }
   #mainNav .menu ul .rotate180 {
@@ -1058,12 +1206,15 @@ footer > .row {
       footer > .row .boxContacto .boxRedes p {
         color: #fff;
         font-size: 12px;
-        margin-bottom: 5px; }
+        margin-bottom: 5px;
+        text-align: left; }
       footer > .row .boxContacto .boxRedes ul.redes {
         margin-bottom: 0; }
         footer > .row .boxContacto .boxRedes ul.redes a {
           font-size: 16px;
           color: #0060ae; }
+          footer > .row .boxContacto .boxRedes ul.redes a:hover {
+            text-decoration: none; }
         footer > .row .boxContacto .boxRedes ul.redes li {
           display: inline-block;
           text-align: center;

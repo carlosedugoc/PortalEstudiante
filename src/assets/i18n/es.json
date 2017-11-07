@@ -12,7 +12,7 @@
         "LabelUniversidad": "Universidad",
         "LabelConfiguracionServicios": "Configuración de Servicios",
         "LabelAdministracion": "Administración",
-        "LabelSeleccioneUniversidad":"Seleccione una Universidad y configure los servicios"
+        "LabelSeleccioneUniversidad": "Seleccione una Universidad y configure los servicios"
     },
     "Menu": {
         "LabelPrincipal": "PRINCIPAL",
@@ -50,7 +50,10 @@
         "LabelCancelar": "Cancelar",
         "MensajeGuardadoCorrecto": "Se actualizó la información correctamente."
     },
-    "Transversales":{
-        "LabelSeleccione":"Seleccione..."
+    "Transversales": {
+        "LabelSeleccione": "Seleccione...",
+        "LabelCerrarSesion": "Cerrar Sesión",
+        "LabelNotificaciones": "Notificaciones",
+        "LabelEmail": "Correo Electrónico"
     }
 }

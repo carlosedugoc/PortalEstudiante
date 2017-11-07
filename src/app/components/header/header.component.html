@@ -1,5 +1,4 @@
-
-  <header>
+<header>
     <div class="container-fluid">
         <div class="row mainHead">
             <div class="col-sm-4">
@@ -24,13 +23,25 @@
                                 </select>
                             </div>
                         </li>
-                        <li *ngIf="notificacion && notificacion.length > 0" ><a href="#"><i class="fa fa-bell-o" aria-hidden="true"></i></a></li>
-                        <li *ngIf="correo && correo.length > 0" ><a href="#" alt="Correo Electrónico"><i  title="Correo Electrónico" class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
-                        <li><a href="" (click)="signOut()"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                        <li *ngIf="notificacion && notificacion.length > 0">
+                            <a href="" data-toggle="tooltip" data-placement="bottom" attr.data-original-title="{{ 'Transversales.LabelNotificaciones' | translate }}">
+                                <i class="fa fa-bell-o" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li *ngIf="correo && correo.length > 0">
+                            <a href="" alt="Correo Electrónico" data-toggle="tooltip" data-placement="bottom" attr.data-original-title="{{ 'Transversales.LabelEmail' | translate }}">
+                                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" attr.data-original-title="{{ 'Transversales.LabelCerrarSesion' | translate }}" data-toggle="tooltip" data-placement="bottom"
+                                (click)="signOut()">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-  </header>
-
+</header>

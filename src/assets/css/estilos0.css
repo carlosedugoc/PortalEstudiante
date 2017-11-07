@@ -647,6 +647,106 @@ input.form-control.image-preview-filename:disabled {
   background-color: #40abd7;
   color: #fff; }
 
+html {
+  height: 100%; }
+
+#loginPage {
+  height: 100%;
+  background-image: url("../img/bg_login.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+  #loginPage .container-fluid {
+    height: 100%; }
+  #loginPage .boxFooter {
+    position: fixed;
+    width: 100%;
+    bottom: 0; }
+
+.overlayLogin {
+  position: absolute;
+  height: 100%;
+  background-color: rgba(1, 35, 81, 0.8);
+  width: 100%; }
+
+.boxLogin {
+  position: absolute;
+  margin: auto;
+  background-color: #FFF;
+  width: 500px;
+  padding: 30px 20px;
+  left: 50%;
+  top: 40%;
+  -webkit-transform: translate(-50%, -40%);
+  transform: translate(-50%, -40%); }
+  .boxLogin #formLogin {
+    font-family: "Open Sans", sans-serif; }
+    .boxLogin #formLogin h2 {
+      margin: 0 0 10px;
+      text-align: center;
+      color: #012351;
+      text-transform: uppercase;
+      font-size: 21px;
+      font-weight: 700; }
+    .boxLogin #formLogin .alertValidacion {
+      color: #dd1639;
+      font-size: 14px; }
+    .boxLogin #formLogin input {
+      border-color: #012351;
+      border-radius: 0;
+      box-shadow: none; }
+    .boxLogin #formLogin #passwordLogin {
+      border-right: none; }
+    .boxLogin #formLogin .input-group-btn button {
+      background-color: transparent;
+      border-color: #012351;
+      color: #012351;
+      border-left: none;
+      border-radius: 0; }
+    .boxLogin #formLogin .boxIngresarLogin button {
+      width: 100%;
+      margin: 0; }
+      .boxLogin #formLogin .boxIngresarLogin button i {
+        padding-left: 10px; }
+    .boxLogin #formLogin input::-webkit-input-placeholder {
+      color: #b2b2b2; }
+    .boxLogin #formLogin input:-moz-placeholder {
+      color: #b2b2b2;
+      opacity: 1; }
+    .boxLogin #formLogin input::-moz-placeholder {
+      color: #b2b2b2;
+      opacity: 1; }
+    .boxLogin #formLogin input:-ms-input-placeholder {
+      color: #b2b2b2; }
+    .boxLogin #formLogin .bootstrap-select > .dropdown-toggle.bs-placeholder,
+    .boxLogin #formLogin .bootstrap-select > .dropdown-toggle.bs-placeholder:active,
+    .boxLogin #formLogin .bootstrap-select > .dropdown-toggle.bs-placeholder:focus,
+    .boxLogin #formLogin .bootstrap-select > .dropdown-toggle.bs-placeholder:hover {
+      color: #565656;
+      border-color: #012351;
+      background-color: transparent;
+      outline: none;
+      box-shadow: none;
+      border-radius: 0; }
+    .boxLogin #formLogin .bootstrap-select > .dropdown-toggle.bs-placeholder:focus {
+      outline: none !important; }
+    .boxLogin #formLogin .bs-caret {
+      color: #012351; }
+    .boxLogin #formLogin .warningInputs {
+      border-color: #dd1639 !important; }
+      .boxLogin #formLogin .warningInputs i {
+        color: #dd1639; }
+      .boxLogin #formLogin .warningInputs::-webkit-input-placeholder {
+        color: #dd1639; }
+      .boxLogin #formLogin .warningInputs:-moz-placeholder {
+        color: #dd1639;
+        opacity: 1; }
+      .boxLogin #formLogin .warningInputs::-moz-placeholder {
+        color: #dd1639;
+        opacity: 1; }
+      .boxLogin #formLogin .warningInputs:-ms-input-placeholder {
+        color: #dd1639; }
+
 body {
   font-family: "Open Sans", sans-serif;
   color: #565656; }
@@ -655,6 +755,7 @@ body {
   body a, body button {
     -webkit-transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
     -moz-transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    -ms-transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
     transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1); }
   body #mainNav {
     position: absolute;
@@ -664,6 +765,7 @@ body {
     background-color: #FFF;
     -webkit-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     -moz-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -ms-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
     body #mainNav.hideNav {
       max-width: 100px; }
@@ -675,9 +777,45 @@ body {
     padding-left: 250px;
     -webkit-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     -moz-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -ms-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
     body #content.expandContent {
       padding-left: 100px; }
+
+.boxTotal {
+  position: relative; }
+
+.messageInfo {
+  width: 500px;
+  position: absolute;
+  bottom: 120px;
+  z-index: 99;
+  left: 50%;
+  border-radius: 4px;
+  box-shadow: 3px 3px 3px #ccc;
+  padding: 10px 12px;
+  text-align: center;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  background-color: #fff; }
+  .messageInfo i {
+    margin-right: 10px;
+    font-size: 18px; }
+  .messageInfo .fa-check-circle {
+    color: #55c0a8; }
+  .messageInfo .fa-times-circle {
+    color: #ec5764; }
+  .messageInfo .fa-exclamation-circle {
+    color: #ef9523; }
+  .messageInfo .fa-info-circle {
+    color: #38a9d4; }
+  .messageInfo .fa-close {
+    color: #ccc; }
+  .messageInfo span {
+    font-weight: 700; }
+  .messageInfo .cerrarMessage {
+    position: absolute;
+    right: 10px; }
 
 header, footer {
   background-color: #012351; }
@@ -695,9 +833,19 @@ header, footer {
   align-items: center;
   min-height: 100px; }
   .mainHead .logoU {
-    text-align: center; }
+    text-align: center;
+    width: 100%; }
+    .mainHead .logoU img {
+      max-width: 170px;
+      max-height: 40px; }
   .mainHead .optionsHeader {
     color: #fff; }
+    .mainHead .optionsHeader .tooltip-inner {
+      min-width: 110px;
+      background-color: #565656;
+      padding: 5px; }
+    .mainHead .optionsHeader .tooltip-arrow {
+      border-bottom-color: #565656; }
     .mainHead .optionsHeader ul {
       margin-bottom: 0;
       text-align: right; }
@@ -706,8 +854,6 @@ header, footer {
         margin-left: 20px; }
         .mainHead .optionsHeader ul li a {
           color: #fff; }
-          .mainHead .optionsHeader ul li a:hover {
-            color: #ede000; }
     .mainHead .optionsHeader .boxSelect:after {
       right: -5px; }
     .mainHead .optionsHeader .boxSelect select {
@@ -719,7 +865,8 @@ header, footer {
       font-size: 14px;
       font-weight: 400;
       padding: 0 5px;
-      margin: 0; }
+      margin: 0;
+      box-shadow: none; }
       .mainHead .optionsHeader .boxSelect select:focus {
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
@@ -735,6 +882,7 @@ header, footer {
   color: #fff;
   -webkit-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
   -moz-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  -ms-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
   transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
   #mainNav .user img.imgProfile {
     max-width: 60px;
@@ -788,6 +936,7 @@ header, footer {
     #mainNav .menu ul .accordionHijo i {
       -webkit-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
       -moz-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+      -ms-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
       transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
       float: right; }
   #mainNav .menu ul .rotate180 {
@@ -1050,18 +1199,49 @@ footer > .row {
       max-width: 250px;
       max-height: 40px; }
   footer > .row .boxContacto {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: flex-end;
+    -ms-justify-content: flex-end;
+    justify-content: flex-end;
     padding-right: 120px; }
+    footer > .row .boxContacto .sedesContacto {
+      display: inline-block;
+      color: #fff;
+      margin-right: 30px; }
+      footer > .row .boxContacto .sedesContacto ul {
+        margin-bottom: 0; }
+        footer > .row .boxContacto .sedesContacto ul li {
+          text-align: left;
+          font-weight: 700;
+          font-size: 11px;
+          padding-left: 25px;
+          font-family: "Open Sans", sans-serif; }
+          footer > .row .boxContacto .sedesContacto ul li span {
+            display: block;
+            font-weight: 400; }
+          footer > .row .boxContacto .sedesContacto ul li i {
+            padding-right: 5px;
+            color: #fff; }
     footer > .row .boxContacto .boxRedes {
       float: right; }
       footer > .row .boxContacto .boxRedes p {
         color: #fff;
         font-size: 12px;
-        margin-bottom: 5px; }
+        margin-bottom: 5px;
+        text-align: left; }
       footer > .row .boxContacto .boxRedes ul.redes {
         margin-bottom: 0; }
         footer > .row .boxContacto .boxRedes ul.redes a {
           font-size: 16px;
           color: #012351; }
+          footer > .row .boxContacto .boxRedes ul.redes a:hover {
+            text-decoration: none; }
         footer > .row .boxContacto .boxRedes ul.redes li {
           display: inline-block;
           text-align: center;
