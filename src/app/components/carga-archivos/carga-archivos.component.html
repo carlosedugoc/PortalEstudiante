@@ -58,13 +58,7 @@
                         <input type="text" class="form-control image-preview-filename {{ validar && !tieneArchivo ? 'invalid' : '' }}" disabled=""
                           value="{{ fileNamePath | getFileNameOfPath}} " placeholder="{{ 'GestionReglamentos.PlaceHolderSeleccione' | translate  }}">
                         <span class="input-group-btn">
-                          <!-- image-preview-clear -->
-                          <button type="button" class="btn btn-default image-preview-clear {{ tieneArchivo ? '' : 'hidden' }}">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                          </button>
                           <!-- image-preview-input -->
-
-
                           <div class="btn btn-default image-preview-input {{ !tieneArchivo  ? '' : 'hidden' }} {{ validar && !tieneArchivo ? 'invalid' : '' }} ">
                             <i id="changeIconInputFile" class="fa fa-upload" aria-hidden="true"></i>
                             <input type="file" class="inputFileCanChange" (change)="seleccionarArchivo($event.target.files)">
@@ -75,6 +69,10 @@
                               <i id="changeIconInputFile" class="fa fa-download" aria-hidden="true"></i>
                             </a>
                           </div>
+                          <!-- image-preview-clear -->
+                          <button type="button" class="btn btn-default image-preview-clear {{ tieneArchivo ? '' : 'hidden' }}">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                          </button>
                         </span>
                         <!-- /input-group-btn -->
                       </div>
@@ -98,7 +96,7 @@
 </section>
 <section id="boxModal">
   <div class="modal fade" id="modal-clear">
-    <div class="modal-dialog">
+    <div class="modal-dialog infoDelete">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title text-center">{{ 'GestionReglamentos.ModalTitulo' | translate }}</h4>

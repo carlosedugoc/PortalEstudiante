@@ -78,6 +78,9 @@ img {
 .modal-backdrop.in {
   opacity: .3; }
 
+select::-ms-expand {
+  display: none; }
+
 .navicon-button {
   display: inline-block;
   position: relative;
@@ -359,7 +362,7 @@ input[type='checkbox'] {
       font-size: 13px;
       padding: 4px 6px;
       border: 1px solid #e7e7e7;
-      min-width: 72%;
+      width: calc(100% - 20px);
       text-align: left; }
     #no-more-tables table tbody tr .wrapService .btn {
       padding: 0;
@@ -725,20 +728,28 @@ body {
   body section {
     width: 100%; }
   body a, body button {
-    -webkit-transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-    -moz-transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-    -ms-transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1); }
+    -webkit-transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -moz-transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -ms-transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -webkit-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -moz-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -ms-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
   body #mainNav {
     position: absolute;
     max-width: 250px;
     height: 100%;
     float: left;
     background-color: #FFF;
-    -webkit-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-    -moz-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-    -ms-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
+    -webkit-transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -moz-transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -ms-transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -webkit-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -moz-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -ms-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
     body #mainNav.hideNav {
       max-width: 100px; }
     body #mainNav .hideElement {
@@ -747,10 +758,14 @@ body {
     float: right;
     width: 100%;
     padding-left: 250px;
-    -webkit-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-    -moz-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-    -ms-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
+    -webkit-transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -moz-transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -ms-transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -webkit-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -moz-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    -ms-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
     body #content.expandContent {
       padding-left: 100px; }
 
@@ -852,10 +867,14 @@ header, footer {
   background-color: #00589f;
   padding: 20px;
   color: #fff;
-  -webkit-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-  -moz-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-  -ms-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
+  -webkit-transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  -ms-transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  -ms-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
   #mainNav .user img.imgProfile {
     max-width: 60px;
     max-height: 60px;
@@ -906,10 +925,14 @@ header, footer {
       padding: 10px 8px;
       background-color: #f1f1f1; }
     #mainNav .menu ul .accordionHijo i {
-      -webkit-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-      -moz-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-      -ms-transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-      transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+      -webkit-transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+      -moz-transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+      -ms-transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+      transition: color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+      -webkit-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+      -moz-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+      -ms-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+      transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
       float: right; }
   #mainNav .menu ul .rotate180 {
     -webkit-transform: rotate(180deg);
@@ -980,7 +1003,7 @@ header, footer {
       border-left: 4px solid #40abd7; }
   #mainNav .menu ul ul li {
     font-size: 14px;
-    padding: 15px 8px;
+    padding: 15px 6px;
     line-height: 1; }
     #mainNav .menu ul ul li span {
       padding-left: 8px;
@@ -1118,6 +1141,8 @@ header, footer {
         color: #a2a2a2; }
         #boxModal .modal .modal-content .modal-footer button.btnNoAccion:hover {
           background-color: rgba(241, 241, 241, 0.5); }
+  #boxModal .modal .infoDelete .modal-header h4 {
+    color: #0060ae; }
 
 button.btnFirstAccion {
   font-family: "Roboto", sans-serif;
@@ -1186,7 +1211,7 @@ footer > .row {
     footer > .row .boxContacto .sedesContacto {
       display: inline-block;
       color: #fff;
-      margin-right: 30px; }
+      margin-right: 20px; }
       footer > .row .boxContacto .sedesContacto ul {
         margin-bottom: 0; }
         footer > .row .boxContacto .sedesContacto ul li {
@@ -1202,7 +1227,8 @@ footer > .row {
             padding-right: 5px;
             color: #fff; }
     footer > .row .boxContacto .boxRedes {
-      float: right; }
+      float: right;
+      margin-right: 20px; }
       footer > .row .boxContacto .boxRedes p {
         color: #fff;
         font-size: 12px;
@@ -1228,6 +1254,18 @@ footer > .row {
           footer > .row .boxContacto .boxRedes ul.redes li:hover {
             background-color: #e2a900;
             cursor: pointer; }
+    footer > .row .boxContacto .boxEmisora p {
+      color: #fff;
+      font-size: 12px;
+      margin-bottom: 5px;
+      text-align: left; }
+    footer > .row .boxContacto .boxEmisora a {
+      text-decoration: none; }
+      footer > .row .boxContacto .boxEmisora a i {
+        color: #fff;
+        font-size: 30px; }
+      footer > .row .boxContacto .boxEmisora a:hover i {
+        color: #e2a900; }
 
 @media (min-width: 768px) {
   .modal-dialog {

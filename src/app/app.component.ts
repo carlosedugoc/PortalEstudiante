@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { TranslateService } from '@ngx-translate/core';
 import { AdministracionService } from "./services/administracion.service";
@@ -11,7 +11,8 @@ import { StudentService } from './services/student.service'
   styleUrls: ['./app.component.css'],
   providers: [AdministracionService, StudentService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
   public logued: boolean
   public language: string
   public user: User
@@ -27,6 +28,9 @@ export class AppComponent {
     private translate: TranslateService,
     private adminService: AdministracionService,
     private studentService: StudentService) {
+  }
+
+  ngOnInit() {
     debugger;
     this.logued = sessionStorage.getItem('logued') != null && sessionStorage.getItem('logued') == 'true'
     console.log(this.logued)
@@ -41,7 +45,6 @@ export class AppComponent {
       console.log(this.user)
       document.getElementById('estilos')['href'] = `../assets/css/estilos${this.user.university}.css`
     }
-
   }
 
   getUsuarios() {
@@ -108,6 +111,9 @@ export class AppComponent {
     } else {
       this.router.navigate(['student'])
     }
+  }
+
+  logout() {
 
   }
 
