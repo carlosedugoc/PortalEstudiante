@@ -11,26 +11,24 @@ export class UniversityService {
   requestUrl: string;
   responseData: any;
   handleError: any;
-  private utility: GeneralUtils
   private generalUrl: any
+  private utilities: GeneralUtils
 
   constructor(private http: Http
   ) {
-    this.utility = new GeneralUtils(http)
-    this.generalUrl = "http://10.75.8.109/PEServices"
-    debugger;
-    //this.init()
-    // this.utility.getConfiguration("servicios|UrlApiRest").subscribe(res => this.generalUrl = res);
+    //this.generalUrl = "http://estudiantesservices.azurewebsites.net"
   }
 
+  //// Método que inicializa el servicio.
   async init() {
-    this.generalUrl = await this.utility.getConfiguration("servicios|UrlApiRest");
-    debugger;
+    this.utilities = new GeneralUtils(this.http)
+    await this.utilities.load();
+
+    this.generalUrl = this.utilities.urlApiRestDefault;
   }
 
   //// Método que obtiene toda la información de todas las universidades.
   getInfoAllUniversities() {
-    //this.generalUrl = this.generalUrl == undefined ? await this.utility.getConfiguration("servicios|UrlApiRest") : this.generalUrl
     debugger;
     let url = `${this.generalUrl}/api/University`
     return this.http.get(url).map(res => {
@@ -40,7 +38,6 @@ export class UniversityService {
 
   //// Método que crea una nueva universidad.
   createUniversity(university: University[]) {
-    debugger;
     let url = `${this.generalUrl}/api/University`
     console.log('university', JSON.stringify(university))
     let body = JSON.stringify(university);
@@ -59,7 +56,6 @@ export class UniversityService {
 
   //// Método para actualizar una universidad específica.
   updateUniversity(university: University[]) {
-    debugger;
     let url = `${this.generalUrl}/api/University`
     console.log('university', JSON.stringify(university))
     let body = JSON.stringify(university);
@@ -86,7 +82,6 @@ export class UniversityService {
 
   //// Método que actualiza el reglamento de una universidad específica.
   updateRegulationUniversity(universityCode: string, regulationName: string, files: File) {
-    debugger;
     let url = `${this.generalUrl}/api/University/${universityCode}/Regulation/UploadFiles/${regulationName}`
     let formData: FormData = new FormData();
     if (files != undefined) {
@@ -94,16 +89,13 @@ export class UniversityService {
     }
 
     var returnReponse = new Promise((resolve, reject) => {
-      debugger;
       this.http.post(url, files != undefined ? formData : null).subscribe(
         res => {
-          debugger;
           console.log(res);
           this.responseData = res;
           resolve(this.responseData);
         },
         error => {
-          debugger;
           console.log(error);
           //this.router.navigate(['/login']);
           reject(error);

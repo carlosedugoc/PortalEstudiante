@@ -3,6 +3,7 @@ import { UniversityService } from '../../services/university.service';
 import { University } from "../../models/university";
 import { List } from "linqts";
 import { Enumerable } from "linqts";
+
 declare var fadeWhenChange: any
 declare var hideWhenCancel: any
 
@@ -26,16 +27,17 @@ export class UniversityManagementComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.universityService.init();
     this.cargarInformacionUniversidades()
   }
 
   //// Método que me permite cargar la información de las universidades.
   cargarInformacionUniversidades() {
-    debugger;
+    
     this.loading = true
     this.universityService.getInfoAllUniversities().subscribe(res => {
-      debugger;
+      
       this.loading = false
       this.universities = res
       // Se realiza una copia de manera que la información original la tenga almacenada en memoria.
