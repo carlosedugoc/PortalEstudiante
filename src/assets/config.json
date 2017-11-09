@@ -16,9 +16,9 @@
   ],
   "servicios": {
     "UrlApiRest": "http://estudiantesservices.azurewebsites.net",
-    "UrlGetUniversidades": "http://10.75.8.109/PEServices/Api/Universidades/",
-    "UrlGetIdioma": "http://10.75.8.109/PEServices/api/Usuario/{usuario}/Universidad/",
-    "UrlUpdateIdioma": "http://10.75.8.109/PEServices/api/Usuario/Idioma/",
+    "UrlGetUniversidades": "http://estudiantesservices.azurewebsites.net/Api/Universidades/",
+    "UrlGetIdioma": "http://estudiantesservices.azurewebsites.net/api/Usuario/{usuario}/Universidad/",
+    "UrlUpdateIdioma": "http://estudiantesservices.azurewebsites.net/api/Usuario/Idioma/",
     "UrlLoginIAM": "https://kcq-iamapp01.ilumno.net:9443/oauth2/authorize",
     "UrlLogoutIAM": "https://kcq-iamapp01.ilumno.net:9443/oidc/logout"
   },

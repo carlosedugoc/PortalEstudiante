@@ -28,7 +28,7 @@ export class StudentService implements OnInit {
 
   getMenu(user:User){
     console.log('getMenu',this.generalUrl)
-    this.generalUrl = 'http://10.75.8.109/PEServices'
+    this.generalUrl = 'http://estudiantesservices.azurewebsites.net'
     console.log('ingreso al servicio')
     let urlServicio:string = `${this.generalUrl}/api/Option/University/${user.university}/Level/${user.level}/Modality/${user.modality}/UserType/${user.userType}`
     return this.http.get(urlServicio).map(menu=>{ 
