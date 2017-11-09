@@ -7,12 +7,10 @@ export class GeneralUtils {
     }
 
     private config: any
-    public urlApiRestDefault: any
 
     //// Método de carga de información por defecto.
     async load() {
         this.config = await this.getAllConfiguration();
-        this.urlApiRestDefault = this.config.servicios.UrlApiRest;
     }
 
     //// Método que obtiene toda la información del archivo de configuración.

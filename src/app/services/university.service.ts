@@ -16,7 +16,7 @@ export class UniversityService {
 
   constructor(private http: Http
   ) {
-    //this.generalUrl = "http://estudiantesservices.azurewebsites.net"
+
   }
 
   //// Método que inicializa el servicio.
@@ -24,7 +24,9 @@ export class UniversityService {
     this.utilities = new GeneralUtils(this.http)
     await this.utilities.load();
 
-    this.generalUrl = this.utilities.urlApiRestDefault;
+    // Se asigna la url de los servicios api.
+    this.generalUrl = this.utilities.getServiceByName("UrlApiRest");
+    //this.generalUrl = "http://estudiantesservices.azurewebsites.net"
   }
 
   //// Método que obtiene toda la información de todas las universidades.
