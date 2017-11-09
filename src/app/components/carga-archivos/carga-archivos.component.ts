@@ -2,7 +2,6 @@ import { Component, OnChanges, OnInit } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { UniversityService } from '../../services/university.service';
 import { University } from "../../models/university";
-import { GeneralUtils } from "../../shared/GeneralUtils";
 import { User } from "../../models/user";
 import { List } from "linqts";
 declare var llamarEventosMainJS: any
@@ -26,12 +25,11 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
   public nombreArchivoSinSubir: string // Me indica el nombre del archivo que se selecciona a travé del fileUpload
   public estiloVisibleCargarArchivo: string; //Oculta la grilla de cargue a menos que se haya determinado una universidad.
   public url_Servicios_backend: any // Me indica las rutas de los servicios a consumir.
-  public reglasValidaciones: any // Me indica las reglas de validaciones.
   public universidadReglamento: University //Me indica la información de la universidad consultada.
   public nuevoReglamento: University //Me indica las modificaciones de reglamento.
   public fileToUpload: any; // Me indica el archivo a cargar
   public validar: boolean // Me indica validación por el lado del cliente antes de guardar.
-  public utilidades: GeneralUtils // Clase de utilidades
+
   public urlDescarga: string
   public fileNamePath: string
 
@@ -39,16 +37,17 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
   constructor(private universityService: UniversityService,
     private http: Http
   ) {
-    this.utilidades = new GeneralUtils(http)
+
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+
+    await this.universityService.init()
 
     this.cargarArchivo = true; //TODO: Se debe validar si tiene permisos para poder realizar el proceso.
     this.estiloVisibleCargarArchivo = "hidden";
     ////// Se consultan las reglas de validación para la pantalla
-    this.reglasValidaciones = this.utilidades.getConfiguration('validaciones')
-    debugger;
+
     this.cargarUniversidades();
     this.DatosInicio();
     this.validarUsuarioLogueado();
@@ -100,11 +99,11 @@ export class CargaArchivosComponent implements OnChanges, OnInit {
       let _size = file[0].size / 1024 / 1024;
 
       // Validación de extensión de archivo y tamaño.
-      if ((extension.toLowerCase() != this.reglasValidaciones.tipoArchivo_CargaReglamento)) {
+      if ((extension.toLowerCase() != this.universityService.utilities.getValidationByName("tipoArchivo_CargaReglamento"))) {
         msg = "Los reglamentos deben ser cargados en formato PDF. Por favor verifique el formato."
         todoBien = false
       }
-      if ((todoBien && _size > this.reglasValidaciones.tamanoArchivo_CargaReglamento)) {
+      if ((todoBien && _size > this.universityService.utilities.getValidationByName("tamanoArchivo_CargaReglamento"))) {
         msg = "El archivo excede el límite de 4MB establecido para los reglamentos. Por favor verifique el tamaño del archivo."
         todoBien = false
       }

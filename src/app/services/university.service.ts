@@ -12,7 +12,7 @@ export class UniversityService {
   responseData: any;
   handleError: any;
   private generalUrl: any
-  private utilities: GeneralUtils
+  public utilities: GeneralUtils
 
   constructor(private http: Http
   ) {
@@ -31,7 +31,7 @@ export class UniversityService {
 
   //// Método que obtiene toda la información de todas las universidades.
   getInfoAllUniversities() {
-    debugger;
+    
     let url = `${this.generalUrl}/api/University`
     return this.http.get(url).map(res => {
       return res.json();
