@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { Router } from "@angular/router";
 import { User } from "../../models/user";
 import { Menu } from "../../models/menu/menu";
-//import { GeneralUtils } from "../../shared/GeneralUtils";
+import { GeneralUtils } from "../../shared/GeneralUtils";
 
 declare var llamarEventosMainJS: any
 
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   @Input('strLanguage') strLanguage: string
   @Input('notificacion') notificacion: Menu[]
   @Input('correo') correo: Menu[]
-  //public utilidades: GeneralUtils // Clase de utilidades
+  public utilidades: GeneralUtils // Clase de utilidades
   public user: User
   private urlLogout: any
   private inDev: any
@@ -26,19 +26,22 @@ export class HeaderComponent implements OnInit {
   //Obtiene el user del sesión storage
   constructor(private router: Router, http: Http) {
     this.user = JSON.parse(sessionStorage.getItem('user'))
-    //this.utilidades = new GeneralUtils(http)
+    this.utilidades = new GeneralUtils(http)
   }
 
   //se cargan estilos dependiendo la universidad
-  ngOnInit() {
+  async ngOnInit() {
+    await this.utilidades.load()
+
     document.getElementById('logo')['src'] = `../assets/img/logo_header${this.user.university}.png`
     document.getElementById('logoFooter')['src'] = `../assets/img/logo_footer${this.user.university}.png`
     console.log('notificacion', this.notificacion)
     console.log('correo', this.correo)
 
     //// Se obtiene la información para el cierre de sesión.
-    //this.urlLogout = await this.utilidades.getConfiguration("servicios|UrlLogoutIAM");
-    //this.inDev = await this.utilidades.getConfiguration("validaciones|dev");
+
+    this.urlLogout = await this.utilidades.getServiceByName("UrlLogoutIAM");
+    this.inDev = await this.utilidades.getValidationByName("dev");
     if (!sessionStorage.getItem('loaded')) {
       setTimeout(function () {
         llamarEventosMainJS();
