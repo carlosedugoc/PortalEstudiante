@@ -1,0 +1,19 @@
+.bootstrap-select>.dropdown-toggle.bs-placeholder, 
+.bootstrap-select>.dropdown-toggle.bs-placeholder:active, 
+.bootstrap-select>.dropdown-toggle.bs-placeholder:focus, 
+.bootstrap-select>.dropdown-toggle.bs-placeholder:hover, {
+	color: #a2a2a2;
+	border-color: $borde_color;
+	background-color: transparent;
+	outline-color: $second_color !important;
+	box-shadow: none;
+	border-radius: 0;
+}
+.bootstrap-select .dropdown-menu>li>a:hover, .dropdown-menu>li>a {
+	font-size: 14px;
+	padding: 10px 15px;
+}
+.bootstrap-select .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+	background-color: $bg_active_nav;
+	color: #fff;
+}

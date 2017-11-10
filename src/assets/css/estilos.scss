@@ -27,7 +27,7 @@
 }
 
 // variables
-$color_texto_base: #565656;
+$color_texto_base: #565656; 
 $color-claro: #a9a9a9;
 $inactive_color: #b2b2b2;
 $big-font: 50px;
@@ -36,6 +36,13 @@ $main_tipography: 'Open Sans', sans-serif;
 $borde_color: #e7e7e7;
 $bg_active_nav: #40abd7;
 $bg_hover_menu: #f1f1f1;
+//variables color modules
+$pagos_color: #40ABD7;
+$consulta_color:#59C1A8;
+$solicitud_color:#F3C662;
+$portales_color:#8F7BB9;
+$sedes_color:#EA5765;
+$second_accion:#a2a2a2;
 // variables custom for each project
 $primary_color: #012351;
 $second_color: #ede000;
@@ -50,14 +57,22 @@ $primary_color_light: lighten($primary_color, 10%);
 @import 'switch.scss';
 @import 'checkbox.scss';
 @import 'table.scss';
-
+@import 'inputFile.scss';
+@import 'masonry.scss';
+@import 'selectPicker.scss';
+@import 'login.scss';
 
 
 // Mixins
 @mixin transition ($time){
-	-webkit-transition: all $time cubic-bezier(0.19, 1, 0.22, 1);
-	-moz-transition: all $time cubic-bezier(0.19, 1, 0.22, 1);
-	transition: all $time cubic-bezier(0.19, 1, 0.22, 1);
+	-webkit-transition: color $time cubic-bezier(0.19, 1, 0.22, 1);
+	-moz-transition: color $time cubic-bezier(0.19, 1, 0.22, 1);
+	-ms-transition: color $time cubic-bezier(0.19, 1, 0.22, 1);
+	transition: color $time cubic-bezier(0.19, 1, 0.22, 1);
+	-webkit-transition: background-color $time cubic-bezier(0.19, 1, 0.22, 1);
+	-moz-transition: background-color $time cubic-bezier(0.19, 1, 0.22, 1);
+	-ms-transition: background-color $time cubic-bezier(0.19, 1, 0.22, 1);
+	transition: background-color $time cubic-bezier(0.19, 1, 0.22, 1);
 }
 @mixin transform ($scale){
 	-webkit-transform: scale($scale);
@@ -81,14 +96,14 @@ $primary_color_light: lighten($primary_color, 10%);
 
 // structure body
 body {
-	background-color: #f1f1f1;
+	
 	section {
 		width: 100%;
 	}
 	font-family: $main_tipography;
 	color: #565656;
 	a, button {
-		@include transition(0.6s);
+		@include transition(0.3s);
 	}
 	#mainNav {
 		
@@ -118,7 +133,50 @@ body {
 
 }
 
-
+.boxTotal  {
+	position: relative;
+}
+// mensajes transversales
+.messageInfo {
+	width: 500px;
+	position: absolute;
+	bottom: 120px;
+	z-index: 99;
+	left: 50%;
+	border-radius: 4px;
+	box-shadow: 3px 3px 3px #ccc;
+	padding: 10px 12px;
+	text-align: center;
+	-webkit-transform: translate(-50%, 0);
+	transform: translate(-50%, 0);
+	background-color: #fff;
+	i {
+		margin-right: 10px;
+		font-size: 18px;
+	}
+	.fa-check-circle {
+		color: #55c0a8;
+	}
+	.fa-times-circle {
+		color: #ec5764;
+	}
+	.fa-exclamation-circle {
+		color: #ef9523;
+	}
+	.fa-info-circle {
+		color: #38a9d4;
+	}
+	.fa-close {
+		color: #ccc;
+	}
+	span {
+		font-weight: 700;
+	}
+	.cerrarMessage {
+		position: absolute;
+		right: 10px;
+	}
+}
 // colors from university
 header, footer {
 	background-color: $primary-color;
@@ -134,10 +192,22 @@ header, footer {
 	min-height: 100px;
 	.logoU {
 		text-align: center;
+		width: 100%;
+		img {
+			max-width: 170px;
+			max-height: 40px;
+		}
 	}
 	.optionsHeader {
 		color: #fff;
-
+		.tooltip-inner {
+			min-width: 110px;
+			background-color: $color_texto_base;
+			padding:5px;
+		}
+		.tooltip-arrow {
+			border-bottom-color: $color_texto_base;
+		}
 		ul {
 			margin-bottom: 0;
 			text-align: right;
@@ -146,9 +216,7 @@ header, footer {
 				margin-left: 20px;
 				a {
 					color: #fff;
-					&:hover {
-						color: $second_color;
-					}
+					
 				}
 			}
 		}
@@ -166,6 +234,7 @@ header, footer {
 				font-weight: 400;
 				padding: 0 5px;
 				margin: 0;
+				box-shadow: none;
 				&:focus {
 					-webkit-box-shadow: none;
 					-moz-box-shadow: none;
@@ -253,28 +322,114 @@ header, footer {
 					text-decoration: none;
 				}
 			}
+			.accordionHijo {
+				font-weight: 700;
+				li {
+					padding: 10px 8px;
+					background-color: #f1f1f1;
+				}
+				i {
+					@include transition(0.3s);
+					float: right;
+				}
+			}
+			.rotate180 {
+				-webkit-transform: rotate(180deg);
+				transform: rotate(180deg);
+			}
 			.seccionPadre {
 				font-size: 16px;
 				font-weight: 700;
 				padding-top: 13px;
 				padding-bottom: 13px;
 				color: $color_texto_base;
+				border-bottom: 1px solid #f1f1f1;
 				&:hover {
 					background-color: $bg_hover_menu;
 
 				}
-				&:not(.collapsed) {
-					background-color: $bg_active_nav;
-					color: #fff;
-				}
+				// &:not(.collapsed) {
+				// 	background-color: $bg_active_nav;
+				// 	color: #fff;
+				// }
 				i {
 					font-size: 23px;
 				}
 			}
+			.navPrincipal {
+				&.active {
+					background-color: $second_accion;
+					color: #fff;
+				}
+				&.active i {
+					color: #fff;
+				}
+			}
+			.navPagos {
+				i {
+					color: $pagos_color;
+				}
+				&.active {
+					background-color: $pagos_color;
+					color: #fff;
+				}
+				&.active i {
+					color: #fff;
+				}
+			}
+			.navConsulta {
+				i {
+					color: $consulta_color;
+				}
+				&.active {
+					background-color: $consulta_color;
+					color: #fff;
+				}
+				&.active i {
+					color: #fff;
+				}
+			}
+			.navSolicitud {
+				i {
+					color: $solicitud_color;
+				}
+				&.active {
+					background-color: $solicitud_color;
+					color: #fff;
+				}
+				&.active i {
+					color: #fff;
+				}
+			}
+			.navPortales {
+				i {
+					color: $portales_color;
+				}
+				&.active {
+					background-color: $portales_color;
+					color: #fff;
+				}
+				&.active i {
+					color: #fff;
+				}
+			}
+			.navSedes {
+				i {
+					color: $sedes_color;
+				}
+				&.active {
+					background-color: $sedes_color;
+					color: #fff;
+				}
+				&.active i {
+					color: #fff;
+				}
+				
+			}
 			li {
 				padding: 10px 20px;
 				span {
-					padding-left: 20px
+					padding-left: 20px;
 				}
 			}
 			ul {
@@ -294,12 +449,12 @@ header, footer {
 				li {
 					font-size: 14px;
 					
-					padding: 15px 8px;
+					padding: 15px 6px;
 					line-height: 1;
 					
 					span {
 						padding-left: 8px;
-						
+						display: inline-block;
 					}
 				}
 			}
@@ -307,11 +462,7 @@ header, footer {
 	}
 }
 #content {
-	
 	.miga {
-		&.bordeL {
-			border-left: 1px solid #b2b2b2;
-		}
 		.breadcrumb {
 			background-color: #f9f9f9;
 			padding: 30px;
@@ -321,6 +472,7 @@ header, footer {
 			font-family: $font_U;
 			font-weight: 700;
 			color: $primary_color;
+			text-transform: uppercase;
 			a {
 				color: $primary_color;
 			}
@@ -337,6 +489,26 @@ header, footer {
 #mainContent {
 	padding: 20px 20px 120px;
 	background-color: #f1f1f1;
+	min-height: 500px;
+	.infoWarning {
+		width: 100%;
+		text-align: center;
+		padding: 150px 100px 0;
+		i {
+			font-size: 50px;
+			margin-bottom: 20px;
+		}
+		p {
+			font-family: $font_U;
+			font-size: 18px;
+			line-height: 1.4;
+		}
+	}
+	.boxButtonsCenter {
+		display: none;
+		text-align: center;
+		padding: 20px;
+	}
 	.module {
 		background-color: #FFF;
 		border-top: 3px solid $second_color;
@@ -408,6 +580,11 @@ header, footer {
 #boxModal {
 	.modal {
 		top: 30%;
+		.infoDelete {
+			h4 {
+				color: $primary_color;
+			}
+		}
 		.modal-content {
 			box-shadow: none;
 			border-radius: 0;
@@ -457,33 +634,131 @@ header, footer {
 						color:  $second_color;
 					}
 				}
+				button.btnNoAccion {
+					background-color: $bg_hover_menu;
+					color: $second_accion;
+					&:hover {
+						background-color: rgba($bg_hover_menu, .5);
+					}
+				}
+			}
+		}
+		.infoDelete {
+			.modal-header {
+				h4 {
+					color: $primary_color;
+				}
 			}
 		}
 	}
 }
+
+// botones
+button.btnFirstAccion {
+	font-family: $font_U;
+	font-size: 14px;
+	line-height: 1;
+	font-weight: 700;
+	border-radius: 0;
+	background-color: $second_color;
+	color: $primary_color;
+	border: none;
+	padding: 10px 14px;
+	margin: 0 10px;
+	min-width: 120px;
+	&:hover {
+		background-color:$primary_color;
+		color:  $second_color;
+	}
+	&:focus {
+		outline: none;
+		border:none;
+	}
+}
+button.btnNoAccion {
+	font-family: $font_U;
+	font-size: 14px;
+	line-height: 1;
+	font-weight: 700;
+	border-radius: 0;
+	border: none;
+	padding: 10px 14px;
+	margin: 0 10px;
+	min-width: 120px;
+	background-color: $bg_hover_menu;
+	color: $second_accion;
+	&:hover {
+		background-color: rgba($bg_hover_menu, .5);
+		color: $second_accion;
+	}
+	&:focus {
+		outline: none;
+		border:none;
+	}
+}
 // footer
 .boxFooter {
-	position: fixed;
-	width: 100%;
-	bottom: 0;
+	
 }
 footer > .row{
 	@include flex;
 	@include flexAlignCenter;
 	min-height: 100px;
+	.BoxLogoFooter {
+		padding-left: 120px;
+		.logo-footer {
+			img {
+				max-width: 250px;
+				max-height: 40px;
+			}
+		}
+	}
 	.boxContacto {
+		@include flex;
+		@include flexAlignCenter;
+		-webkit-justify-content: flex-end;
+		-ms-justify-content: flex-end;
+		justify-content: flex-end;
+		padding-right: 120px;
+		.sedesContacto {
+			display: inline-block;
+			color: #fff;
+			margin-right: 30px;
+			ul {
+				margin-bottom: 0;
+				li {
+					text-align: left;
+					font-weight: 700;
+					font-size: 11px;
+					padding-left: 25px;
+					font-family: $font_U;
+					span {
+						display: block;
+						font-weight: 400;
+					}
+					i {
+						padding-right: 5px;
+						color: #fff;
+					}
+				}
+			}
+		}
 		.boxRedes {
 			float: right;
 			p {
 				color: #fff;
 				font-size: 12px;
 				margin-bottom: 5px;
+				text-align: left;
 			}
 			ul.redes {
 				margin-bottom: 0;
 				a {
 					font-size: 16px;
 					color: $primary_color;
+					&:hover {
+						text-decoration: none;
+					}
 				}
 				li {
 					display: inline-block;
