@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AdministracionService } from "./services/administracion.service";
 import { Menu, TipoMenu, ItemSubMenu, SubMenu, User } from "./app.models";
 import { StudentService } from './services/student.service'
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,19 @@ export class AppComponent implements OnInit {
   constructor(private router: Router,
     private translate: TranslateService,
     private adminService: AdministracionService,
-    private studentService: StudentService) {
+    private studentService: StudentService,
+    private oauthService: OAuthService) {
+
+      // CONEXION CON IAM
+      this.oauthService.loginUrl = "https://kcq-iamapp01.ilumno.net:9443/oauth2/authorize"; //Id-Provider?
+      this.oauthService.redirectUri = window.location.origin + "/index.html";
+      this.oauthService.clientId = "qAnYSzfC4Uf0B4_UqK4JjfDCpQQa";
+      this.oauthService.scope = "openid";
+      this.oauthService.oidc = true;
+      this.oauthService.setStorage(sessionStorage);
+      this.oauthService.logoutUrl = "https://kcq-iamapp01.ilumno.net:9443/oidc/logout";
+      this.oauthService.tryLogin({});
+
   }
 
   ngOnInit() {

@@ -6,6 +6,7 @@ import { HttpModule } from "@angular/http";
 import { FormsModule }   from '@angular/forms';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 //PIPES
 import { CapitalizarPipe } from './pipes/capitalizar.pipe';
@@ -14,6 +15,8 @@ import { FiltroFaltantesPipe } from './pipes/filtro-faltantes.pipe';
 
 //ROUTES
 import { appRouting } from "./app.routes";
+import {BASE_URL} from "./app.tokens";
+import { APP_CONFIG, AppConfig } from './app.config';
 
 //COMPONENTS
 import { AppComponent } from './app.component';
@@ -27,6 +30,7 @@ import { CargaArchivosComponent } from './components/carga-archivos/carga-archiv
 import { UniversityManagementComponent } from './components/university-management/university-management.component';
 import { FiltroMenuPipe } from './pipes/filtro-menu.pipe';
 import { GetFileNameOfPathPipe } from './pipes/get-file-name-of-path.pipe';
+import { LoginComponent } from './components/login/login.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -49,7 +53,8 @@ export function createTranslateLoader(http: HttpClient) {
     CargaArchivosComponent,
     UniversityManagementComponent,
     FiltroMenuPipe,
-    GetFileNameOfPathPipe
+    GetFileNameOfPathPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -63,9 +68,13 @@ export function createTranslateLoader(http: HttpClient) {
           useFactory: (createTranslateLoader),
           deps: [HttpClient]
       }
-  })
+  }),
+  OAuthModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    { provide: BASE_URL, useValue: "https://hpg-keycloak.northeurope.cloudapp.azure.com:8443"},
+    { provide: APP_CONFIG, useValue: AppConfig }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

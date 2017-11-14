@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { User } from "../../models/user";
 import { Menu } from "../../models/menu/menu";
 import { GeneralUtils } from "../../shared/GeneralUtils";
+import { OAuthService } from "angular-oauth2-oidc";
 
 declare var llamarEventosMainJS: any
 
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit {
   private inDev: any
 
   //Obtiene el user del sesión storage
-  constructor(private router: Router, http: Http) {
+  constructor(private router: Router, http: Http, private oauthService: OAuthService) {
     this.user = JSON.parse(sessionStorage.getItem('user'))
     this.utilidades = new GeneralUtils(http)
   }
@@ -61,6 +62,7 @@ export class HeaderComponent implements OnInit {
 
   //se cierra la sesión
   signOut() {
+    this.oauthService.logOut();
     sessionStorage.clear()
     //window.location.href = this.urlLogout
     ////this.router.navigate(['/'])
