@@ -125,7 +125,7 @@ export class AppComponent implements OnInit {
   }
 
   setLanguage(language: string, user: string, university: string) {
-    let url: string = `http://estudiantesservices.azurewebsites.net`
+    let url: string = `http://http://10.75.8.109/PEServices`
     this.adminService.getLanguage(language, user, university, url).subscribe(lan => {
       this.language = lan
       this.translate.use(lan);
@@ -141,7 +141,7 @@ export class AppComponent implements OnInit {
       userLanguage: language
     }
 
-    let url: string = 'http://estudiantesservices.azurewebsites.net'
+    let url: string = 'http://10.75.8.109/PEServices'
     this.adminService.putLanguage(objLanguage, url).subscribe(lan => {
       this.language = lan
     })

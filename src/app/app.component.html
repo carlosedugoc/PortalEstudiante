@@ -18,13 +18,14 @@
 </div>
 
 <div *ngIf="logued">
-    
+    <div class="boxTotal">
     <app-menu [menu]="menus | filtroMenu:1" [perfil]="menus | filtroMenu:5"></app-menu>
     <section id="content">
+        
         <app-header [strLanguage]="language" (language)="switchLanguage($event)" [notificacion]="menus | filtroMenu:3" [correo]="menus | filtroMenu:7"></app-header>
         <router-outlet></router-outlet>
     </section>
-        
+</div>
     <app-footer [redes]="menus | filtroMenu:4" [user]="user" [emisora]="menus | filtroMenu:6" ></app-footer>
 </div>
 

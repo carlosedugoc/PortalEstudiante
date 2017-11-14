@@ -27,6 +27,9 @@
   outline: none;
   text-decoration: none; }
 
+.btn:focus {
+  outline: none; }
+
 input, select {
   cursor: pointer;
   -webkit-appearance: none;
@@ -67,6 +70,18 @@ input[type=number] {
 
 .table-responsive::-webkit-scrollbar-thumb {
   background-color: #023983; }
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5; }
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #b2b2b2; }
+
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 5px; }
 
 a:focus {
   text-decoration: none;
@@ -767,6 +782,7 @@ body {
   body #mainNav {
     position: absolute;
     max-width: 250px;
+    padding-bottom: 195px;
     height: 100%;
     float: left;
     background-color: #FFF;
@@ -778,6 +794,9 @@ body {
     -moz-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     -ms-transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     transition: background-color 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
+    body #mainNav .menu {
+      overflow: auto;
+      height: 100%; }
     body #mainNav.hideNav {
       max-width: 100px; }
     body #mainNav .hideElement {
@@ -799,6 +818,8 @@ body {
 
 .boxTotal {
   position: relative; }
+  .boxTotal > .row {
+    position: relative; }
 
 .messageInfo {
   width: 500px;

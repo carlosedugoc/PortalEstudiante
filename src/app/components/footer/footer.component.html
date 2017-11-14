@@ -3,7 +3,7 @@
       <div class="row">
           <div class="col-sm-3 BoxLogoFooter">
               <div class="logo-footer">
-                  <a href="" target="_blank" title="Ilumno"><img src="./assets/img/logo_footer.png" id="logoFooter" alt="Ilumno"></a>
+                  <a href="" target="_blank" title="Ilumno"><img src="./assets/img/logo_footer0.png" id="logoFooter" alt="Ilumno"></a>
               </div>
           </div>
 
@@ -22,7 +22,7 @@
                 </ul>
             </div>
 
-              <div class="boxRedes" *ngIf="redes && redes.length > 0" >
+              <div class="boxRedes" *ngIf="user.rol == '1' || (redes && redes.length > 0)" >
                   <p>Síguenos</p>
                   <ul class="redes list-inline">
                       <a href="#" target="_blank">
