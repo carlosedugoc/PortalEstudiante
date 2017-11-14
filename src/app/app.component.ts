@@ -25,6 +25,10 @@ export class AppComponent implements OnInit {
   public perfiles: Menu[]
   public menus: TipoMenu[]
 
+  userName: string;
+  password: string;
+  loginFailed: boolean = false;
+
   constructor(private router: Router,
     private translate: TranslateService,
     private adminService: AdministracionService,
@@ -44,20 +48,68 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
-    this.logued = sessionStorage.getItem('logued') != null && sessionStorage.getItem('logued') == 'true'
-    console.log(this.logued)
-    let lan = window.navigator.language.substr(0, 2)
-    this.language = lan
-    this.translate.setDefaultLang(lan);
-    if (!this.logued) {
-      this.getUsuarios()
-    } else {
-      this.user = JSON.parse(sessionStorage.getItem('user'))
-      this.getMenu()
-      console.log(this.user)
-      document.getElementById('estilos')['href'] = `../assets/css/estilos${this.user.university}.css`
+    let token = sessionStorage.getItem('access_token')
+    console.log('token',token)
+    if (token){
+        this.router.navigate(['administration'])
+        document.getElementById('estilos')['href'] = `../assets/css/estilos${this.user.university}.css`
+        this.logued = true
+        sessionStorage.setItem('logued', 'true')
     }
+    else
+    {
+        this.login()
+    }
+  }
+
+  login() {
+    this.oauthService.clientId = "qAnYSzfC4Uf0B4_UqK4JjfDCpQQa";
+    this.oauthService.initImplicitFlow();
+  }
+
+  logout() {
+      this.oauthService.logOut();
+  }
+
+  get givenName() {
+      var claims = this.oauthService.getIdentityClaims();
+      if (!claims) return null;
+      return claims['given_name'];
+  }
+
+  loginWithPassword() {
+
+      this.oauthService.clientId = "qAnYSzfC4Uf0B4_UqK4JjfDCpQQa";
+
+      this
+          .oauthService
+          .fetchTokenUsingPasswordFlowAndLoadUserProfile(this.userName, this.password)
+          .then(() => {
+              console.debug('successfully logged in');
+              this.loginFailed = false;
+          })
+          .catch((err) => {
+              console.error('error logging in', err);
+              this.loginFailed = true;
+          })
+          .then(() => {
+              this.oauthService.clientId = "angular-app-1";
+          })
+
+    // debugger;
+    // this.logued = sessionStorage.getItem('logued') != null && sessionStorage.getItem('logued') == 'true'
+    // console.log(this.logued)
+    // let lan = window.navigator.language.substr(0, 2)
+    // this.language = lan
+    // this.translate.setDefaultLang(lan);
+    // if (!this.logued) {
+    //   this.getUsuarios()
+    // } else {
+    //   this.user = JSON.parse(sessionStorage.getItem('user'))
+    //   this.getMenu()
+    //   console.log(this.user)
+    //   document.getElementById('estilos')['href'] = `../assets/css/estilos${this.user.university}.css`
+    // }
   }
 
   getUsuarios() {
@@ -110,25 +162,25 @@ export class AppComponent implements OnInit {
     ]
   }
 
-  login(user: string) {
-    debugger;
-    this.logued = true
-    sessionStorage.setItem('logued', 'true')
-    this.user = this.users.find(item => item.userId == user)
-    sessionStorage.setItem('user', JSON.stringify(this.user))
-    this.setLanguage(this.language, this.user.userId, this.user.university)
-    document.getElementById('estilos')['href'] = `../assets/css/estilos${this.user.university}.css`
-    this.getMenu()
-    if (this.user.rol != "2") {
-      this.router.navigate(['administration'])
-    } else {
-      this.router.navigate(['student'])
-    }
-  }
+  // login(user: string) {
+  //   debugger;
+  //   this.logued = true
+  //   sessionStorage.setItem('logued', 'true')
+  //   this.user = this.users.find(item => item.userId == user)
+  //   sessionStorage.setItem('user', JSON.stringify(this.user))
+  //   this.setLanguage(this.language, this.user.userId, this.user.university)
+  //   document.getElementById('estilos')['href'] = `../assets/css/estilos${this.user.university}.css`
+  //   this.getMenu()
+  //   if (this.user.rol != "2") {
+  //     this.router.navigate(['administration'])
+  //   } else {
+  //     this.router.navigate(['student'])
+  //   }
+  // }
 
-  logout() {
+  // logout() {
 
-  }
+  // }
 
   getMenu() {
     this.studentService.getMenu(this.user).subscribe(menu => {

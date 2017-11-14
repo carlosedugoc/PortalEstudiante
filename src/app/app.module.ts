@@ -30,7 +30,6 @@ import { CargaArchivosComponent } from './components/carga-archivos/carga-archiv
 import { UniversityManagementComponent } from './components/university-management/university-management.component';
 import { FiltroMenuPipe } from './pipes/filtro-menu.pipe';
 import { GetFileNameOfPathPipe } from './pipes/get-file-name-of-path.pipe';
-import { LoginComponent } from './components/login/login.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -53,8 +52,7 @@ export function createTranslateLoader(http: HttpClient) {
     CargaArchivosComponent,
     UniversityManagementComponent,
     FiltroMenuPipe,
-    GetFileNameOfPathPipe,
-    LoginComponent
+    GetFileNameOfPathPipe
   ],
   imports: [
     BrowserModule,
