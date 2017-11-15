@@ -19,9 +19,11 @@ export class HeaderComponent implements OnInit {
   @Input('strLanguage') strLanguage: string
   @Input('notificacion') notificacion: Menu[]
   @Input('correo') correo: Menu[]
+  @Output() endSession: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   public utilidades: GeneralUtils // Clase de utilidades
   public user: User
-  private urlLogout: any
+  // private urlLogout: any
   private inDev: any
 
   //Obtiene el user del sesión storage
@@ -41,7 +43,7 @@ export class HeaderComponent implements OnInit {
 
     //// Se obtiene la información para el cierre de sesión.
 
-    this.urlLogout = await this.utilidades.getServiceByName("UrlLogoutIAM");
+    // this.urlLogout = await this.utilidades.getServiceByName("UrlLogoutIAM");
     this.inDev = await this.utilidades.getValidationByName("dev");
     if (!sessionStorage.getItem('loaded')) {
       setTimeout(function () {
@@ -62,9 +64,6 @@ export class HeaderComponent implements OnInit {
 
   //se cierra la sesión
   signOut() {
-    this.oauthService.logOut();
-    sessionStorage.clear()
-    //window.location.href = this.urlLogout
-    ////this.router.navigate(['/'])
+    this.endSession.emit(true)
   }
 }

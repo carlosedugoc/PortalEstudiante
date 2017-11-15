@@ -46,6 +46,7 @@ export class AdministracionComponent {
                 this.loading = false
                 this.show_table = false 
                 this.user = JSON.parse(sessionStorage.getItem('user'))
+                debugger;
                 if ( this.user.rol == '1'){
                   this.load_data(this.user.university)
                 }

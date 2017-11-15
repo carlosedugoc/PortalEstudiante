@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { TranslateService } from '@ngx-translate/core';
 import { AdministracionService } from "./services/administracion.service";
 import { Menu, TipoMenu, ItemSubMenu, SubMenu, User } from "./app.models";
 import { StudentService } from './services/student.service'
 import { OAuthService } from 'angular-oauth2-oidc';
+import { GeneralUtils } from "./shared/GeneralUtils";
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-root',
@@ -25,92 +27,140 @@ export class AppComponent implements OnInit {
   public perfiles: Menu[]
   public menus: TipoMenu[]
 
+  public utilidades: GeneralUtils
+
   userName: string;
   password: string;
   loginFailed: boolean = false;
+  public clientID: string
 
   constructor(private router: Router,
     private translate: TranslateService,
     private adminService: AdministracionService,
     private studentService: StudentService,
-    private oauthService: OAuthService) {
+    private oauthService: OAuthService,
+    private http: Http,
+    private route: ActivatedRoute) {
+    debugger;
 
-      // CONEXION CON IAM
-      this.oauthService.loginUrl = "https://kcq-iamapp01.ilumno.net:9443/oauth2/authorize"; //Id-Provider?
-      this.oauthService.redirectUri = window.location.origin + "/index.html";
-      this.oauthService.clientId = "qAnYSzfC4Uf0B4_UqK4JjfDCpQQa";
-      this.oauthService.scope = "openid";
-      this.oauthService.oidc = true;
-      this.oauthService.setStorage(sessionStorage);
-      this.oauthService.logoutUrl = "https://kcq-iamapp01.ilumno.net:9443/oidc/logout";
-      this.oauthService.tryLogin({});
+    this.utilidades = new GeneralUtils(http)
+    let url: string = this.utilidades.getParameterHrefByName('university')
+    this.connectIAM(url)
+  }
 
+  // connectIAM(url: string) {
+    
+  //       this.utilidades.load()
+    
+  //       switch (url) {
+  //         case "poli":
+  //           this.clientID = this.utilidades.getClientId('poli')
+  //           break;
+  //         case "aandina":
+  //           this.clientID = this.utilidades.getClientId('aandina')
+  //           break;
+  //         default:
+  //           this.clientID = this.utilidades.getClientId('ilumno')
+  //           break;
+  //       }
+    
+  //       debugger;
+    
+  //       this.configuraConexionIAM()
+  //       this.logIAM()
+    
+  //     }
+
+  async connectIAM(url: string) {
+
+    await this.utilidades.load()
+
+    switch (url) {
+      case "poli":
+        this.clientID = await this.utilidades.getClientId('poli')
+        break;
+      case "aandina":
+        this.clientID = await this.utilidades.getClientId('aandina')
+        break;
+      default:
+        this.clientID = await this.utilidades.getClientId('ilumno')
+        break;
+    }
+
+    debugger;
+
+    this.configuraConexionIAM()
+    this.logIAM()
+
+  }
+
+  configuraConexionIAM() {
+    this.oauthService.loginUrl = "https://kcq-iamapp01.ilumno.net:9443/oauth2/authorize"; //Id-Provider?
+    this.oauthService.redirectUri = window.location.origin + "/index.html";
+    // this.oauthService.clientId = "qAnYSzfC4Uf0B4_UqK4JjfDCpQQa";
+    debugger;
+    console.log('CLIENTE ID', this.clientID)
+    this.oauthService.clientId = this.clientID;
+    this.oauthService.scope = "openid";
+    this.oauthService.resource = "";
+    this.oauthService.oidc = true;
+    this.oauthService.setStorage(sessionStorage);
+    this.oauthService.logoutUrl = "https://kcq-iamapp01.ilumno.net:9443/oidc/logout";
+    this.oauthService.tryLogin({});
+    debugger;
+  }
+
+  logIAM() {
+    debugger;
+    let token = sessionStorage.getItem('access_token')
+    console.log('token', token)
+    if (token) {
+      this.getUsuarios()
+      var claims = this.oauthService.getIdentityClaims();
+      console.log('claims', claims)
+      this.logued = true
+      sessionStorage.setItem('logued', 'true')
+      this.user = this.users.find(item => item.userId == '')
+      sessionStorage.setItem('user', JSON.stringify(this.user))
+      this.switchLanguage('es')
+      document.getElementById('estilos')['href'] = `../assets/css/estilos${this.user.university}.css`
+      this.getMenu()
+      if (this.user.rol != "2") {
+        this.router.navigate(['administration'])
+      } else {
+        this.router.navigate(['student'])
+      }
+    }
+    else {
+      this.login()
+    }
   }
 
   ngOnInit() {
-    let token = sessionStorage.getItem('access_token')
-    console.log('token',token)
-    if (token){
-        this.router.navigate(['administration'])
-        document.getElementById('estilos')['href'] = `../assets/css/estilos${this.user.university}.css`
-        this.logued = true
-        sessionStorage.setItem('logued', 'true')
-    }
-    else
-    {
-        this.login()
-    }
+
   }
 
   login() {
-    this.oauthService.clientId = "qAnYSzfC4Uf0B4_UqK4JjfDCpQQa";
+    debugger;
+    // this.oauthService.clientId = "qAnYSzfC4Uf0B4_UqK4JjfDCpQQa";
+    this.oauthService.clientId = this.clientID
     this.oauthService.initImplicitFlow();
   }
 
-  logout() {
+  logout(endsession: boolean) {
+    if (endsession) {
+      this.oauthService.resource = "endsession"
       this.oauthService.logOut();
+      sessionStorage.clear();
+    }
   }
 
   get givenName() {
-      var claims = this.oauthService.getIdentityClaims();
-      if (!claims) return null;
-      return claims['given_name'];
+    var claims = this.oauthService.getIdentityClaims();
+    if (!claims) return null;
+    return claims['given_name'];
   }
 
-  loginWithPassword() {
-
-      this.oauthService.clientId = "qAnYSzfC4Uf0B4_UqK4JjfDCpQQa";
-
-      this
-          .oauthService
-          .fetchTokenUsingPasswordFlowAndLoadUserProfile(this.userName, this.password)
-          .then(() => {
-              console.debug('successfully logged in');
-              this.loginFailed = false;
-          })
-          .catch((err) => {
-              console.error('error logging in', err);
-              this.loginFailed = true;
-          })
-          .then(() => {
-              this.oauthService.clientId = "angular-app-1";
-          })
-
-    // debugger;
-    // this.logued = sessionStorage.getItem('logued') != null && sessionStorage.getItem('logued') == 'true'
-    // console.log(this.logued)
-    // let lan = window.navigator.language.substr(0, 2)
-    // this.language = lan
-    // this.translate.setDefaultLang(lan);
-    // if (!this.logued) {
-    //   this.getUsuarios()
-    // } else {
-    //   this.user = JSON.parse(sessionStorage.getItem('user'))
-    //   this.getMenu()
-    //   console.log(this.user)
-    //   document.getElementById('estilos')['href'] = `../assets/css/estilos${this.user.university}.css`
-    // }
-  }
 
   getUsuarios() {
     this.users = [
@@ -199,17 +249,6 @@ export class AppComponent implements OnInit {
 
   switchLanguage(language: string) {
     this.translate.use(language);
-
-    var objLanguage: any = {
-      userName: this.user.userId,
-      universityCode: this.user.university,
-      userLanguage: language
-    }
-
-    let url: string = 'http://10.75.8.109/PEServices'
-    this.adminService.putLanguage(objLanguage, url).subscribe(lan => {
-      this.language = lan
-    })
   }
 
 }

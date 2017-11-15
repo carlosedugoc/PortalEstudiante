@@ -26,5 +26,10 @@
     "dev": true,
     "tipoArchivo_CargaReglamento": "pdf",
     "tamanoArchivo_CargaReglamento": "4"
+  },
+  "clients":{
+    "aandina": "PEJMcU2GQ7wFDCYeJ7FiFAU548ga",
+    "poli": "tIUNIrRI1zFUVLzwk4S41lAuWYUa",
+    "ilumno":"qAnYSzfC4Uf0B4_UqK4JjfDCpQQa"
   }
 }
