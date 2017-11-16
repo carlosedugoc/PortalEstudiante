@@ -45,45 +45,25 @@ export class AppComponent implements OnInit {
 
     this.utilidades = new GeneralUtils(http)
     let url: string = this.utilidades.getParameterHrefByName('university')
+    debugger;
+    if (!url) {
+      url = localStorage.getItem('uni')
+    }
+    localStorage.setItem('uni', url)
     this.connectIAM(url)
   }
 
-  // connectIAM(url: string) {
-    
-  //       this.utilidades.load()
-    
-  //       switch (url) {
-  //         case "poli":
-  //           this.clientID = this.utilidades.getClientId('poli')
-  //           break;
-  //         case "aandina":
-  //           this.clientID = this.utilidades.getClientId('aandina')
-  //           break;
-  //         default:
-  //           this.clientID = this.utilidades.getClientId('ilumno')
-  //           break;
-  //       }
-    
-  //       debugger;
-    
-  //       this.configuraConexionIAM()
-  //       this.logIAM()
-    
-  //     }
-
-  async connectIAM(url: string) {
-
-    await this.utilidades.load()
+  connectIAM(url: string) {
 
     switch (url) {
       case "poli":
-        this.clientID = await this.utilidades.getClientId('poli')
+        this.clientID = 'tIUNIrRI1zFUVLzwk4S41lAuWYUa'
         break;
       case "aandina":
-        this.clientID = await this.utilidades.getClientId('aandina')
+        this.clientID = 'PEJMcU2GQ7wFDCYeJ7FiFAU548ga'
         break;
       default:
-        this.clientID = await this.utilidades.getClientId('ilumno')
+        this.clientID = 'qAnYSzfC4Uf0B4_UqK4JjfDCpQQa'
         break;
     }
 
@@ -94,15 +74,37 @@ export class AppComponent implements OnInit {
 
   }
 
+  // async connectIAM(url: string) {
+
+  //   await this.utilidades.load()
+
+  //   switch (url) {
+  //     case "poli":
+  //       this.clientID = await this.utilidades.getClientId('poli')
+  //       break;
+  //     case "aandina":
+  //       this.clientID = await this.utilidades.getClientId('aandina')
+  //       break;
+  //     default:
+  //       this.clientID = await this.utilidades.getClientId('ilumno')
+  //       break;
+  //   }
+
+  // }
+
   configuraConexionIAM() {
     this.oauthService.loginUrl = "https://kcq-iamapp01.ilumno.net:9443/oauth2/authorize"; //Id-Provider?
     this.oauthService.redirectUri = window.location.origin + "/index.html";
     // this.oauthService.clientId = "qAnYSzfC4Uf0B4_UqK4JjfDCpQQa";
-    debugger;
     console.log('CLIENTE ID', this.clientID)
     this.oauthService.clientId = this.clientID;
     this.oauthService.scope = "openid";
     this.oauthService.resource = "";
+    debugger;
+    if (localStorage.getItem('endsession') == 'true') {
+      this.oauthService.resource = "endsession"
+      localStorage.removeItem('endsession')
+    }
     this.oauthService.oidc = true;
     this.oauthService.setStorage(sessionStorage);
     this.oauthService.logoutUrl = "https://kcq-iamapp01.ilumno.net:9443/oidc/logout";
@@ -132,6 +134,9 @@ export class AppComponent implements OnInit {
       }
     }
     else {
+      if (localStorage.getItem('endsession') == 'true') {
+
+      }
       this.login()
     }
   }

@@ -64,6 +64,7 @@ export class HeaderComponent implements OnInit {
 
   //se cierra la sesión
   signOut() {
+    localStorage.setItem('endsession', 'true')
     this.endSession.emit(true)
   }
 }
