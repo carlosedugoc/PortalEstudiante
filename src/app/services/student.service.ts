@@ -31,6 +31,7 @@ export class StudentService implements OnInit {
     this.generalUrl = 'http://10.75.8.109/PEServices'
     console.log('ingreso al servicio')
     let urlServicio:string = `${this.generalUrl}/api/Option/University/${user.university}/Level/${user.level}/Modality/${user.modality}/UserType/${user.userType}`
+    console.log('servicio menu',urlServicio)
     return this.http.get(urlServicio).map(menu=>{ 
       return menu.json()
     })

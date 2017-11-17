@@ -40,6 +40,8 @@ export class AppComponent {
     private studentService: StudentService,
     private oauthService: OAuthService,
     private http: Http) {
+      this.language = window.navigator.language.substr(0,2)
+      this.translate.setDefaultLang(this.language);
       this.connectIAM(this.getParameters())
   }
 
@@ -148,9 +150,7 @@ export class AppComponent {
       sessionStorage.setItem('user', JSON.stringify(this.user))
       //Se colocan los estilos segun la universidad y el idioma
       document.getElementById('estilos')['href'] = `../assets/css/estilos${this.user.university}.css`
-      this.language = 'es'
-      this.switchLanguage('es')
-
+      this.switchLanguage(this.language)
       this.getMenu()
       //Se redirecciona dependiendo del rol que se loguea
       if (this.user.rol != "2") {
