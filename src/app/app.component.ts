@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
+import { Component } from '@angular/core';
+import { Router } from "@angular/router";
 import { TranslateService } from '@ngx-translate/core';
 import { AdministracionService } from "./services/administracion.service";
 import { Menu, TipoMenu, ItemSubMenu, SubMenu, User } from "./app.models";
@@ -14,7 +14,7 @@ import { Http } from '@angular/http';
   styleUrls: ['./app.component.css'],
   providers: [AdministracionService, StudentService]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   public logued: boolean
   public language: string
@@ -39,35 +39,58 @@ export class AppComponent implements OnInit {
     private adminService: AdministracionService,
     private studentService: StudentService,
     private oauthService: OAuthService,
-    private http: Http,
-    private route: ActivatedRoute) {
-    debugger;
-
-    this.utilidades = new GeneralUtils(http)
-    let url: string = this.utilidades.getParameterHrefByName('university')
-    debugger;
-    if (!url) {
-      url = localStorage.getItem('uni')
-    }
-    localStorage.setItem('uni', url)
-    this.connectIAM(url)
+    private http: Http) {
+      this.connectIAM(this.getParameters())
   }
 
+  ////Obtiene los parametros enviados por get y los almacena en el localstorage
+  getParameters(){
+    this.utilidades = new GeneralUtils(this.http)
+    let url: string = this.utilidades.getParameterHrefByName('university')
+    let usr: string = this.utilidades.getParameterHrefByName('usr')
+    if (usr){
+      localStorage.setItem('codUsr', usr)
+    }
+    if (!url) { url = localStorage.getItem('uni') }
+    localStorage.setItem('uni', url)
+    return url
+  }
+  
+  //CLIENTS ID EN DESPLIEGUE
+
+  // connectIAM(url: string) {
+
+  //   switch (url) {
+  //     case "poli":
+  //       this.clientID = 'tIUNIrRI1zFUVLzwk4S41lAuWYUa'
+  //       break;
+  //     case "aandina":
+  //       this.clientID = 'PEJMcU2GQ7wFDCYeJ7FiFAU548ga'
+  //       break;
+  //     default:
+  //       this.clientID = 'qAnYSzfC4Uf0B4_UqK4JjfDCpQQa'
+  //       break;
+  //   }
+
+  //   this.configuraConexionIAM()
+  //   this.logIAM()
+
+  // }
+
+  //CLIENTS ID EN DESARROLLO
   connectIAM(url: string) {
 
     switch (url) {
       case "poli":
-        this.clientID = 'tIUNIrRI1zFUVLzwk4S41lAuWYUa'
+        this.clientID = 'LfvveQdYe4BFSfE0GT1N5mUH8OEa'
         break;
       case "aandina":
-        this.clientID = 'PEJMcU2GQ7wFDCYeJ7FiFAU548ga'
+        this.clientID = 'VGZjZR9US6kFqn5pP3YNEymOwiwa'
         break;
       default:
-        this.clientID = 'qAnYSzfC4Uf0B4_UqK4JjfDCpQQa'
+        this.clientID = 'aeemiW1RZu4nIYl2frJEPnxN9wQa'
         break;
     }
-
-    debugger;
 
     this.configuraConexionIAM()
     this.logIAM()
@@ -92,15 +115,13 @@ export class AppComponent implements OnInit {
 
   // }
 
+  //Se configura el objeto del IAM con los parametros de conexión
   configuraConexionIAM() {
     this.oauthService.loginUrl = "https://kcq-iamapp01.ilumno.net:9443/oauth2/authorize"; //Id-Provider?
     this.oauthService.redirectUri = window.location.origin + "/index.html";
-    // this.oauthService.clientId = "qAnYSzfC4Uf0B4_UqK4JjfDCpQQa";
-    console.log('CLIENTE ID', this.clientID)
     this.oauthService.clientId = this.clientID;
     this.oauthService.scope = "openid";
     this.oauthService.resource = "";
-    debugger;
     if (localStorage.getItem('endsession') == 'true') {
       this.oauthService.resource = "endsession"
       localStorage.removeItem('endsession')
@@ -109,57 +130,56 @@ export class AppComponent implements OnInit {
     this.oauthService.setStorage(sessionStorage);
     this.oauthService.logoutUrl = "https://kcq-iamapp01.ilumno.net:9443/oidc/logout";
     this.oauthService.tryLogin({});
-    debugger;
   }
 
+  //Configuración del login 
   logIAM() {
-    debugger;
+    this.getUsuarios()
     let token = sessionStorage.getItem('access_token')
     console.log('token', token)
     if (token) {
-      this.getUsuarios()
-      var claims = this.oauthService.getIdentityClaims();
-      console.log('claims', claims)
       this.logued = true
       sessionStorage.setItem('logued', 'true')
-      this.user = this.users.find(item => item.userId == '')
+      //Se obtiene el usuario
+      let codUsr:string = localStorage.getItem('codUsr')
+      if(!codUsr){codUsr = ''}
+      console.log('usuario',codUsr)
+      this.user = this.users.find(item => item.userId == codUsr)
       sessionStorage.setItem('user', JSON.stringify(this.user))
-      this.switchLanguage('es')
+      //Se colocan los estilos segun la universidad y el idioma
       document.getElementById('estilos')['href'] = `../assets/css/estilos${this.user.university}.css`
+      this.language = 'es'
+      this.switchLanguage('es')
+
       this.getMenu()
+      //Se redirecciona dependiendo del rol que se loguea
       if (this.user.rol != "2") {
         this.router.navigate(['administration'])
       } else {
         this.router.navigate(['student'])
       }
+
     }
     else {
-      if (localStorage.getItem('endsession') == 'true') {
-
-      }
       this.login()
     }
   }
 
-  ngOnInit() {
-
-  }
-
+  //Realiza la autenticación ante el IAM
   login() {
-    debugger;
-    // this.oauthService.clientId = "qAnYSzfC4Uf0B4_UqK4JjfDCpQQa";
     this.oauthService.clientId = this.clientID
     this.oauthService.initImplicitFlow();
   }
 
+  //Realiza el cierre de sessión ante el IAM
   logout(endsession: boolean) {
     if (endsession) {
-      this.oauthService.resource = "endsession"
       this.oauthService.logOut();
       sessionStorage.clear();
     }
   }
 
+  //Obtiene los datos del usuario autenticado
   get givenName() {
     var claims = this.oauthService.getIdentityClaims();
     if (!claims) return null;
@@ -167,6 +187,7 @@ export class AppComponent implements OnInit {
   }
 
 
+  //Obtiene los usuarios de prueba
   getUsuarios() {
     this.users = [
       {
@@ -217,26 +238,7 @@ export class AppComponent implements OnInit {
     ]
   }
 
-  // login(user: string) {
-  //   debugger;
-  //   this.logued = true
-  //   sessionStorage.setItem('logued', 'true')
-  //   this.user = this.users.find(item => item.userId == user)
-  //   sessionStorage.setItem('user', JSON.stringify(this.user))
-  //   this.setLanguage(this.language, this.user.userId, this.user.university)
-  //   document.getElementById('estilos')['href'] = `../assets/css/estilos${this.user.university}.css`
-  //   this.getMenu()
-  //   if (this.user.rol != "2") {
-  //     this.router.navigate(['administration'])
-  //   } else {
-  //     this.router.navigate(['student'])
-  //   }
-  // }
-
-  // logout() {
-
-  // }
-
+  //Obtiene el menú con las opciones parametrizadas para los usuarios
   getMenu() {
     this.studentService.getMenu(this.user).subscribe(menu => {
       this.menus = menu
@@ -244,6 +246,7 @@ export class AppComponent implements OnInit {
     })
   }
 
+  //Establece el idioma del portal
   setLanguage(language: string, user: string, university: string) {
     let url: string = `http://http://10.75.8.109/PEServices`
     this.adminService.getLanguage(language, user, university, url).subscribe(lan => {
@@ -252,6 +255,7 @@ export class AppComponent implements OnInit {
     })
   }
 
+  //Cambia el lenguaje de la página
   switchLanguage(language: string) {
     this.translate.use(language);
   }

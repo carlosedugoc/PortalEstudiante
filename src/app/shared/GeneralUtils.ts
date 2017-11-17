@@ -11,7 +11,6 @@ export class GeneralUtils {
     //// Método de carga de información por defecto.
     async load() {
         this.config = await this.getAllConfiguration();
-        debugger;
     }
 
     //// Método que obtiene toda la información del archivo de configuración.
@@ -37,14 +36,14 @@ export class GeneralUtils {
         return result;
     }
 
+    //// Método que obtiene el clientID segun la universidad
     public getClientId(key: string) {
-        debugger;
         console.log('clientid', this.config.clients[key])
         return this.config.clients[key];
     }
 
+    //// Método que obtiene los parametros enviados por get en la petición
     public getParameterHrefByName(name) {
-        debugger;
         let url = location.href
         url = url.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),

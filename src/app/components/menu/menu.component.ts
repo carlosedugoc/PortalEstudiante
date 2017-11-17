@@ -21,7 +21,6 @@ export class MenuComponent implements AfterViewInit, OnInit {
   public user:User
 
   constructor(){
-    debugger;
     this.user = JSON.parse(sessionStorage.getItem('user'))
   }
 
