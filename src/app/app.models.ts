@@ -3,3 +3,17 @@ export { ItemSubMenu } from './models/menu/itemsubmenu'
 export { SubMenu } from './models/menu/submenu'
 export { TipoMenu } from './models/menu/tipomenu'
 export { User } from "./models/user";
+export { AcademicProgram } from "./models/academic-program";
+export { Item } from "./models/item";
+export { Level } from "./models/level";
+export { Modality } from "./models/modality";
+export { Residence } from "./models/residence";
+export { Servicio } from "./models/servicio";
+export { Status } from "./models/status";
+export { Student } from "./models/Banner/Student/student";
+export { AcademicRecords } from './models/Banner/Student/academic-records'
+export { University } from "./models/university";
+export { UrlServicios } from "./models/url-servicios";
+export { IBreadcrumb } from "./models/ibreadcrumb"
+export { Alert } from './models/Alert'
+export { AuthInfo } from './models/Auth/AuthInfo'

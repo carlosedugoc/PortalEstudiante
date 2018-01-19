@@ -1,0 +1,43 @@
+<!-- <div *ngIf="demo" *ngFor="let item of pagedItems">{{item.name}}</div> -->
+<div class="row actionsServicesTable">
+  <div class="col-sm-4">
+    <div class="cantidadServicios">
+      <span>{{'Paginador.labelMostrar' | translate }}</span>
+      <select class="form-control selectpicker" *ngIf="pagedItems != undefined" (change)="setMaxItemsXPage($event.target.value)">
+        <option value="10">10</option>
+        <option value="20" *ngIf="pager.totalItems > 10">20</option>
+        <option value="30" *ngIf="pager.totalItems > 20">30</option>
+        <option value="40" *ngIf="pager.totalItems > 30">40</option>
+        <option value="50" *ngIf="pager.totalItems > 40">50</option>
+      </select>
+      <span>
+        {{elementsXPageLabel | translate}}
+      </span>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <div class="boxPagination">
+      <span>{{'Paginador.labelPagina' | translate}}</span>
+      <nav aria-label="Page navigation">
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li [ngClass]="{disabled:pager.currentPage === 1}" *ngIf="pager.totalPages > 10">
+            <a (click)="setPage(1)">{{'Paginador.labelPrimero' | translate}}</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(pager.currentPage - 1)">{{'Paginador.labelAnterior' | translate}}</a>
+          </li>
+          <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+            <a (click)="setPage(page)">{{page}}</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.currentPage + 1)">{{'Paginador.labelSiguiente' | translate}}</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" *ngIf="pager.totalPages > 10">
+            <a (click)="setPage(pager.totalPages)">{{'Paginador.labelUltimo' | translate}}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<!-- {{pager | json}} -->

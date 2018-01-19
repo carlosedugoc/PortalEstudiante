@@ -1,0 +1,110 @@
+<section class="miga text-uppercase">
+  <ol class="breadcrumb">
+    <li>
+      <a href="#">{{ 'Menu.LabelAdministracion' | translate }}</a>
+    </li>
+    <li class="active">{{ 'Menu.LabelReglamentos' | translate }}</li>
+  </ol>
+</section>
+<section id="mainContent" *ngIf="cargarArchivo">
+  <div class="module">
+    <div class="headModule">
+      <h1>{{ 'GestionReglamentos.LabelEncabezado' | translate }}</h1>
+      <!-- {{user | json}} -->
+    </div>
+    <div class="bodyModule">
+      <!-- combo de universidad -->
+      <div class="row boxCombo" *ngIf="user.university == 0 && user.rol == 1">
+        <div class="col-sm-6 col-md-4">
+          <div class="form-group">
+            <label for="exampleInputEmail1">{{ 'GestionReglamentos.LabelUniversidad' | translate }}</label>
+            <div class="">
+              <select name="universidades" id="input" class="form-control selectpicker" (change)="cargarDatos($event.target.value)" attr.title="{{'Transversales.LabelSeleccione' | translate}}">
+                <option *ngFor="let uni of universidades" [value]="uni.code">{{uni.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- aquí se realiza el cargue de archivo -->
+      <div class="row {{estiloVisibleCargarArchivo}}">
+        <div class="col-xs-12">
+          <div id="no-more-tables">
+            <div class="table-responsive">
+              <table class="table-bordered table-striped table-condensed">
+                <thead class="">
+                  <tr class="headBold">
+                    <th class="boxInputName">{{ 'GestionReglamentos.LabelNombre' | translate }}</th>
+                    <th class="boxInputFile">{{ 'GestionReglamentos.LabelArchivo' | translate }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-title="Nombre" class="boxInputName">
+                      <input type="text" class="form-control inputCanChange required {{ validar && nuevoReglamento != undefined && nuevoReglamento.regulationName == '' ? 'invalid' : '' }}"
+                        value="{{ universidadReglamento != undefined ? universidadReglamento.regulationName : '' }}" (change)="modificarNombre($event.target.value)"
+                        maxlength="50">
+                    </td>
+                    <td data-title="Archivo" class="boxInputFile">
+                      <div class="input-group image-preview ">
+                        <!-- image-preview-filename -->
+                        <input type="text" class="form-control image-preview-filename {{ validar && !tieneArchivo ? 'invalid' : '' }}" disabled=""
+                          value="{{ fileNamePath | getFileNameOfPath}} " placeholder="{{ 'GestionReglamentos.PlaceHolderSeleccione' | translate  }}">
+                        <span class="input-group-btn">
+                          <!-- image-preview-input -->
+                          <div class="btn btn-default image-preview-input {{ !tieneArchivo  ? '' : 'hidden' }} {{ validar && !tieneArchivo ? 'invalid' : '' }} ">
+                            <i id="changeIconInputFile" class="fa fa-upload" aria-hidden="true"></i>
+                            <input type="file" class="inputFileCanChange" (change)="seleccionarArchivo($event.target.files)">
+                          </div>
+                          <div class="btn btn-default  image-preview-input-2 {{ tieneArchivoReal && tieneArchivo ? '' : 'hidden' }}">
+                            <a href="{{ urlDescarga != undefined ? urlDescarga : '#' }}" target="_blank">
+                              <!-- <a href="!#" target="_blank" (click)="descargarReglamento()"> -->
+                              <i id="changeIconInputFile" class="fa fa-download" aria-hidden="true"></i>
+                            </a>
+                          </div>
+                          <!-- image-preview-clear -->
+                          <button type="button" class="btn btn-default image-preview-clear {{ tieneArchivo ? '' : 'hidden' }}">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                          </button>
+                        </span>
+                        <!-- /input-group-btn -->
+                      </div>
+                      <!-- /input-group [image preview] -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 {{guardarArchivo ? '' : 'hidden'}}">
+          <div class="boxButtonsCenter">
+            <button type="button" id="btnCancelProcess" class="text-uppercase btn btn-default btnNoAccion" (click)="cancelarCarga()">{{ 'GestionReglamentos.LabelCancelar' | translate }}</button>
+            <button type="button" class="text-uppercase btn-default btnFirstAccion" (click)="guardarDatos()">{{ 'GestionReglamentos.LabelGuardar' | translate }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="boxModal">
+  <div class="modal fade" id="modal-clear">
+    <div class="modal-dialog infoDelete">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-center">{{ 'GestionReglamentos.ModalTitulo' | translate }}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <p>{{fileNamePath | getFileNameOfPath}}</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btnNoAccion" data-dismiss="modal">{{ 'GestionReglamentos.ModalCancelar' | translate }}</button>
+          <button type="button" class="btn btn-default btnFirstAccion" data-dismiss="modal" (click)="eliminarArchivo()">{{ 'GestionReglamentos.ModalEliminiar' | translate }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

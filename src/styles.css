@@ -1,36 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+
 .has-error .form-control {
     border-color: #dc3545 !important;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075) !important;
     color: #dc3545 !important;
-  }
-  
-  .has-error .form-control::-webkit-input-placeholder {
+}
+
+.has-error .form-control::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
     border-color: #dc3545 !important;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075) !important;
     color: #dc3545 !important;
-  }
+}
 
-  /*Estilos para los botones del menu lateral*/
-  #mainNav .menu ul .navCONSULTAS i {
-    color: #59C1A8; }
-  #mainNav .menu ul .navCONSULTAS.active {
-    background-color: #59C1A8;
-    color: #fff; }
-  #mainNav .menu ul .navCONSULTAS.active i {
-    color: #fff; }
-    #mainNav .menu ul .navSOLICITUDES i {
-      color: #F3C662; }
-    #mainNav .menu ul .navSOLICITUDES.active {
-      background-color: #F3C662;
-      color: #fff; }
-    #mainNav .menu ul .navSOLICITUDES.active i {
-      color: #fff; }
-    #mainNav .menu ul .navPORTALES i {
-      color: #8F7BB9; }
-    #mainNav .menu ul .navPORTALES.active {
-      background-color: #8F7BB9;
-      color: #fff; }
-    #mainNav .menu ul .navPORTALES.active i {
-      color: #fff; }
+.labelAdminRol {
+    display: block;
+    padding-top: 10px;
+}
+
+.cerrarMessage {
+    cursor: pointer;
+}
+
+.messageInfo.ng-enter {
+    opacity: 0;
+    transition: all .5s ease;
+}
+
+.disableControl {
+    pointer-events: none !important;
+    cursor: default !important;
+    color: darkgrey !important;
+}
+
+.pagination>li>a:hover,
+.pagination>li>span:hover,
+.pagination>li>a:focus,
+.pagination>li>span:focus {
+    cursor: pointer;
+}

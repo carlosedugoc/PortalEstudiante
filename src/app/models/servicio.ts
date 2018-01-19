@@ -7,6 +7,9 @@ export class Servicio {
         public categoryName:string,
         public data:Item[],
         public url:string,
-        public status:boolean
+        public status:boolean,
+        public offered:boolean,
+        public modified:boolean,
+        public origin:number
     ){}
 }

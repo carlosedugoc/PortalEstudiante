@@ -88,3 +88,6 @@ img {
 .modal-backdrop.in {
   opacity: .3;
 }
+select::-ms-expand {
+    display: none;
+}

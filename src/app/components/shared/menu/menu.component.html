@@ -1,0 +1,125 @@
+<section id="mainNav">
+
+    <div class="user">
+        <img *ngIf="user != undefined && user.rol == '1' && user.university=='0'" src="./assets/img/avatarAdmin0.png" alt="" class="imgProfile">
+        <img *ngIf="user != undefined && user.rol == '1' && user.university=='1'" src="./assets/img/avatarAdmin1.png" alt="" class="imgProfile">
+        <img *ngIf="user != undefined && user.rol == '1' && user.university=='2'" src="./assets/img/avatarAdmin2.png" alt="" class="imgProfile">
+        <img *ngIf="user != undefined && user.rol != '1'" src="./assets/img/user.png" alt="" class="imgProfile" routerLink="/student-info">
+        <div class="name">
+            <h3 *ngIf="user != undefined && user.rol == '1'">{{ 'Menu.LabelNombre' | translate }}</h3>
+            <h3 *ngIf="user != undefined && user.rol != '1'">{{ student == undefined ? '' : student?.firstName + ' ' + student?.lastName }}
+            </h3>
+            <a *ngIf="user != undefined && user.rol != '1'" 
+            routerLink="/student-info" class="iconLogOut" data-toggle="tooltip" data-placement="bottom" attr.data-original-title="{{ 'Transversales.TooltipConsultarPerfil' | translate }}"
+                aria-hidden="true">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="carrer">
+            <span *ngIf="user != undefined && user.rol == '1' && user.university=='0'" class="labelAdminRol">{{'Transversales.LabelAdminIlumno' | translate }}</span>
+            <span *ngIf="user != undefined && user.rol == '1' && user.university=='1'" class="labelAdminRol">{{'Transversales.LabelAdminAreandina' | translate }}</span>
+            <span *ngIf="user != undefined && user.rol == '1' && user.university=='2'" class="labelAdminRol">{{'Transversales.LabelAdminPoli' | translate }}</span>
+            <div *ngIf="user != undefined && user.rol != '1' &&  student != undefined && student.academicRecords != undefined && onlyOneProgram">
+                <span class="labelAdminRol" *ngFor="let item of student.academicRecords">{{item.programDescription | capitalizar}}</span>
+            </div>
+            <select *ngIf="user != undefined && user.rol != '1' &&  student != undefined && student.academicRecords != undefined && !onlyOneProgram"
+                name="" id="input" class="form-control selectpicker" required="required" (change)="changeAcademicRecord($event.target.value)">
+
+                <option *ngFor="let item of student.academicRecords" [value]="item.programId">{{item.programDescription | capitalizar}}</option>
+            </select>
+            <p *ngIf="user != undefined && user.rol != '1'" class="modalidad">{{ (academicRecordSelected != undefined ? academicRecordSelected?.levelDescription + ' ' + academicRecordSelected?.modality
+                : '') | capitalizar}}</p>
+        </div>
+    </div>
+    <nav class="menu" id="accordion">
+
+        <ul class="panel" id="panel">
+
+            <a class="seccionPadre navPrincipal collapsed {{('Menu.LabelPrincipal' | translate)== nombrePadreActivo  ? 'active' : '' }}"
+                data-parent="#accordion" data-toggle="collapse" href="#" (click)="goPrincipal()">
+                <li>
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <span>{{'Menu.LabelPrincipal' | translate}}</span>
+                </li>
+            </a>
+
+            <!-- <ul class="collapse" id="collapse0"></ul> -->
+
+            <a *ngIf="user != undefined && user.rol == '1'" class="seccionPadre navPagos active" data-parent="#accordion" data-toggle="collapse"
+                href="#collapse0">
+                <li>
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                    <span>{{'Menu.LabelAdministracion' | translate}}</span>
+                </li>
+            </a>
+            <ul class="collapse" id="collapse0">
+                <a [routerLink]="['service-settings']" routerLinkActive="active">
+                    <li>
+                        <span>{{'Menu.LabelConfiguracionServicios' | translate}}</span>
+                    </li>
+                </a>
+                <a [routerLink]="['univ-management']" routerLinkActive="active" *ngIf="user != undefined && user.university == '0'">
+                    <li>
+                        <span>{{'Menu.LabelConfiguracionUniversidades' | translate}}</span>
+                    </li>
+                </a>
+                <a [routerLink]="['file-loading']" routerLinkActive="active">
+                    <li>
+                        <span>{{'Menu.LabelReglamentos' | translate}}</span>
+                    </li>
+                </a>
+            </ul>
+            <!-- INICIO ACCORDION -->
+            <ng-container *ngFor="let padre of menu; let padreIdx = index">
+                <a *ngIf="user != undefined && user.rol == '2'" id="wrap" class="seccionPadre {{padre.clase}} {{padre.name == nombrePadreActivo  ? 'active' : '' }}"
+                    data-parent="#accordion" data-toggle="collapse" href="#collapse{{padreIdx + 1}}">
+                    <li>
+                        <i class="fa fa-{{padre.logo}}" aria-hidden="true"></i>
+                        <span>{{padre.name}}</span>
+                    </li>
+                </a>
+                <ul *ngIf="user != undefined && user.rol == '2'" id="wrap" class="collapse" id="collapse{{padreIdx + 1}}">
+                    <nav id="subAccordion2">
+                        <ul *ngFor="let hijo of padre.data; let idxHijo = index" class="panel">
+                            <a *ngIf="hijo.data" class="accordionHijo" data-toggle="collapse" href="#collapse{{padreIdx + 1}}{{idxHijo}}">
+                                <li>
+                                    <span>{{hijo.name}}</span>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </li>
+                            </a>
+                            <a *ngIf="!hijo.data && !hijo.isBanner" class="accordionHijo" target="_blank" href="{{hijo.url}}">
+                                <li>
+                                    <span>{{hijo.name}}</span>
+                                </li>
+                            </a>
+                            <a *ngIf="!hijo.data  && hijo.isBanner" class="accordionHijo" data-toggle="collapse" (click)="goToService(padre.name, hijo.name, '', hijo.url, padre.clase)"
+                                routerLink="">
+                                <li>
+                                    <span>{{hijo.name}}</span>
+                                </li>
+                            </a>
+                            <ul class="collapse" id="collapse{{padreIdx + 1}}{{idxHijo}}">
+                                <ng-container *ngFor="let nieto of hijo.data">
+                                    <a *ngIf="!nieto.isBanner && nieto.url.includes('http')" target="_blank" href="{{nieto.url}}">
+                                        <li>
+                                            <span>{{nieto.name}}</span>
+                                        </li>
+                                    </a>
+                                    <a *ngIf="(!nieto.isBanner && !nieto.url.includes('http'))|| nieto.isBanner" (click)="goToService(padre.name, hijo.name, nieto.name, nieto.url, padre.clase)"
+                                        routerLink="">
+                                        <li>
+                                            <span>{{nieto.name}}</span>
+                                        </li>
+                                    </a>
+                                </ng-container>
+                            </ul>
+                        </ul>
+                    </nav>
+                </ul>
+            </ng-container>
+
+            <!-- FIN ACCORDION -->
+
+        </ul>
+    </nav>
+</section>

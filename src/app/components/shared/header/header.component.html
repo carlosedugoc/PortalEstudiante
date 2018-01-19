@@ -1,0 +1,35 @@
+<header>
+    <div class="container-fluid">
+        <div class="row mainHead">
+            <div class="col-sm-4">
+                <a class="navicon-button rarr">
+                    <div class="navicon"></div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <div class="logoU">
+                    <img src="./assets/img/logo_header0.png" id="logo" alt="">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="optionsHeader">
+                    <ul class="list-inline">
+                        <li>
+                            <div class="boxSelect">
+                                <select name="" id="input" class="form-control" required="required" [value]="strLanguage" (change)="switchLanguage($event.target.value)">
+                                    <option value="es">ES</option>
+                                    <option value="en">EN</option>
+                                    <option value="pt">PT</option>
+                                </select>
+                            </div>
+                        </li>
+
+                        <li *ngIf="notificacion && notificacion.length > 0"><a href="#" id="notifacionesIcon" data-toggle="tooltip" data-placement="bottom" attr.data-original-title="{{ 'Transversales.LabelNotificaciones' | translate }}"><i  class="fa fa-bell-o" aria-hidden="true"></i></a></li>
+                        <li *ngIf="correo && correo.length > 0"><a href="#" id="mensajesIcon" data-toggle="tooltip" data-placement="bottom" attr.data-original-title="{{ 'Transversales.LabelEmail' | translate }}"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
+                        <li><a href="#" attr.data-original-title="{{ 'Transversales.LabelCerrarSesion' | translate }}" data-toggle="tooltip" data-placement="bottom" (click)="signOut()"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,34 +1,40 @@
-
-<div class="container">
-    <div class="row" *ngIf="!logued">
-        <div class="col-md-offset-3 col-md-6 login-margin">
-            <div class="form-login">
-            <h4 class="centrar">Inicio de sesión</h4>
-            <select class="form-control" name="" id="" (change)="login($event.target.value)">
-                <option value="0">Seleccione Usuario</option>
-                <option value="">Administrador Ilumno</option>
-                <option value="AA" >Administrador Areandina</option>
-                <option value="Poli">Administrador Politécnico</option>
-                <option value="123456">Carlos Eduardo González Cortes</option>
-                <option value="654123">Diana Marcela Bojaca</option>
-            </select>
+<div class="container-fluid">
+    <div class="row boxTotal">
+        <div class="" *ngIf="!logued && inDev">
+            <div class="col-md-offset-3 col-md-6 login-margin">
+                <div class="form-login">
+                    <h4 class="centrar">Inicio de sesión</h4>
+                    <select class="form-control" name="" id="" (change)="loginDev($event.target.value)">
+                        <option value="0">Seleccione Usuario</option>
+                        <option value="su">Administrador Ilumno</option>
+                        <option value="AA">Administrador Areandina</option>
+                        <option value="Poli">Administrador Politécnico</option>
+                        <option value="123456">Carlos Eduardo González Cortes</option>
+                        <option value="654123">Diana Marcela Bojaca</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="logued">
+            <div>
+                <div class="boxLoading" *ngIf="!globalService.ready">
+                    <span id="loading4">
+                        <span id="outerCircle1"></span>
+                        <span id="innerCircle"></span>
+                    </span>
+                </div>
+                <app-menu [menu]="globalService.menu | filtroMenu:1" [perfil]="globalService.menu | filtroMenu:5"></app-menu>
+                <section id="content">
+                    <app-header [strLanguage]="language" (language)="switchLanguage($event)" (endSession)="logout($event)" [notificacion]="globalService.menu | filtroMenu:3"
+                        [correo]="globalService.menu | filtroMenu:7"></app-header>
+                    <app-breadcrumb></app-breadcrumb>
+                    <router-outlet></router-outlet>
+                </section>
             </div>
         </div>
     </div>
+    <div class="boxFooter" *ngIf="logued">
+        <app-footer [user]="user"></app-footer>
+    </div>
 </div>
-
-<div *ngIf="logued">
-    
-    <app-menu [menu]="menus | filtroMenu:1" [perfil]="menus | filtroMenu:5"></app-menu>
-    <section id="content">
-        <app-header [strLanguage]="language" (language)="switchLanguage($event)" [notificacion]="menus | filtroMenu:3" [correo]="menus | filtroMenu:7"></app-header>
-        <router-outlet></router-outlet>
-    </section>
-        
-    <app-footer [redes]="menus | filtroMenu:4" [user]="user" [emisora]="menus | filtroMenu:6" ></app-footer>
-</div>
-
-
-
-
-
+<app-alert></app-alert>

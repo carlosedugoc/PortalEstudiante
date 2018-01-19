@@ -23,9 +23,16 @@
     "@angular/router": "^4.2.4",
     "@ngx-translate/core": "^8.0.0",
     "@ngx-translate/http-loader": "^2.0.0",
+    "@types/underscore": "^1.8.6",
+    "angular-oauth2-oidc": "^3.1.4",
+    "angular2-in-memory-web-api": "0.0.21",
+    "angular2-jwt": "^0.2.3",
     "core-js": "^2.4.1",
     "linqts": "^1.10.0",
+    "moment": "^2.19.2",
     "rxjs": "^5.4.2",
+    "typescript-string-operations": "^1.1.5",
+    "underscore": "^1.8.3",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

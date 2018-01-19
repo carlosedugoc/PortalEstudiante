@@ -1,0 +1,11 @@
+<div class="boxMensajes">
+  <ng-container *ngFor="let alert of alerts">
+    <section class="messageInfo" attr.idAlert="{{ alert.id }}" style="display: none">
+      <i class="{{ cssClass(alert) }}" aria-hidden="true"></i>
+      {{alert.message}}
+      <a class="cerrarMessage" (click)="removeAlert(alert)">
+        <i class="fa fa-close" aria-hidden="true"></i>
+      </a>
+    </section>
+  </ng-container>
+</div>

@@ -1,10 +1,10 @@
-{
+﻿{
     "Administracion": {
         "LabelServicios": "Servicios",
         "LabelModalidades": "Modalidad Académica",
         "LabelNiveles": "Nivel Académico",
         "LabelEstados": "Tipo de Usuario",
-        "LabelHabilitar": "Habilitar/Deshabilitar",
+        "LabelHabilitar": "Habilitar / Deshabilitar",
         "LabelConsultaAcademica": "Consulta Académica",
         "LabelSolicitudFinanciera": "Solicitud Financiera",
         "LabelSolicitudAcademica": "Solicitud Académica",
@@ -12,7 +12,30 @@
         "LabelUniversidad": "Universidad",
         "LabelConfiguracionServicios": "Configuración de Servicios",
         "LabelAdministracion": "Administración",
-        "LabelSeleccioneUniversidad":"Seleccione una Universidad y configure los servicios"
+        "LabelSeleccioneUniversidad": "Seleccione una Universidad y configure los servicios",
+        "LabelServicioOfertado": "Servicio Ofertado",
+        "LabelSeleccionarTodos": "Selección Múltiple",
+        "LabelServiciosXPagina": "Servicios por página",
+        "LabelAlertaConfiguracion": "Debes revisar la configuración de servicios",
+        "LabelModalidadAcademicaAgregar": "En modalidad Académica: se agregó",
+        "LabelNivelAcademicoAgregar": "En nivel Académico: se agregó",
+        "LabelTipoUsuarioAgregar": "En Tipo de Usuario: se agregó",
+        "LabelModalidadAcademicaEliminar": "En modalidad Académica: se eliminó",
+        "LabelNivelAcademicoEliminar": "En nivel Académico: se eliminó",
+        "LabelTipoUsuarioEliminar": "En Tipo de Usuario: se eliminó",
+        "LabelCerrar": "Cerrar",
+        "ModalTitulo": "¿Está seguro que desea quitar este servicio para esta universidad?",
+        "ModalMensajeBloquear": "A continuación se perderá la configuración del servicio para la universidad seleccionada y la universidad no podrá ofertar el servicio. ¿Desea continuar?",
+        "ModalMensajeDesBloquear": "A continuación se activará el servicio para que la universidad lo pueda configurar y ofertar. ¿Desea continuar?",
+        "ToolTipInfoOfertar": "Indica si el servicio es ofertado por la universidad",
+        "ToolTipInfoHabilitar": "Indica si el servicio está disponible actualmente para la universidad",
+        "ToolTipSelMultiple": "Habilita las opciones disponibles para todas las modalidades, niveles y estados",
+        "ModalCancelar": "NO, CANCELAR",
+        "ModalConfirmar": "SÍ, CONFIRMAR",
+        "MensajeArchivoHabilitado": "El servicio {SERVICIO} ha sido habilitado para la universidad",
+        "ToolTipSelTodos": "Seleccionar todos",
+        "ToolTipDesSelTodos": "Deseleccionar todos",
+        "MensajeNoHayServicios": "Para poder configurar servicios antes es necesario configurar la universidad"
     },
     "Menu": {
         "LabelPrincipal": "PRINCIPAL",
@@ -35,7 +58,8 @@
         "ModalEliminiar": "SÍ, ELIMINAR",
         "ValidarFormatoArchivo": "Los reglamentos deben ser cargados en formato PDF. Por favor verifique el formato.",
         "ValidarTamanoArchivo": "El archivo excede el límite de 4MB establecido para los reglamentos. Por favor verifique el tamaño del archivo.",
-        "MensajeGuardadoCorrecto": "La información del reglamento fue actualizada correctamente."
+        "MensajeGuardadoCorrecto": "La información del reglamento fue actualizada correctamente.",
+        "NoHayReglamento": "No hay Reglamento Estudiantil cargado"
     },
     "GestionUniversidades": {
         "LabelEncabezado": "Cree universidades con base en la información del sistema académico Banner",
@@ -48,9 +72,58 @@
         "PlaceHolderCodigo": "Ingrese el código Banner...",
         "LabelGuardar": "Guardar",
         "LabelCancelar": "Cancelar",
-        "MensajeGuardadoCorrecto": "Se actualizó la información correctamente."
+        "MensajeGuardadoCorrecto": "La universidad fue creada exitosamente.",
+        "MensajeActualizadoCorrecto": "Los datos de la universidad fueron actualizados exitosamente."
     },
-    "Transversales":{
-        "LabelSeleccione":"Seleccione..."
+    "Transversales": {
+        "LabelSeleccione": "Seleccione...",
+        "LabelCerrarSesion": "Cerrar Sesión",
+        "LabelNotificaciones": "Notificaciones",
+        "LabelEmail": "Correo Electrónico",
+        "LabelAdminIlumno": "Administrador Ilumno",
+        "LabelAdminPoli": "Administrador Politécnico",
+        "LabelAdminAreandina": "Administrador Areandina",
+        "TooltipConsultarPerfil": "Consultar perfil"
+    },
+    "Paginador": {
+        "labelMostrar": "Mostrar",
+        "labelElementos": "Elementos por página",
+        "labelPagina": "Página",
+        "labelPrimero": "Primero",
+        "labelAnterior": "Anterior",
+        "labelSiguiente": "Siguiente",
+        "labelUltimo": "Último"
+    },
+    "PerfilEstudiante": {
+        "labelInformacionPersonal": "Información personal",
+        "labelIdentificacion": "Identificación",
+        "labelNombre": "Nombre",
+        "labelApellido": "Apellido",
+        "labelGenero": "Género",
+        "labelUsuario": "Usuario",
+        "labelEstadoCivil": "Estado civil",
+        "labelFechaIngreso": "Fecha de ingreso",
+        "labelGrupoSanguineo": "Grupo sanguíneo",
+        "labelPaisResidencia": "País de residencia",
+        "labelDepartamentoEstado": "Departamento / Estado",
+        "labelCiudadResidencia": "Ciudad de residencia",
+        "labelZonaResidencia": "Zona",
+        "labelBarrioResidencia": "Barrio de residencia",
+        "labelDireccionResidencia": "Dirección de residencia",
+        "labelTelefono": "Teléfono",
+        "labelCelular": "Celular",
+        "labelEmailPersonal": "Email personal",
+        "labelNombreContactoEmergencia": "Nombre contacto emergencia",
+        "labelTelefonoContactoEmergencia": "Teléfono contacto emergencia",
+        "labelNombreEmpresa": "Nombre de la empresa",
+        "labelCargoEmpresa": "Cargo en la empresa",
+        "labelDireccionEmpresa": "Dirección de la empresa",
+        "labelGeneroF": "Femenino",
+        "labelGeneroM": "Masculino",
+        "tooltipEditarPerfil": "Editar perfil",
+        "migaPerfilEstudiante": "Perfil"
+    },
+    "MensajesTransversales": {
+        "errorGeneral": "Upss!... un error. Por favor comuniquese con el administrador del sistema."
     }
 }

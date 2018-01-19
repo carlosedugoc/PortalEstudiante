@@ -1,0 +1,19 @@
+
+<!-- <object style="width:100%;height:69.5vh !important;" 
+        [data]="pdfSrc | domseguro" 
+        type="application/pdf">
+        El navegador no soporta la visualización de PDFs
+</object> -->
+
+<!-- <object [data]="pdfSrc | domseguro" type="application/pdf">
+        <p>It appears you don't have Adobe Reader or PDF support in this web browser. <a [href]="pdfSrc | domseguro">Click here to download the PDF</a></p>
+       <embed [src]="pdfSrc | domseguro" type="application/pdf" />
+    </object> -->
+
+    <!-- <embed style="width:100%;height:69.5vh !important;"  
+           [src]="pdfSrc | domseguro" 
+           type="application/pdf" /> -->
+
+           <iframe style="width:100%;height:69.5vh !important;"  
+           [src]="pdfSrc | domseguro" 
+           type="application/pdf" frameborder="0"></iframe>

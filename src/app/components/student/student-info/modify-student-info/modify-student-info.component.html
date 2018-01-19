@@ -1,0 +1,23 @@
+<div class="bodyModule" style="width: 100%; height: 600px; background-color: pink">
+  <p>
+    modify-student-info works!
+  </p>
+  <div>
+    <select name="paises" id="input">
+      <option value="" hidden="">Paises</option>
+      <option *ngFor="let country of countries" [value]="country.countryId">{{country.name}}</option>
+    </select>
+  </div>
+  <div>
+    <select name="countries" id="input">
+      <option value="" hidden="">Departamentos</option>
+      <option *ngFor="let state of states" [value]="state.stateId">{{state.stateName}}</option>
+    </select>
+  </div>
+  <div>
+    <select name="cities" id="input">
+      <option value="" hidden="">Ciudades</option>
+      <option *ngFor="let city of cities" [value]="city.Name">{{city.cityName}}</option>
+    </select>
+  </div>
+</div>

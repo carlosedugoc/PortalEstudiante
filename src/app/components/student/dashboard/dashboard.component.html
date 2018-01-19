@@ -1,0 +1,18 @@
+<section id="mainContent">
+    <div class="grid" *ngIf="dashboard != undefined">
+        <div class="grid-sizer col-xs-12 col-sm-6 col-md-6 col-lg-4"></div>
+        <div class="grid-item col-xs-12 col-sm-6 col-md-6 col-lg-4" *ngFor="let item of dashboard">
+            <div class="moduleDashboard {{item.clase}}">
+                <div class="mdHead">
+                    <h3>
+                        <i class="fa fa-{{item.logo}}" aria-hidden="true"></i>{{item.name | uppercase}}</h3>
+                    <a *ngIf="item.origin == 3" href="{{item.url}}" class="btnAccionPrimaria" target="_blank">Ingresar</a>
+                    <a *ngIf="item.origin == 1 || item.origin == 2" routerLink="" class="btnAccionPrimaria" (click)="goToService(item.crumb,item.name,item.url,item.clase,item.origin)">Ingresar</a>
+                </div>
+                <div class="mdBody">
+                    <p class="contentMod">{{item.description | slice:0:150}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

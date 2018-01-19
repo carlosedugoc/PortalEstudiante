@@ -1,0 +1,122 @@
+<section class="miga">
+  <ol class="breadcrumb">
+    <li>
+      <a href="#">{{'PerfilEstudiante.migaPerfilEstudiante' | translate}}</a>
+    </li>
+    <li class="iconEditProfile">
+      <a href="" data-toggle="tooltip" data-placement="bottom" title="{{'PerfilEstudiante.tooltipEditarPerfil' | translate}}"
+        aria-hidden="true">
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ol>
+</section>
+<section id="mainContent">
+  <div class="imgProfileBig">
+    <img src="./assets/img/user.png" alt="">
+  </div>
+  <div class="module">
+    <div class="headModule">
+      <h1>{{'PerfilEstudiante.labelInformacionPersonal' | translate}}</h1>
+    </div>
+    <div class="bodyModule">
+      <div class="infoPersonal">
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelIdentificacion' | translate}}</label>
+          <p>{{student.identification}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelNombre' | translate}}</label>
+          <p>{{student.firstName}} {{student.middleName}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelApellido' | translate}}</label>
+          <p>{{student.lastName}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelGenero' | translate}}</label>
+          <div *ngIf="student.gender =='F' || student.gender =='M' ; then genero else nogenero"></div>
+          <ng-template #genero>
+            <p>{{'PerfilEstudiante.labelGenero'+student.gender | translate }}</p>
+          </ng-template>
+          <ng-template #nogenero>
+            <p></p>
+          </ng-template>
+
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelUsuario' | translate}}</label>
+          <p>{{student.userName}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelFechaIngreso' | translate}}</label>
+          <p>{{enrollDate}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelEstadoCivil' | translate}}</label>
+          <p>{{student.maritalStatus}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelGrupoSanguineo' | translate}}</label>
+          <p>{{student.bloodGroupType}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelPaisResidencia' | translate}}</label>
+          <p>{{student.residence.country}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelDepartamentoEstado' | translate}}</label>
+          <p>{{student.residence.department}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelCiudadResidencia' | translate}}</label>
+          <p>{{student.residence.city}}</p>
+        </div>
+        <div *ngIf="student.residence.countryId == 'COL' " class="datoInfo">
+          <label>{{'PerfilEstudiante.labelZonaResidencia' | translate}}</label>
+          <p>{{student.residence.zone}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelBarrioResidencia' | translate}}</label>
+          <p>{{student.residence.neighborhood}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelDireccionResidencia' | translate}}</label>
+          <p>{{student.residence.countryId == 'COL' ? student.residence.adressDian : student.residence.address}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelTelefono' | translate}}</label>
+          <p>{{student.landline}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelCelular' | translate}}</label>
+          <p>{{student.mobilePhone}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelEmailPersonal' | translate}}</label>
+          <p>{{student.emailPersonal}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelNombreContactoEmergencia' | translate}}</label>
+          <p>{{student.contact.firstName}} {{student.contact.lastName}} </p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelTelefonoContactoEmergencia' | translate}}</label>
+          <p>{{student.contact.phoneNumber}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelNombreEmpresa' | translate}}</label>
+          <p>{{student.work.company}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelCargoEmpresa' | translate}}</label>
+          <p>{{student.work.position}}</p>
+        </div>
+        <div class="datoInfo">
+          <label>{{'PerfilEstudiante.labelDireccionEmpresa' | translate}}</label>
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

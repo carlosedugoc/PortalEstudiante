@@ -6,5 +6,6 @@ export class Item {
         public serviceTypeName:string,
         public serviceTypeId:number,
         public status:boolean,
+        public itemCode:string
     ){}
 }

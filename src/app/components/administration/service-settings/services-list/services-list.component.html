@@ -1,0 +1,105 @@
+﻿<div class="row">
+    <div class="col-xs-12">
+        <div id="no-more-tables" class="">
+            <div class="table-responsive">
+
+
+                <table class="table-bordered table-striped table-condensed">
+                    <thead class="">
+                        <tr class="headBold">
+                            <th rowspan="2" class="headService">{{ 'Administracion.LabelServicios' | translate }}</th>
+                            <th rowspan="2" class="boxSwitchOferta" *ngIf="user.university == '0'">{{ 'Administracion.LabelServicioOfertado' | translate }}
+                                <br>
+                                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" attr.title="{{'Administracion.ToolTipInfoOfertar' | translate}}"
+                                    aria-hidden="true"></i>
+                            </th>
+                            <th rowspan="2" class="boxSwitch">{{ 'Administracion.LabelHabilitar' | translate}}
+                                <br>
+                                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" attr.title="{{'Administracion.ToolTipInfoHabilitar' | translate}}"
+                                    aria-hidden="true"></i>
+                            </th>
+                            <th *ngIf="servicios.length > 0 && servicios[0].data.length > 0" [attr.colspan]="total_modalidades">{{ 'Administracion.LabelModalidades' | translate }}</th>
+                            <th *ngIf="servicios.length > 0 && servicios[0].data.length > 0" [attr.colspan]="total_niveles">{{ 'Administracion.LabelNiveles' | translate}}</th>
+                            <th *ngIf="servicios.length > 0 && servicios[0].data.length > 0" [attr.colspan]="total_estados">{{ 'Administracion.LabelEstados' | translate}}</th>
+                            <th rowspan="2" class="boxSwitch">{{'Administracion.LabelSeleccionarTodos' | translate}}
+                                <br>
+                                <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" attr.title="{{'Administracion.ToolTipSelMultiple' | translate}}"
+                                    aria-hidden="true"></i>
+                            </th>
+                            <th rowspan="2" class="boxInput">URL</th>
+                        </tr>
+                        <tr>
+                            <th class="boxCheckbox" *ngFor="let tipo of tipos">{{tipo.description | capitalizar:false}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let servicio of dataPaginada; let idxServicio = index">
+                            <td data-title="Servicio" class="boxFirstInput">
+                                <div class="wrapService">
+                                    <div class="txt">
+                                        {{servicio.name}}
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td data-title="Servicio ofertado" class="boxSwitchOferta" *ngIf="user.university == '0'">
+                                <div class="card">
+                                    <label>
+                                        <input type="checkbox" [(ngModel)]="servicio.offered" (change)="openModal(servicio.id,servicio.offered)" />
+                                        <span class="switch"></span>
+                                        <span class="toggle"></span>
+                                    </label>
+                                </div>
+                            </td>
+
+                            <td data-title="Habilitar / Deshabilitar" class="boxSwitch">
+                                <div class="card" *ngIf="servicio.offered">
+                                    <label>
+                                        <input type="checkbox" [(ngModel)]="servicio.status" (change)="updateService(servicio.id,'Status',servicio.status)" />
+                                        <span class="switch"></span>
+                                        <span class="toggle"></span>
+                                    </label>
+                                </div>
+                            </td>
+
+                            <td *ngFor="let item of servicio.data" class="boxCheckbox">
+                                <label class="control control--checkbox" *ngIf="servicio.offered">
+                                    <input type="checkbox" [(ngModel)]="item.status" [disabled]="!servicio.status" (change)="updateItem(item.id,item.status)"
+                                    />
+                                    <div class="control__indicator"></div>
+                                </label>
+                            </td>
+
+                            <td data-title="Selección Multiple" class="boxSeleccionMultiple">
+                                <div class="btn-group" *ngIf="servicio.offered">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        [disabled]="!servicio.status">
+                                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a (click)="ModificarTodos(true,idxServicio)" href="javascript:;" class="checkAll">{{'Administracion.ToolTipSelTodos' | translate}}</a>
+                                        </li>
+                                        <li>
+                                            <a (click)="ModificarTodos(false,idxServicio)" href="javascript:;" class="uncheckAll">{{'Administracion.ToolTipDesSelTodos' | translate}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+
+                            <td data-title="URL" class="boxInput">
+                                <input *ngIf="servicio.offered" type="text" [(ngModel)]="servicio.url" [disabled]="!servicio.status || servicio.origin == 1" name="url" class="form-control"
+                                    (blur)="updateService(servicio.id,'Url',servicio.url)">
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-pager [allItems]="servicios" [elementsXPageLabel]="'Administracion.LabelServiciosXPagina'" (pagedItems)="SetDataPaged($event)"></app-pager>
+<button id="openModalButtonService" [hidden]="true" data-toggle="modal" data-target="#modal-service">Open Modal</button>

@@ -1,22 +1,32 @@
-import { Http } from '@angular/http';
+import { List } from "linqts";
+import { Http  } from "@angular/http";
+import { AppConfiguration } from "../app.configuration";
 
 export class GeneralUtils {
-    constructor(private http: Http) {
+    
+    constructor() {
     }
 
-    //// Método que obtiene alguna configuración.
-    //// Determine que data desea, separado por pipe para cada hijo EJ. Implemente esto en su componente.
-    //// getConfiguration('servicios|UrlUpdateReglamento').subscribe((result) => console.log(result));
-    public getConfiguration(key) {
-        debugger;
-        return this.http.get('../../assets/config.json').map(res => {
-            let result = res.json();
-            key.split('|').forEach(function (nodo) {
-                result = result[nodo]
-            })
-            return result
-        }, error => {
-            console.log('error', error)
-        })
+    private config: any
+
+    //// Método de carga de información por defecto.
+    //async load() {
+    //this.config = await this.getAllConfiguration();
+    //}
+
+    // //// Método que obtiene toda la información del archivo de configuración.
+    // private async getAllConfiguration(): Promise<any> {
+    //     const response = await this.http.get("../../assets/config.json").toPromise();
+    //     return response.json();
+    // }
+
+    //// Método que obtiene los parametros enviados por get en la petición
+    public getParameterHrefByName(name) {
+        let url = location.href
+        url = url.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(url);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 }
+

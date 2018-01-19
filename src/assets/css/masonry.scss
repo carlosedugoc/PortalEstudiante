@@ -1,0 +1,221 @@
+
+.grid-item {
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.moduleDashboard {
+  min-height: 50px;
+  background: #fff;
+  border-top: 4px solid;
+  .mdHead {
+  	padding-top: 12px;
+  	padding-bottom: 12px;
+  	padding-left: 15px;
+  	padding-right: 10px;
+	border-bottom: 1px solid #f1f1f1;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	-webkit-align-items: center;
+	align-items: center;
+	h3 {
+		display: -webkit-flex;
+		display: -moz-flex;
+		display: -ms-flex;
+		display: -o-flex;
+		display: flex;
+		-webkit-align-items: center;
+		align-items: center;
+		margin: 0 10px 0 0;
+		color: $color_texto_base;
+		font-size: 16px;
+		font-weight: 700;
+		font-family: $font_U;
+		line-height: 1.1;
+		i {
+			color: $inactive_color;
+			font-size: 18px;
+			padding-right: 5px;
+		}
+	}
+  }
+  .mdBody {
+  	color: $second_accion;
+  	font-size: 15px;
+  	font-family: $main_tipography;
+  	line-height: 1.2;
+  	font-weight: 400;
+  	
+  	.contentMod {
+  		padding-left: 40px;
+  		padding-right: 10px;
+  		padding-top: 20px;
+  		padding-bottom: 20px;
+  		margin: 0;
+  		border-bottom: 1px solid #f1f1f1;
+  	}
+  	.itemService {
+  		border-bottom: 1px solid #f1f1f1;
+  		display: -webkit-flex;
+  		display: -moz-flex;
+  		display: -ms-flex;
+  		display: -o-flex;
+  		display: flex;
+  		-webkit-align-items: center;
+  		align-items: center;
+  		-webkit-justify-content: space-between;
+  		justify-content: space-between;
+  		color: $color_texto_base;
+  		font-size: 15px;
+  		p {
+  			display: -webkit-flex;
+  			display: -moz-flex;
+  			display: -ms-flex;
+  			display: -o-flex;
+  			display: flex;
+  			-webkit-align-items: center;
+  			align-items: center;
+  			margin: 0 10px 0 0;
+  			
+  		}
+  		.cifra {
+  			font-size: 24px;
+  			font-weight: 700;
+  			margin: 0 10px 0 0;
+  		}
+  	}
+  }
+}
+
+.horClase {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	.nameClase {
+		margin: 0;
+		font-weight: 700;
+	}
+}
+
+.btnAccionPrimaria {
+	color: #fff;
+	padding: 3px 10px;
+	border-radius: 10px;
+	font-family: $main_tipography;
+	font-size: 14px;
+	font-weight: 400;
+	text-align: center;
+	line-height: 1; 
+	&:hover {
+		background-color: #FFF;
+		text-decoration: none;
+	}
+}
+
+.mdPagos {
+	border-color: $pagos_color;
+	a.btnAccionPrimaria {
+		@extend .btnAccionPrimaria;
+		background-color: $pagos_color;
+		border: 1px solid $pagos_color;
+		&:hover {
+			color: $pagos_color;
+		}
+	}
+	.cifra {
+		color: $pagos_color;
+	}
+}
+
+
+.mdConsulta {
+	border-color: $consulta_color;
+	a.btnAccionPrimaria {
+		@extend .btnAccionPrimaria;
+		background-color: $consulta_color;
+		border: 1px solid $consulta_color;
+		&:hover {
+			color: $consulta_color;
+		}
+	}
+	.cifra {
+		color: $consulta_color;
+	}
+}
+
+.mdSolicitud {
+	border-color: $solicitud_color;
+	a.btnAccionPrimaria {
+		@extend .btnAccionPrimaria;
+		background-color: $solicitud_color;
+		border: 1px solid $solicitud_color;
+		&:hover {
+			color: $solicitud_color;
+		}
+	}
+	.cifra {
+		color: $solicitud_color;
+	}
+}
+
+.mdPortales {
+	border-color: $portales_color;
+	a.btnAccionPrimaria {
+		@extend .btnAccionPrimaria;
+		background-color: $portales_color;
+		border: 1px solid $portales_color;
+		&:hover {
+			color: $portales_color;
+		}
+	}
+	.cifra {
+		color: $portales_color;
+	}
+}
+
+.mdSedes {
+	border-color: $sedes_color;
+	a.btnAccionPrimaria {
+		@extend .btnAccionPrimaria;
+		background-color: $sedes_color;
+		border: 1px solid $sedes_color;
+		&:hover {
+			background-color: #FFF;
+			color: $sedes_color;
+		}
+	}
+	.cifra {
+		color: $sedes_color;
+	}
+}
+
+.btnAccionSecundaria {
+	background-color: $second_accion;
+	border: 1px solid $second_accion;
+	color: #fff;
+	padding: 3px 10px;
+	border-radius: 10px;
+	font-family: $main_tipography;
+	font-size: 14px;
+	font-weight: 400;
+	text-align: center;
+	line-height: 1; 
+	&:hover {
+		background-color: #FFF;
+		color: $second_accion;
+		text-decoration: none;
+	}
+
+}
+
+.grid-item-content--height2 { min-height: 100px; }

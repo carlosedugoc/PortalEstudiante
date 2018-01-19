@@ -1,0 +1,135 @@
+<section class="miga">
+    <ol class="breadcrumb">
+        <li>
+            <a href="#">{{ 'Administracion.LabelAdministracion' | translate }}</a>
+        </li>
+        <li class="active">{{ 'Administracion.LabelConfiguracionServicios' | translate }}</li>
+
+        <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#modal-id">Open Modal</button>
+    </ol>
+</section>
+
+<section id="mainContent" *ngIf="serv">
+    <div class="infoWarning">
+        <i class="fa fa-warning" aria-hidden="true"></i>
+        <p>
+            <strong>{{'Administracion.MensajeNoHayServicios' | translate}}</strong>
+        </p>
+    </div>
+</section>
+
+<section id="mainContent" *ngIf="!serv">
+    <div class="module">
+        <div class="headModule" *ngIf="user && user.rol == '1' && user.university == '0'">
+            <h1>{{ 'Administracion.LabelSeleccioneUniversidad' | translate }}</h1>
+        </div>
+        <div class="bodyModule">
+            <div class="row boxCombo" *ngIf="user && user.rol == '1' && user.university == '0'">
+                <div class="col-sm-6 col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">{{ 'Administracion.LabelUniversidad' | translate }}</label>
+                        <div class="">
+                            <select name="universidades" id="input" class="form-control selectpicker" required="required" (change)="load_data($event.target.value)"
+                                attr.title="{{'Transversales.LabelSeleccione' | translate}}">
+                                <option value="1">Areandina</option>
+                                <option value="2">Politécnico</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row boxTabs" *ngIf="!serv">
+
+                <div class="col-xs-12">
+
+                    <ul class="nav nav-pills" role="tablist" *ngIf="globalService.ready && show_table && !serv">
+                        <li role="presentation" *ngFor="let tab of tabs; let i = index" [ngClass]="{active: i == 0 }">
+                            <a href="#tab{{tab.categoryId}}" attr.aria-controls="tab{{tab.categoryId}}" role="tab" data-toggle="tab">{{tab.categoryName}}</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" *ngIf="globalService.ready && show_table && !serv">
+
+                        <div *ngFor="let tab of tabs; let i = index" role="tabpanel" class="tab-pane fade in" [ngClass]="{active: i == 0 }" id="tab{{tab.categoryId}}">
+                            <app-services-list [total_modalidades]="total_modalidades" [total_niveles]="total_niveles" [total_estados]="total_estados"
+                                [tipos]="tipos" [servicios]="servicios | filtroServicios:tab.categoryId" (offered)="setService($event)"
+                                [cancel]="cancel">
+                            </app-services-list>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="boxModal">
+    <div class="modal fade" id="modal-id">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{'Administracion.LabelAlertaConfiguracion' | translate}}</h4>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li *ngFor="let item of faltantesMensaje | filtroFaltantes:1">
+                            <i class="fa fa-minus" aria-hidden="true"></i>{{'Administracion.LabelModalidadAcademicaAgregar' | translate}}
+                            <strong>{{item.itemName}}</strong>
+                        </li>
+                        <li *ngFor="let item of faltantesMensaje | filtroFaltantes:2">
+                            <i class="fa fa-minus" aria-hidden="true"></i>{{'Administracion.LabelNivelAcademicoAgregar' | translate}}
+                            <strong>{{item.itemName}}</strong>
+                        </li>
+                        <li *ngFor="let item of faltantesMensaje | filtroFaltantes:3">
+                            <i class="fa fa-minus" aria-hidden="true"></i>{{'Administracion.LabelTipoUsuarioAgregar' | translate}}
+                            <strong>{{item.itemName}}</strong>
+                        </li>
+                        <li *ngFor="let item of eliminados | filtroFaltantes:1">
+                            <i class="fa fa-minus" aria-hidden="true"></i>{{'Administracion.LabelModalidadAcademicaEliminar' | translate}}
+                            <strong>{{item.itemName}}</strong>
+                        </li>
+                        <li *ngFor="let item of eliminados | filtroFaltantes:2">
+                            <i class="fa fa-minus" aria-hidden="true"></i>{{'Administracion.LabelNivelAcademicoEliminar' | translate}}
+                            <strong>{{item.itemName}}</strong>
+                        </li>
+                        <li *ngFor="let item of eliminados | filtroFaltantes:3">
+                            <i class="fa fa-minus" aria-hidden="true"></i>{{'Administracion.LabelTipoUsuarioEliminar' | translate}}
+                            <strong>{{item.itemName}}</strong>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btnFirstAccion" data-dismiss="modal">{{'Administracion.LabelCerrar' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="boxModal">
+    <div class="modal fade" id="modal-service">
+        <div class="modal-dialog infoDelete">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center">{{ 'Administracion.ModalTitulo' | translate }}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <p>{{'Administracion.ModalMensajeBloquear' | translate}}</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btnNoAccion" data-dismiss="modal" (click)="cancel = !cancel">{{ 'Administracion.ModalCancelar' | translate }}</button>
+                    <button type="button" class="btn btn-default btnFirstAccion" data-dismiss="modal" (click)="updateOffered()">{{ 'Administracion.ModalConfirmar' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

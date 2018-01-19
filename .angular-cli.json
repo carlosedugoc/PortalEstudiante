@@ -1,4 +1,4 @@
-{
+﻿{
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
     "name": "portal-estudiantes-new"
@@ -19,17 +19,17 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css",
-        "assets/font-awesome/css/font-awesome.min.css",
         "assets/css/bootstrap.min.css",
-        "assets/css/bootstrap-select.min.css"
+        "assets/font-awesome/css/font-awesome.min.css",
+        "assets/css/bootstrap-select.min.css",
+        "styles.css"
       ],
       "scripts": [
         "assets/js/jquery.min.js",
         "assets/js/bootstrap.min.js",
-        "assets/js/main.js",
-        "assets/js/masonry.js",
         "assets/js/bootstrap-select.min.js",
+        "assets/js/masonry.js",
+        "assets/js/main.js",
         "scripts.js"
       ],
       "environmentSource": "environments/environment.ts",

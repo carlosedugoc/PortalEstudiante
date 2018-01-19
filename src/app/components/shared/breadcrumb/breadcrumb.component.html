@@ -1,0 +1,8 @@
+<section class="miga" *ngIf="mostrar" >
+    <ol class="breadcrumb">
+        <ng-container *ngFor="let breadcrumb of breadcrumbs; let i = index;">
+            <li *ngIf="i == 0"><a [id]="breadcrumb.cssClass">{{breadcrumb.label}}</a></li>
+            <li class="active" *ngIf="i > 0"  >{{ breadcrumb.label }}</li>
+        </ng-container>
+    </ol>
+</section>

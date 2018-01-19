@@ -1,0 +1,10 @@
+<section id="mainContent" *ngIf="pdfSrc == ''">
+    <div class="infoWarning">
+        <i class="fa fa-warning" aria-hidden="true"></i>
+        <p>
+            <strong>{{'GestionReglamentos.NoHayReglamento' | translate}}</strong>
+        </p>
+    </div>
+</section>
+
+<app-pdf-viewer [pdfSrc]="pdfSrc" *ngIf="pdfSrc && pdfSrc != ''"></app-pdf-viewer>

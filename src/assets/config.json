@@ -1,30 +1,40 @@
-{ 
-    "universidades": 
-        [
-            {
-                "Universidad":"Fundación Universitaria del Área Andina",
-                "Codigo":"1",
-                "ServicioModalidad":"https://apis.qailumno.com/sis/fuaa/v1/academics/modalities",
-                "ServicioNivel":"https://apis.qailumno.com/sis/fuaa/v1/academics/levels",
-                "ServicioEstado":"https://apis.qailumno.com/sis/fuaa/v1/status"
-            },
-            {
-                "Universidad":"Politécnico Gran Colombiano",
-                "Codigo":"2",
-                "ServicioModalidad":"https://apis.qailumno.com/sis/poli/v1/academics/modalities",
-                "ServicioNivel":"https://apis.qailumno.com/sis/poli/v1/academics/levels",
-                "ServicioEstado":"https://apis.qailumno.com/sis/poli/v1/status"
-            }
-        ],
-    "servicios":{
-        "UrlApiRest":"http://10.75.8.109/PEServices",
-        "UrlGetUniversidades":"http://10.75.8.109/PEServices/Api/Universidades/",
-        "UrlGetIdioma":"http://10.75.8.109/PEServices/api/Usuario/{usuario}/Universidad/",
-        "UrlUpdateIdioma":"http://10.75.8.109/PEServices/api/Usuario/Idioma/"
-    },
-    "validaciones": {
-        "tipoArchivo_CargaReglamento": "pdf",
-        "tamanoArchivo_CargaReglamento": "4"
-    }
+﻿{
+  "servicios": {
+    "UrlApiRest": "http://estudiantesservices.azurewebsites.net",
+    "UrlLoginIAM": "https://iam-qa.ilumno.com:9443/oauth2/authorize",
+    "UrlLogoutIAM": "https://iam-qa.ilumno.com:9443/oidc/logout",
+    "ServicioModalidad": "https://apimis.ilumno.com/t/{0}/sis/v1/academics/modalities",
+    "ServicioNivel": "https://apimis.ilumno.com/t/{0}/sis/v1/academics/levels",
+    "ServicioEstado": "https://apimis.ilumno.com/t/{0}/sis/v1/status"
+  },
+  "banner": {
+    "token": "https://apimis.ilumno.com/token",
+    "authorization": "Basic eHJQYnpWYXB0Vk42OTF0QlJ0eWVvbGlCbXBrYTp6N3o0NXozWFdwR3RQVFJUU0FfUXVEaUhpSVFh",
+    "student-info": "https://apimis.ilumno.com/t/{0}/sis/v1/students",
+    "countries": "https://apimis.ilumno.com/t/{0}/sis/v1/geo/countries",
+    "states": "https://apimis.ilumno.com/t/{0}/sis/v1/geo/countries/{1}/states",
+    "cities": "https://apimis.ilumno.com/t/{0}/sis/v1/geo/countries/{1}/states/{2}/cities"
+  },
+  "dominioTenantUniversidadBannerURL": {
+    "areandina": "alumnos.fuaa.edu.co",
+    "politecnico": "alumnos.poligran.edu.co"
+  },
+  "validaciones": {
+    "dev": false,
+    "tipoArchivo_CargaReglamento": "pdf",
+    "tamanoArchivo_CargaReglamento": "4",
+    "inactiveTime": "10",
+    "ocultarMensajesAuto": true,
+    "tiempoOcultarMensaje": "5"
+  },
+  "clients": {
+    "areandina": "yge7FPKwQjUDsboxB8vcpXW4fDsa",
+    "politecnico": "sIa4d6Ff4fIIf2AaF2O4mL8cyoga",
+    "ilumno": "aE8eko52ZHDb5Mrf3IPKhmUVQAoa"
+  },
+  "Auth": {
+    "provider": "IAM",
+    "_comment": "se debe escribir la universidad como aparece en Clients, se separa por coma para determinar el hostname, las universidades se separan por pipe.",
+    "IAMSegunDominio": "ilumno,localhost|areandina,portalestfuaaqa.qailumno.com|politecnico,portalestpoliqa.qailumno.com"
+  }
 }
-
